@@ -41,8 +41,18 @@
 		<Linker>
 			<Add directory="../Downloads/SFML-2.0-rc-64/lib" />
 		</Linker>
+		<Unit filename="include/Character.h" />
+		<Unit filename="include/Game.h" />
+		<Unit filename="include/Level.h" />
 		<Unit filename="include/Main.h" />
+		<Unit filename="include/Player.h" />
+		<Unit filename="include/Zombie.h" />
+		<Unit filename="src/Character.cpp" />
+		<Unit filename="src/Game.cpp" />
+		<Unit filename="src/Level.cpp" />
 		<Unit filename="src/Main.cpp" />
+		<Unit filename="src/Player.cpp" />
+		<Unit filename="src/Zombie.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

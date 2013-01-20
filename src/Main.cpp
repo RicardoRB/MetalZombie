@@ -1,9 +1,19 @@
 #include "../include/Main.h"
 
-using namespace std;
-using namespace sf;
+/*!
+ *  \brief     Main class
+ *  \author    Ricardo Romero B.
+ *  \version   0.1
+ *  \date      1/20/2013
+ *  \copyright GNU Public License.
+ */
 
-int main(){
-    cout << "First commit of the game :)" << endl;
+using namespace std;
+
+int main()
+{
+    Game *metalzombie = new Game();
+    metalzombie->startGame();
+    delete metalzombie;
     return 0;
 }
