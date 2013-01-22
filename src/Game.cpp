@@ -2,7 +2,7 @@
 
 Game::Game()
 {
-    this->level1 = new Level("res/sounds/music/level1.aif");
+    this->level1 = new Level("res/sounds/music/level1.ogg");
     startGame();
 }
 
