@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1358692192 source:c:\users\ricardo\metalzombie\src\character.cpp
+1358872153 source:c:\users\ricardo\metalzombie\src\character.cpp
 	"../include/Character.h"
 
-1358697083 c:\users\ricardo\metalzombie\include\character.h
+1358892494 c:\users\ricardo\metalzombie\include\character.h
 	<SFML/Graphics.hpp>
 
 1331748415 c:\users\ricardo\downloads\sfml-2.0-rc-64\include\sfml\graphics.hpp
@@ -339,24 +339,23 @@
 	<string>
 	<vector>
 
-1358695487 source:c:\users\ricardo\metalzombie\src\level.cpp
+1358893442 source:c:\users\ricardo\metalzombie\src\level.cpp
 	"../include/Level.h"
 
-1358697144 c:\users\ricardo\metalzombie\include\level.h
+1358894023 c:\users\ricardo\metalzombie\include\level.h
 	"Player.h"
-	<iostream>
+	<SFML/Audio.hpp>
 
-1358697006 c:\users\ricardo\metalzombie\include\player.h
+1358894306 c:\users\ricardo\metalzombie\include\player.h
 	"Character.h"
 
-1358696428 source:c:\users\ricardo\metalzombie\src\main.cpp
+1358893556 source:c:\users\ricardo\metalzombie\src\main.cpp
 	"../include/Main.h"
 
-1358695679 c:\users\ricardo\metalzombie\include\main.h
-	<iostream>
+1358870108 c:\users\ricardo\metalzombie\include\main.h
 	"Game.h"
 
-1358693706 source:c:\users\ricardo\metalzombie\src\player.cpp
+1358894270 source:c:\users\ricardo\metalzombie\src\player.cpp
 	"../include/Player.h"
 
 1358692198 source:c:\users\ricardo\metalzombie\src\zombie.cpp
@@ -364,10 +363,69 @@
 
 1358697074 c:\users\ricardo\metalzombie\include\zombie.h
 
-1358696709 c:\users\ricardo\metalzombie\include\game.h
+1358894389 c:\users\ricardo\metalzombie\include\game.h
 	"Level.h"
-	<iostream>
 
-1358696382 source:c:\users\ricardo\metalzombie\src\game.cpp
+1358893574 source:c:\users\ricardo\metalzombie\src\game.cpp
 	"../include/Game.h"
+
+1331748415 c:\users\ricardo\downloads\sfml-2.0-rc-64\include\sfml\audio.hpp
+	<SFML/System.hpp>
+	<SFML/Audio/Listener.hpp>
+	<SFML/Audio/Music.hpp>
+	<SFML/Audio/Sound.hpp>
+	<SFML/Audio/SoundBuffer.hpp>
+	<SFML/Audio/SoundBufferRecorder.hpp>
+	<SFML/Audio/SoundRecorder.hpp>
+	<SFML/Audio/SoundStream.hpp>
+
+1331660157 c:\users\ricardo\downloads\sfml-2.0-rc-64\include\sfml\audio\listener.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/System/Vector3.hpp>
+
+1331660157 c:\users\ricardo\downloads\sfml-2.0-rc-64\include\sfml\audio\export.hpp
+	<SFML/Config.hpp>
+
+1331748302 c:\users\ricardo\downloads\sfml-2.0-rc-64\include\sfml\audio\music.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/SoundStream.hpp>
+	<SFML/System/Mutex.hpp>
+	<SFML/System/Time.hpp>
+	<string>
+	<vector>
+
+1333570901 c:\users\ricardo\downloads\sfml-2.0-rc-64\include\sfml\audio\soundstream.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/SoundSource.hpp>
+	<SFML/System/Thread.hpp>
+	<SFML/System/Time.hpp>
+	<cstdlib>
+
+1331660158 c:\users\ricardo\downloads\sfml-2.0-rc-64\include\sfml\audio\soundsource.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/System/Vector3.hpp>
+
+1332861043 c:\users\ricardo\downloads\sfml-2.0-rc-64\include\sfml\audio\sound.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/SoundSource.hpp>
+	<SFML/System/Time.hpp>
+	<cstdlib>
+
+1331660157 c:\users\ricardo\downloads\sfml-2.0-rc-64\include\sfml\audio\soundbuffer.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/System/Time.hpp>
+	<string>
+	<vector>
+	<set>
+
+1333570839 c:\users\ricardo\downloads\sfml-2.0-rc-64\include\sfml\audio\soundbufferrecorder.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/SoundBuffer.hpp>
+	<SFML/Audio/SoundRecorder.hpp>
+	<vector>
+
+1333570869 c:\users\ricardo\downloads\sfml-2.0-rc-64\include\sfml\audio\soundrecorder.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/System/Thread.hpp>
+	<vector>
 

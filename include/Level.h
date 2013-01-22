@@ -1,5 +1,5 @@
 #include "Player.h"
-#include <iostream>
+#include <SFML/Audio.hpp>
 #ifndef LEVEL_H
 #define LEVEL_H
 /*!
@@ -15,8 +15,14 @@ class Level
 {
 public:
     Level();
+    /*!
+    *  \brief     Constructor overloaded to which you pass the file of music
+    *  \details   Constructor overloaded to which you pass the file of music, to create a new player and music, playing it and looping it
+    */
+    Level(char file_music[]);
     virtual ~Level();
-    Player *player1 = new Player();
+    Player *player1 = NULL;
+    sf::Music *music = NULL;
 protected:
 private:
 

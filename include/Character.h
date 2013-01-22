@@ -23,11 +23,17 @@ public:
     float velY;
     int posX;
     int posY;
+    sf::Texture texture;
+    sf::Sprite sprite;
+    sf::IntRect r1;
     /*!
     * \brief Put the character in the initial position
     * \details Is virtual because not all the characters start in the same position
     */
-    void posInit();
+    virtual void posInit()
+    {
+        this->sprite.setPosition(100,400);
+    };
     /*!
      * \brief Main attack of the characters
      * \details Is virtual because not all the characters attack at the same way

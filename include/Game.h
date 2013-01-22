@@ -1,5 +1,4 @@
 #include "Level.h"
-#include <iostream>
 #ifndef GAME_H
 #define GAME_H
 /*!
@@ -14,6 +13,10 @@
 class Game
 {
 public:
+    /*!
+     * \brief Constructor of class Game
+     * \details It will create a new level and call the startGame function
+    */
     Game();
     virtual ~Game();
     /*!
@@ -23,7 +26,7 @@ public:
     void startGame();
 protected:
 private:
-    Level *level1 = new Level();
+    Level *level1 = NULL;
     sf::RenderWindow window;
 };
 

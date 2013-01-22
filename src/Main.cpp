@@ -8,12 +8,9 @@
  *  \copyright GNU Public License.
  */
 
-using namespace std;
-
 int main()
 {
     Game *metalzombie = new Game();
-    metalzombie->startGame();
     delete metalzombie;
     return 0;
 }
