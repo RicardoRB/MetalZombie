@@ -2,7 +2,7 @@
 1358872153 source:c:\users\ricardo\metalzombie\src\character.cpp
 	"../include/Character.h"
 
-1358892494 c:\users\ricardo\metalzombie\include\character.h
+1359066443 c:\users\ricardo\metalzombie\include\character.h
 	<SFML/Graphics.hpp>
 
 1331748415 c:\users\ricardo\downloads\sfml-2.0-rc-64\include\sfml\graphics.hpp
@@ -339,14 +339,14 @@
 	<string>
 	<vector>
 
-1358893442 source:c:\users\ricardo\metalzombie\src\level.cpp
+1359056891 source:c:\users\ricardo\metalzombie\src\level.cpp
 	"../include/Level.h"
 
-1358894406 c:\users\ricardo\metalzombie\include\level.h
+1359056891 c:\users\ricardo\metalzombie\include\level.h
 	"Player.h"
 	<SFML/Audio.hpp>
 
-1358894306 c:\users\ricardo\metalzombie\include\player.h
+1359063519 c:\users\ricardo\metalzombie\include\player.h
 	"Character.h"
 
 1358893556 source:c:\users\ricardo\metalzombie\src\main.cpp
@@ -355,7 +355,7 @@
 1358870108 c:\users\ricardo\metalzombie\include\main.h
 	"Game.h"
 
-1358894270 source:c:\users\ricardo\metalzombie\src\player.cpp
+1359065387 source:c:\users\ricardo\metalzombie\src\player.cpp
 	"../include/Player.h"
 
 1358692198 source:c:\users\ricardo\metalzombie\src\zombie.cpp
@@ -366,8 +366,9 @@
 1358894389 c:\users\ricardo\metalzombie\include\game.h
 	"Level.h"
 
-1358896022 source:c:\users\ricardo\metalzombie\src\game.cpp
+1359065441 source:c:\users\ricardo\metalzombie\src\game.cpp
 	"../include/Game.h"
+	<iostream>
 
 1331748415 c:\users\ricardo\downloads\sfml-2.0-rc-64\include\sfml\audio.hpp
 	<SFML/System.hpp>

@@ -15,24 +15,18 @@ class Character
 public:
     Character();
     virtual ~Character();
-    /*!
-     * \details life If the characters is living, then true, else will be false
-    */
-    bool life = true;
-    float velX;
-    float velY;
-    int posX;
-    int posY;
     sf::Texture texture;
     sf::Sprite sprite;
-    sf::IntRect r1;
+    sf::IntRect image_vector;
     /*!
     * \brief Put the character in the initial position
     * \details Is virtual because not all the characters start in the same position
     */
     virtual void posInit()
     {
-        this->sprite.setPosition(100,400);
+        this->sprite.setPosition(100.f,400.f);
+        this->posX = 100;
+        this->posY = 400;
     };
     /*!
      * \brief Main attack of the characters
@@ -40,29 +34,61 @@ public:
     */
     void attack();
     /*!
-     * \brief Main attack of the characters
-     * \details Is virtual because not all the characters attack at the same way
-     * \param posX The position in X coordinate to move the character
+     * \brief Function to move the character to right
+     * \details Add the position of the variable, flip the sprite to right and move the sprite to right
      * \return True if the character is moving right
     */
-    bool moveRight(int &posX)
+    bool moveRight()
     {
-        posX++;
+        this->posX++;
+        this->velX = 1;
+        this->sprite.setScale(-1.f,1.f);
+        this->sprite.move(velX,velY);
         return true;
     }
     /*!
-     * \brief Main attack of the characters
-     * \details Is virtual because not all the characters attack at the same way
-     * \param posX The position in X coordinate to move the character
+     * \brief Function to move the character to left
+     * \details Subtract the position of the variable, flip the sprite to left and move the sprite to left
      * \return True if the character is moving left
     */
-    bool moveLeft(int &posX)
+    bool moveLeft()
     {
-        posX--;
+        this->posX--;
+        this->velX = -1;
+        /*if(this->image_vector.left >=241){
+            this->image_vector.left = 56;
+        }
+        if(this->image_vector.left >= 56){
+            this->image_vector.left += 26 + 7;
+        }
+        else{
+            this->image_vector.left = 56;
+        }*/
+        this->sprite.setScale(1.f,1.f);
+        this->sprite.setTextureRect(image_vector);
+        this->sprite.move(velX,velY);
         return true;
     }
+    /*sf::Sprite getSprite(){
+        return this->sprite;
+    }
+    sf::Texture getTexture(){
+        return this->texture;
+    }
+    sf::IntRect getImage_vector(){
+        return this->image_vector;
+    }*/
 protected:
 private:
+    /*!
+     * \details life If the characters is living, then true, else will be false
+    */
+    bool life = true;
+    float velX = 0;
+    float velY = 0;
+    int posX;
+    int posY;
+
 };
 
 #endif // CHARACTER_H

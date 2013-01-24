@@ -1,4 +1,5 @@
 #include "../include/Game.h"
+#include <iostream>
 
 Game::Game()
 {
@@ -24,7 +25,17 @@ void Game::startGame()
             {
                 window.close();
             }
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Joystick::getAxisPosition(0, sf::Joystick::X) == 100)
+            {
+                level1->player1->moveRight();
+            }
+
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Joystick::getAxisPosition(0, sf::Joystick::X) == -100)
+            {
+                level1->player1->moveLeft();
+            }
         }
+        window.clear();
         window.draw(level1->player1->sprite);
         window.display();
     }

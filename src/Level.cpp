@@ -1,9 +1,5 @@
 #include "../include/Level.h"
 
-Level::Level()
-{
-
-}
 Level::Level(char file_music[])
 {
     //I create the player and music in the level

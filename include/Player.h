@@ -14,10 +14,10 @@
 class Player : public Character
 {
 public:
-    Player();
     /*!
     *  \brief     Constructor overloaded to which you pass the file of sprite
-    *  \details   Constructor overloaded to which you pass the file of sprite, to take the player on the picture and to send it on a position on the game window
+    *  \details   Constructor overloaded to which you pass the file of sprite, to take the player on the picture,
+    *  \details   to send it on a position on the game window and set the origin of the picture on half-size
     */
     Player(char file_texture[]);
     virtual ~Player();
