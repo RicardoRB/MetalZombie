@@ -4,7 +4,7 @@
 #define LEVEL_H
 /*!
  *  \brief     Class of the levels
- *  \details   This class will control the objets of the levels; characters, pictures, sounds, music...
+ *  \details   This class will control the objects of the levels; characters, pictures, sounds, music...
  *  \author    Ricardo Romero B.
  *  \version   0.1
  *  \date      1/20/2013

@@ -37,9 +37,11 @@
 		<Compiler>
 			<Add option="-Wall" />
 			<Add directory="../Downloads/SFML-2.0-rc-64/include" />
+			<Add directory="../Downloads/SFML-2.0-rc/include" />
 		</Compiler>
 		<Linker>
 			<Add directory="../Downloads/SFML-2.0-rc-64/lib" />
+			<Add directory="../Downloads/SFML-2.0-rc/lib" />
 		</Linker>
 		<Unit filename="include/Character.h" />
 		<Unit filename="include/Game.h" />

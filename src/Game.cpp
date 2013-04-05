@@ -14,17 +14,19 @@ Game::~Game()
 
 void Game::startGame()
 {
-    window.create(sf::VideoMode(1024,768), "MetalZombie");
+    window.create(sf::VideoMode(1024,768), "MetalZombie", sf::Style::Default);
     window.setFramerateLimit(500);
     while (window.isOpen())
     {
         sf::Event event;
         while (window.pollEvent(event))
         {
+
             if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
             {
                 window.close();
             }
+
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Joystick::getAxisPosition(0, sf::Joystick::X) == 100)
             {
                 level1->player1->moveRight();
@@ -34,7 +36,9 @@ void Game::startGame()
             {
                 level1->player1->moveLeft();
             }
+
         }
+
         window.clear();
         window.draw(level1->player1->sprite);
         window.display();

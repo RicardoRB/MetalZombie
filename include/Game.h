@@ -20,8 +20,8 @@ public:
     Game();
     virtual ~Game();
     /*!
-    * \brief Do the game beging
-    * \details This fuctions is called to start the game
+    * \brief Do the game begins
+    * \details This functions is called to start the game
     */
     void startGame();
 protected:

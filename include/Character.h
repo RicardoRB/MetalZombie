@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <iostream>
 #ifndef CHARACTER_H
 #define CHARACTER_H
 /*!
@@ -24,9 +25,9 @@ public:
     */
     virtual void posInit()
     {
-        this->sprite.setPosition(100.f,400.f);
+        this->sprite.setPosition(100.f,680.f);
         this->posX = 100;
-        this->posY = 400;
+        this->posY = 680;
     };
     /*!
      * \brief Main attack of the characters
@@ -41,8 +42,18 @@ public:
     bool moveRight()
     {
         this->posX++;
-        this->velX = 1;
+        this->velX = 5;
+        if(this->image_vector.left >= 482){
+            this->image_vector.left = 112;
+        }
+        if(this->image_vector.left >= 112){
+            this->image_vector.left += 52 + 12;
+        }
+        else{
+            this->image_vector.left = 112;
+        }
         this->sprite.setScale(-1.f,1.f);
+        this->sprite.setTextureRect(image_vector);
         this->sprite.move(velX,velY);
         return true;
     }
@@ -54,20 +65,26 @@ public:
     bool moveLeft()
     {
         this->posX--;
-        this->velX = -1;
-        /*if(this->image_vector.left >=241){
-            this->image_vector.left = 56;
+        this->velX = -5;
+        //Will not
+        if(this->image_vector.left >= 482){
+            this->image_vector.left = 112;
         }
-        if(this->image_vector.left >= 56){
-            this->image_vector.left += 26 + 7;
+        if(this->image_vector.left >= 112){
+            this->image_vector.left += 52 + 12;
         }
         else{
-            this->image_vector.left = 56;
-        }*/
+            this->image_vector.left = 112;
+        }
         this->sprite.setScale(1.f,1.f);
         this->sprite.setTextureRect(image_vector);
         this->sprite.move(velX,velY);
         return true;
+    }
+
+    void remain(){
+        this->image_vector.left = 40;
+        this->image_vector.top = 352;
     }
     /*sf::Sprite getSprite(){
         return this->sprite;
