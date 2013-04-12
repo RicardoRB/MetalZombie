@@ -2,8 +2,7 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-class Main
-{
+class Main {
 public:
     Main();
     virtual ~Main();

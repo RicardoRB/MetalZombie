@@ -8,8 +8,7 @@
  *  \copyright GNU Public License.
  */
 
-int main()
-{
+int main() {
     Game *metalzombie = new Game();
     delete metalzombie;
     return 0;

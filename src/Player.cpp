@@ -1,7 +1,6 @@
 #include "../include/Player.h"
 
-Player::Player(char file_texture[])
-{
+Player::Player(char file_texture[]) {
     this->texture.loadFromFile(file_texture);
     this->image_vector.top = 352;
     this->image_vector.left = 40;
@@ -13,7 +12,6 @@ Player::Player(char file_texture[])
     this->posInit();
 }
 
-Player::~Player()
-{
+Player::~Player() {
     //dtor
 }

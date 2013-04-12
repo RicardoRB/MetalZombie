@@ -11,8 +11,7 @@
  *  \copyright GNU Public License.
  */
 
-class Level
-{
+class Level {
 public:
     Level();
     /*!
@@ -23,6 +22,8 @@ public:
     virtual ~Level();
     Player *player1 = NULL;
     sf::Music *music = NULL;
+    sf::Texture backgroundImage;
+    sf::Sprite background;
 protected:
 private:
 
