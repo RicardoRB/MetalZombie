@@ -9,7 +9,8 @@
  *  \copyright GNU Public License.
  */
 
-class Zombie {
+class Zombie
+{
 public:
     Zombie();
     virtual ~Zombie();

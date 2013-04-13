@@ -1,9 +1,11 @@
 #include "../include/Character.h"
 
-Character::Character() {
+Character::Character()
+{
     //ctor
 }
 
-Character::~Character() {
+Character::~Character()
+{
     //dtor
 }

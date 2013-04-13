@@ -10,7 +10,8 @@
  *  \copyright GNU Public License.
  */
 
-class Game {
+class Game
+{
 public:
     /*!
      * \brief Constructor of class Game

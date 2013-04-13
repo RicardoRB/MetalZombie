@@ -11,7 +11,8 @@
  */
 
 
-class Player : public Character {
+class Player : public Character
+{
 public:
     /*!
     *  \brief     Constructor overloaded to which you pass the file of sprite

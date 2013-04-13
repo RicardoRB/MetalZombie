@@ -11,14 +11,15 @@
  *  \copyright GNU Public License.
  */
 
-class Level {
+class Level
+{
 public:
     Level();
     /*!
-    *  \brief     Constructor overloaded to which you pass the file of music
-    *  \details   Constructor overloaded to which you pass the file of music, to create a new player and music, playing it and looping it
+    *  \brief     Constructor overloaded to which you pass the file of music and file of background
+    *  \details   Constructor overloaded to which you pass the file of music and file of background, to create a new player and music, playing it and looping it
     */
-    Level(char file_music[]);
+    Level(char file_music[], char file_image[]);
     virtual ~Level();
     Player *player1 = NULL;
     sf::Music *music = NULL;
