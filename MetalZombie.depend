@@ -433,10 +433,10 @@
 	<SFML/System/Thread.hpp>
 	<vector>
 
-1365751967 source:c:\users\2ºdai\metalzombie\src\character.cpp
+1366372135 source:c:\users\2ºdai\metalzombie\src\character.cpp
 	"../include/Character.h"
 
-1365766125 c:\users\2ºdai\metalzombie\include\character.h
+1366372350 c:\users\2ºdai\metalzombie\include\character.h
 	<SFML/Graphics.hpp>
 	<iostream>
 
@@ -774,18 +774,20 @@
 	<string>
 	<vector>
 
-1365766864 source:c:\users\2ºdai\metalzombie\src\game.cpp
+1366372243 source:c:\users\2ºdai\metalzombie\src\game.cpp
 	"../include/Game.h"
 	<iostream>
+	<sstream>
+	<ctime>
 
-1365751967 c:\users\2ºdai\metalzombie\include\game.h
+1366372135 c:\users\2ºdai\metalzombie\include\game.h
 	"Level.h"
 
-1365763307 c:\users\2ºdai\metalzombie\include\level.h
+1366372135 c:\users\2ºdai\metalzombie\include\level.h
 	"Player.h"
 	<SFML/Audio.hpp>
 
-1365763331 c:\users\2ºdai\metalzombie\include\player.h
+1366372135 c:\users\2ºdai\metalzombie\include\player.h
 	"Character.h"
 
 1331752015 c:\users\2ºdai\downloads\sfml-2.0-rc\include\sfml\audio.hpp
@@ -848,20 +850,20 @@
 	<SFML/System/Thread.hpp>
 	<vector>
 
-1365762843 source:c:\users\2ºdai\metalzombie\src\level.cpp
+1366372135 source:c:\users\2ºdai\metalzombie\src\level.cpp
 	"../include/Level.h"
 
-1365751967 source:c:\users\2ºdai\metalzombie\src\main.cpp
+1366372135 source:c:\users\2ºdai\metalzombie\src\main.cpp
 	"../include/Main.h"
 
-1365751967 c:\users\2ºdai\metalzombie\include\main.h
+1366372135 c:\users\2ºdai\metalzombie\include\main.h
 	"Game.h"
 
-1365759556 source:c:\users\2ºdai\metalzombie\src\player.cpp
+1366372135 source:c:\users\2ºdai\metalzombie\src\player.cpp
 	"../include/Player.h"
 
-1365751967 source:c:\users\2ºdai\metalzombie\src\zombie.cpp
+1366372135 source:c:\users\2ºdai\metalzombie\src\zombie.cpp
 	"../include/Zombie.h"
 
-1365751967 c:\users\2ºdai\metalzombie\include\zombie.h
+1366372135 c:\users\2ºdai\metalzombie\include\zombie.h
 
