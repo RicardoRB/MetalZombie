@@ -11,22 +11,20 @@
  *  \copyright GNU Public License.
  */
 
-class Character {
+class Character
+{
 public:
     Character();
     virtual ~Character();
     sf::Texture texture;
     sf::Sprite sprite;
     sf::IntRect image_vector;
+
     /*!
     * \brief Put the character in the initial position
     * \details Is virtual because not all the characters start in the same position
     */
-    virtual void posInit() {
-        this->sprite.setPosition(100.f,680.f);
-        this->posX = 100.f;
-        this->posY = 680.f;
-    };
+    virtual void posInit();
 
     /*!
      * \brief Main attack of the characters
@@ -38,153 +36,118 @@ public:
      * \brief Function to move the character to right
      * \details Add the position of the variable, flip the sprite to right and move the sprite to right
     */
-    void moveRight() {
-        this->movingLeft = false;
-        this->movingRight = true;
-        this->posX += 12;
-        this->velX = 12;
-        if(this->image_vector.left >= 432) {
-            this->image_vector.left = 112;
-        }
-        if(this->image_vector.left >= 112) {
-            this->image_vector.left += 52 + 12;
-        } else {
-            this->image_vector.left = 112;
-        }
-        this->sprite.setScale(-1.f,1.f);
-        this->sprite.setTextureRect(image_vector);
-        this->sprite.move(velX,velY);
-    }
+    void moveRight();
 
     /*!
      * \brief Function to return movingRight
      * \return Return true if the player is moving right, false if is not
     */
-    bool ismovingRight() {
-        return movingRight;
-    }
+    bool ismovingRight();
 
     /*!
      * \brief Function to set movingRight true or false
      * \details Function to set movingRight true or false
     */
-    void setmovingRight(bool moving) {
-        this->movingRight = moving;
-    }
+    void setmovingRight(bool moving);
 
     /*!
      * \brief Function to move the character to left
      * \details Subtract the position of the variable, flip the sprite to left and move the sprite to left
     */
-    void moveLeft() {
-        this->movingRight = false;
-        this->movingLeft = true;
-        this->posX -= 12;
-        this->velX = -12;
-        //Will not
-        if(this->image_vector.left >= 432) {
-            this->image_vector.left = 112;
-        }
-        if(this->image_vector.left >= 112) {
-            this->image_vector.left += 52 + 12;
-        } else {
-            this->image_vector.left = 112;
-        }
-        this->sprite.setScale(1.f,1.f);
-        this->sprite.setTextureRect(image_vector);
-        this->sprite.move(velX,velY);
-    }
+    void moveLeft();
 
     /*!
      * \brief Function to return movingLeft
      * \return Return true if the player is moving left, false if is not
     */
-    bool ismovingLeft() {
-        return movingLeft;
-    }
+    bool ismovingLeft();
 
     /*!
      * \brief Function to set movingLeft true or false
      * \details Function to set movingLeft true or false
     */
-    void setmovingLeft(bool moving) {
-        this->movingLeft = moving;
-    }
+    void setmovingLeft(bool moving);
 
     /*!
      * \brief Function to remain player
      * \details Will put the sprite on the first frame and set movingLeft and movingRight false
     */
-    void moveRemain() {
-        this->movingLeft = false;
-        this->movingRight = false;
-        this->velX = 0;
-        this->velY = 0;
-        this->image_vector.left = 40;
-        this->image_vector.top = 352;
-        this->sprite.setTextureRect(image_vector);
-        if(posY == 680) {
-            this->endJumping = true;
-        }
-
-    }
+    void moveRemain();
 
     /*!
      * \brief Return the velocity of coordinate X
      * \return Function to return velX
     */
-    float getVelX() {
-        return velX;
-    }
+    float getVelX();
+    /*!
+     * \brief Makes the character jump
+     * \details Will move up the character in Y direction and will change the boolean if the character did not end jumping
+    */
+    void jump();
 
-    void jump() {
-        if(!this->jumping) {
-            if(posY <= 500) {
-                this->jumping = true;
-            }
-            this->posY -= 10;
-            this->velY = -10;
-            this->sprite.move(velX,velY);
-        }
-    }
+    /*!
+     * \brief Do the character falling
+     * \details Will move down the character in Y direction and will change the boolean if the character did end jumping
+    */
+    void falling();
 
-    void falling() {
-        jumping = false;
-        this->posY += 5;
-        this->velY = 5;
-        this->sprite.move(velX,velY);
-    }
+    /*!
+     * \brief Return if the character is jumping
+     * \return Function to return jumping
+    */
+    bool isJumping();
 
-    bool isJumping() {
-        return jumping;
-    }
+    /*!
+     * \brief Return if the character is end jumping
+     * \return Function to return endJumping
+    */
+    bool isEndJumping();
 
-    bool isEndJumping() {
-        return endJumping;
-    }
-    /*sf::Sprite getSprite(){
-        return this->sprite;
-    }
-    sf::Texture getTexture(){
-        return this->texture;
-    }
-    sf::IntRect getImage_vector(){
-        return this->image_vector;
-    }*/
 protected:
 private:
     /*!
-     * \details life If the characters is living, then true, else will be false
+     * \details If the characters is living, then true, else will be false
     */
-
     bool life = true;
+
+    /*!
+     * \details If the characters is moving left, then true, else will be false
+    */
     bool movingLeft = false;
+
+    /*!
+    * \details If the characters is moving right, then true, else will be false
+    */
     bool movingRight = false;
+
+    /*!
+    * \details If the characters is jumping, then true, else will be false
+    */
     bool jumping = false;
+
+    /*!
+    * \details If the characters end jumping, then true, else will be false
+    */
     bool endJumping = true;
+
+    /*!
+    * \details Velocity of the character in X coordinate
+    */
     float velX = 0;
+
+    /*!
+    * \details Velocity of the character in Y coordinate
+    */
     float velY = 0;
+
+    /*!
+    * \details Position of the character in X coordinate
+    */
     float posX = 0;
+
+    /*!
+    * \details Position of the character in X coordinate
+    */
     float posY = 0;
 
 };

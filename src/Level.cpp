@@ -1,6 +1,7 @@
 #include "../include/Level.h"
 
-Level::Level(char file_music[],char file_image[]) {
+Level::Level(char file_music[],char file_image[])
+{
     //I create the player and music in the level
     this->player1 = new Player("res/images/characters/players/player1.png");
     this->music = new sf::Music();
@@ -11,7 +12,8 @@ Level::Level(char file_music[],char file_image[]) {
     background.setTexture(backgroundImage);
 }
 
-Level::~Level() {
+Level::~Level()
+{
     delete player1;
     delete music;
 }

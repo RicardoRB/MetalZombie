@@ -11,7 +11,8 @@
  *  \copyright GNU Public License.
  */
 
-class Level {
+class Level
+{
 public:
     Level();
     /*!
