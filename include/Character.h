@@ -11,8 +11,7 @@
  *  \copyright GNU Public License.
  */
 
-class Character
-{
+class Character {
 public:
     Character();
     virtual ~Character();
@@ -21,9 +20,57 @@ public:
     sf::IntRect image_vector;
 
     /*!
+     * \brief Return the velocity of coordinate X
+     * \return Function to return velX
+    */
+    float getVelX();
+
+    /*!
+    * \brief Return the position of coordinate X
+    * \return Function to return posX
+    */
+    float getPosX();
+
+    /*!
+    * \brief Function to return movingRight
+    * \return Return true if the player is moving right, false if is not
+    */
+    bool ismovingRight();
+
+    /*!
+     * \brief Function to set movingRight true or false
+     * \details Function to set movingRight true or false
+    */
+    void setmovingRight(bool moving);
+
+    /*!
     * \brief Put the character in the initial position
     * \details Is virtual because not all the characters start in the same position
     */
+
+    /*!
+    * \brief Function to return movingLeft
+    * \return Return true if the player is moving left, false if is not
+    */
+    bool ismovingLeft();
+
+    /*!
+     * \brief Function to set movingLeft true or false
+     * \details Function to set movingLeft true or false
+    */
+    void setmovingLeft(bool moving);
+    /*!
+    * \brief Return if the character is jumping
+    * \return Function to return jumping
+    */
+    bool isJumping();
+
+    /*!
+     * \brief Return if the character is end jumping
+     * \return Function to return endJumping
+    */
+    bool isEndJumping();
+
     virtual void posInit();
 
     /*!
@@ -39,46 +86,16 @@ public:
     void moveRight();
 
     /*!
-     * \brief Function to return movingRight
-     * \return Return true if the player is moving right, false if is not
-    */
-    bool ismovingRight();
-
-    /*!
-     * \brief Function to set movingRight true or false
-     * \details Function to set movingRight true or false
-    */
-    void setmovingRight(bool moving);
-
-    /*!
      * \brief Function to move the character to left
      * \details Subtract the position of the variable, flip the sprite to left and move the sprite to left
     */
     void moveLeft();
 
     /*!
-     * \brief Function to return movingLeft
-     * \return Return true if the player is moving left, false if is not
-    */
-    bool ismovingLeft();
-
-    /*!
-     * \brief Function to set movingLeft true or false
-     * \details Function to set movingLeft true or false
-    */
-    void setmovingLeft(bool moving);
-
-    /*!
      * \brief Function to remain player
      * \details Will put the sprite on the first frame and set movingLeft and movingRight false
     */
     void moveRemain();
-
-    /*!
-     * \brief Return the velocity of coordinate X
-     * \return Function to return velX
-    */
-    float getVelX();
     /*!
      * \brief Makes the character jump
      * \details Will move up the character in Y direction and will change the boolean if the character did not end jumping
@@ -90,18 +107,6 @@ public:
      * \details Will move down the character in Y direction and will change the boolean if the character did end jumping
     */
     void falling();
-
-    /*!
-     * \brief Return if the character is jumping
-     * \return Function to return jumping
-    */
-    bool isJumping();
-
-    /*!
-     * \brief Return if the character is end jumping
-     * \return Function to return endJumping
-    */
-    bool isEndJumping();
 
 protected:
 private:
@@ -139,16 +144,6 @@ private:
     * \details Velocity of the character in Y coordinate
     */
     float velY = 0;
-
-    /*!
-    * \details Position of the character in X coordinate
-    */
-    float posX = 0;
-
-    /*!
-    * \details Position of the character in X coordinate
-    */
-    float posY = 0;
 
 };
 
