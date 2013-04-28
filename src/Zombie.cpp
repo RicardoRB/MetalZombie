@@ -1,9 +1,11 @@
 #include "../include/Zombie.h"
 
-Zombie::Zombie() {
+Zombie::Zombie()
+{
     //ctor
 }
 
-Zombie::~Zombie() {
+Zombie::~Zombie()
+{
     //dtor
 }

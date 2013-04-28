@@ -11,7 +11,8 @@
  *  \copyright GNU Public License.
  */
 
-class Character {
+class Character
+{
 public:
     Character();
     virtual ~Character();
@@ -24,12 +25,6 @@ public:
      * \return Function to return velX
     */
     float getVelX();
-
-    /*!
-    * \brief Return the position of coordinate X
-    * \return Function to return posX
-    */
-    float getPosX();
 
     /*!
     * \brief Function to return movingRight
@@ -71,8 +66,6 @@ public:
     */
     bool isEndJumping();
 
-    virtual void posInit();
-
     /*!
      * \brief Main attack of the characters
      * \details Is virtual because not all the characters attack at the same way
@@ -83,13 +76,13 @@ public:
      * \brief Function to move the character to right
      * \details Add the position of the variable, flip the sprite to right and move the sprite to right
     */
-    void moveRight();
+    virtual void moveRight();
 
     /*!
      * \brief Function to move the character to left
      * \details Subtract the position of the variable, flip the sprite to left and move the sprite to left
     */
-    void moveLeft();
+    virtual void moveLeft();
 
     /*!
      * \brief Function to remain player
@@ -109,9 +102,8 @@ public:
     void falling();
 
 protected:
-private:
     /*!
-     * \details If the characters is living, then true, else will be false
+    * \details If the characters is living, then true, else will be false
     */
     bool life = true;
 
@@ -144,7 +136,7 @@ private:
     * \details Velocity of the character in Y coordinate
     */
     float velY = 0;
-
+private:
 };
 
 #endif // CHARACTER_H

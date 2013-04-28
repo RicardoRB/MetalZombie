@@ -3,19 +3,23 @@
 #include <sstream>
 #include <ctime>
 
-Game::Game() {
+Game::Game()
+{
     this->level1 = new Level("res/sounds/music/level1.ogg","res/images/backgrounds/background_level1.png");
     startGame();
 }
 
-Game::~Game() {
+Game::~Game()
+{
     delete level1;
 }
 
-void Game::startGame() {
+void Game::startGame()
+{
     window.create(sf::VideoMode(1024,768), "MetalZombie", sf::Style::Default);
     window.setFramerateLimit(18);
     level1->player1->camera = window.getDefaultView();
+    //To start the picture since the begin
     level1->background.setPosition(0,0);
     while (window.isOpen()) {
         //If the player is not moving, then the sprite will draw like standing
@@ -42,30 +46,23 @@ void Game::startGame() {
             }
         }
 
+        if((sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Joystick::getAxisPosition(0, sf::Joystick::Y) == -100) && (level1->player1->isEndJumping() && !level1->player1->isJumping())) {
+            level1->player1->jump();
+        } else {
+            level1->player1->falling();
+        }
+
+
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Joystick::getAxisPosition(0, sf::Joystick::X) == 100) {
             level1->player1->moveRight();
-
-            level1->player1->camera.move(level1->player1->getVelX() - 11,0);
-
         } else {
             level1->player1->setmovingRight(false);
         }
 
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Joystick::getAxisPosition(0, sf::Joystick::X) == -100) {
-            if(level1->player1->getPosX() >= 100) {
-                level1->player1->moveLeft();
-                level1->player1->camera.move(level1->player1->getVelX() + 11,0);
-            }
+            level1->player1->moveLeft();
         } else {
             level1->player1->setmovingLeft(false);
-        }
-
-        if(level1->player1->isEndJumping()) {
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-                level1->player1->jump();
-            } else {
-                level1->player1->falling();
-            }
         }
 
         window.clear();

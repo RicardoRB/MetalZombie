@@ -11,7 +11,8 @@
  */
 
 
-class Player : public Character {
+class Player : public Character
+{
 public:
     /*!
     *  \brief     Constructor overloaded to which you pass the file of sprite
@@ -21,8 +22,12 @@ public:
     Player(char file_texture[]);
     virtual ~Player();
     sf::View camera;
+    void moveRight();
+    void moveLeft();
 protected:
 private:
+    float posWindowX;
+    float posWindowY;
 };
 
 #endif // PLAYER_H
