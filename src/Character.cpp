@@ -8,6 +8,7 @@ Character::Character()
 Character::~Character()
 {
     //dtor
+    delete texture;
 }
 
 float Character::getVelX()
@@ -100,7 +101,7 @@ void Character::jump()
         endJumping = false;
         this->velY = 0;
     } else {
-        this->velY = -8.f;
+        this->velY = -10.f;
     }
     this->sprite.move(0,velY);
 }
@@ -108,13 +109,13 @@ void Character::jump()
 void Character::falling()
 {
     //Collision with the floor (not yet implemented)
-    if(sprite.getPosition().y >= 680.f) {
+    if(sprite.getPosition().y == 670.f) {
         this->velY = 0;
         endJumping = true;
     } else {
         jumping = false;
         endJumping = false;
-        this->velY = 13.f;
+        this->velY = 10.f;
     }
     this->sprite.move(0,velY);
 }

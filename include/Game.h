@@ -27,7 +27,7 @@ public:
 protected:
 private:
     Level *level1 = NULL;
-    sf::RenderWindow window;
+    sf::RenderWindow *window = new sf::RenderWindow();
 };
 
 #endif // GAME_H

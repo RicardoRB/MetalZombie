@@ -2,19 +2,19 @@
 
 Player::Player(char file_texture[])
 {
-    if(!texture.loadFromFile(file_texture)) {
-        std::cout << "Error file texture player" << std::endl;
+    if(!texture->loadFromFile(file_texture)) {
+//        std::cout << "Error file texture player" << std::endl;
     } else {
-        this->texture.loadFromFile(file_texture);
+        this->texture->loadFromFile(file_texture);
     }
     this->image_vector.top = 350;
     this->image_vector.left = 40;
     this->image_vector.width = 52;
     this->image_vector.height = 58;
     this->sprite.setTextureRect(image_vector);
-    this->sprite.setTexture(texture);
+    this->sprite.setTexture(*texture);
     this->sprite.setOrigin(13.5,13.f);
-    this->sprite.setPosition(100.f,680.f);
+    this->sprite.setPosition(100.f,600.f);
     this->velX = 12;
     this->posWindowX = this->sprite.getPosition().x;
     this->posWindowY = this->sprite.getPosition().y;

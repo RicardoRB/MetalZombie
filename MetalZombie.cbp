@@ -41,12 +41,14 @@
 			<Add directory="../Downloads/SFML-2.0-rc-64/lib" />
 			<Add directory="../Downloads/SFML-2.0-rc/lib" />
 		</Linker>
+		<Unit filename="include/Block.h" />
 		<Unit filename="include/Character.h" />
 		<Unit filename="include/Game.h" />
 		<Unit filename="include/Level.h" />
 		<Unit filename="include/Main.h" />
 		<Unit filename="include/Player.h" />
 		<Unit filename="include/Zombie.h" />
+		<Unit filename="src/Block.cpp" />
 		<Unit filename="src/Character.cpp" />
 		<Unit filename="src/Game.cpp" />
 		<Unit filename="src/Level.cpp" />

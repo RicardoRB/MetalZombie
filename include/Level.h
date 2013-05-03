@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "Block.h"
 #include <SFML/Audio.hpp>
 #ifndef LEVEL_H
 #define LEVEL_H
@@ -25,6 +26,7 @@ public:
     sf::Music *music = NULL;
     sf::Texture backgroundImage;
     sf::Sprite background;
+    Block *blocks[32];
 protected:
 private:
 

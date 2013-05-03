@@ -1,5 +1,5 @@
 #include <SFML/Graphics.hpp>
-#include <iostream>
+
 #ifndef CHARACTER_H
 #define CHARACTER_H
 /*!
@@ -16,7 +16,7 @@ class Character
 public:
     Character();
     virtual ~Character();
-    sf::Texture texture;
+    sf::Texture *texture = new sf::Texture();
     sf::Sprite sprite;
     sf::IntRect image_vector;
 
