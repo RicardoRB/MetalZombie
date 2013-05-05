@@ -5,7 +5,7 @@
 
 Game::Game()
 {
-    this->level1 = new Level((char*)"res/sounds/music/level1.ogg",(char*)"res/images/backgrounds/background_level1.png");
+    this->level1 = new Level((char*)"res/sounds/music/level1.ogg",(char*)"res/images/backgrounds/level1/boss.png");
     startGame();
 }
 
@@ -19,13 +19,11 @@ void Game::startGame()
 {
     window->create(sf::VideoMode(1024,768), "MetalZombie", sf::Style::Default);
     window->setFramerateLimit(18);
-    level1->player1->camera = window->getDefaultView();
-    //To start the picture since the begin
-    level1->background.setPosition(0,0);
+    level1->getPlayer()->camera = window->getDefaultView();
     while (window->isOpen()) {
         //If the player is not moving, then the sprite will draw like standing
-        if(!level1->player1->ismovingLeft() && !level1->player1->ismovingRight()) {
-            level1->player1->moveRemain();
+        if(!level1->getPlayer()->ismovingLeft() && !level1->getPlayer()->ismovingRight()) {
+            level1->getPlayer()->moveRemain();
         }
 
         sf::Event event;
@@ -45,31 +43,50 @@ void Game::startGame()
             }
         }
 
-        if((sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Joystick::getAxisPosition(0, sf::Joystick::Y) == -100) && (level1->player1->isEndJumping() && !level1->player1->isJumping())) {
-            level1->player1->jump();
+        if((sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Joystick::getAxisPosition(0, sf::Joystick::Y) == -100) && (level1->getPlayer()->isEndJumping() && !level1->getPlayer()->isJumping())) {
+            level1->getPlayer()->jump();
         } else {
-            level1->player1->falling();
+            for(int i = 0; i < (sizeof(level1->blocks)/sizeof(level1->blocks[i])); i++) {
+                //If the player is not on the block, he will fall
+                //(level1->blocks[i]->getSpriteObject()->getPosition().y - level1->blocks[i]->getSpriteObject()->getTexture()->getSize().y) + 4)
+                //is needed to better collision with the image, I do not need to know the size of the image
+                //and the "+4" because the player was floating, same with X position
+                if((level1->getPlayer()->sprite.getPosition().y != (level1->blocks[i]->getSpriteObject()->getPosition().y - level1->blocks[i]->getSpriteObject()->getTexture()->getSize().y) + 4) || (level1->getPlayer()->sprite.getPosition().x > (level1->blocks[(sizeof(level1->blocks)/sizeof(level1->blocks[i]))-1]->getSpriteObject()->getPosition().x + level1->getPlayer()->sprite.getTextureRect().width + 10))) {
+                    level1->getPlayer()->falling();
+                } else {
+                    level1->getPlayer()->setVelY(0);
+                    level1->getPlayer()->setEndJumping(true);
+                }
+            }
         }
 
-
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Joystick::getAxisPosition(0, sf::Joystick::X) == 100) {
-            level1->player1->moveRight();
+            level1->getPlayer()->moveRight();
         } else {
-            level1->player1->setmovingRight(false);
+            level1->getPlayer()->setmovingRight(false);
         }
 
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Joystick::getAxisPosition(0, sf::Joystick::X) == -100) {
-            level1->player1->moveLeft();
+            level1->getPlayer()->moveLeft();
         } else {
-            level1->player1->setmovingLeft(false);
+            level1->getPlayer()->setmovingLeft(false);
         }
 
-        window->clear();
-        window->setView(level1->player1->camera);
-        window->draw(level1->background);
-        window->draw(level1->player1->sprite);
-        for(int i = 0; i<32; i++) {
-            window->draw(*level1->blocks[i]->getBlock());
+        window->clear(sf::Color(52,28,27));
+        window->setView(level1->getPlayer()->camera);
+        //Draw skies
+        for(int i = 0; i<(sizeof(level1->skies)/sizeof(level1->skies[i])); i++) {
+            window->draw(*level1->skies[i]->getSpriteObject());
+        }
+        //Draw builders
+        for(int i = 0; i<(sizeof(level1->builders)/sizeof(level1->builders[i])); i++) {
+            window->draw(*level1->builders[i]->getSpriteObject());
+        }
+        //Draw the player
+        window->draw(level1->getPlayer()->sprite);
+        //Draw the blocks
+        for(int i = 0; i<(sizeof(level1->blocks)/sizeof(level1->blocks[i])); i++) {
+            window->draw(*level1->blocks[i]->getSpriteObject());
         }
         window->display();
     }

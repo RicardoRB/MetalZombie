@@ -1,3 +1,4 @@
+#include "Character.h"
 #ifndef ZOMBIE_H
 #define ZOMBIE_H
 /*!
@@ -9,7 +10,7 @@
  *  \copyright GNU Public License.
  */
 
-class Zombie
+class Zombie : public Character
 {
 public:
     Zombie();

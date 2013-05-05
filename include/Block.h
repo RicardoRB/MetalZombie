@@ -1,18 +1,29 @@
 #include <SFML/Graphics.hpp>
+#include "Object.h"
 #ifndef BLOCK_H
 #define BLOCK_H
 
-class Block
+/*!
+ *  \brief     Class of blocks
+ *  \details   Blocks in the game, can be used to collisions with players
+ *  \author    Ricardo Romero B.
+ *  \version   0.1
+ *  \date      5/03/2013
+ *  \copyright GNU Public License.
+ */
+
+class Block : public Object
 {
 public:
     Block();
+    /*!
+     * \brief Call the constructor of the parent class
+     * \param file_texture[] char
+     */
     Block(char file_texture[]);
     virtual ~Block();
-    sf::Sprite* getBlock();
 protected:
 private:
-    sf::Texture *blockImage = new sf::Texture();
-    sf::Sprite *block = new sf::Sprite();
 };
 
 #endif // BLOCK_H

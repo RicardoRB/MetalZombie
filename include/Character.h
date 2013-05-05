@@ -1,5 +1,4 @@
 #include <SFML/Graphics.hpp>
-
 #ifndef CHARACTER_H
 #define CHARACTER_H
 /*!
@@ -16,8 +15,19 @@ class Character
 public:
     Character();
     virtual ~Character();
+    /*!
+    * \details All characters will have texture (picture)
+    */
     sf::Texture *texture = new sf::Texture();
+
+    /*!
+    * \details The sprite of the texture
+    */
     sf::Sprite sprite;
+
+    /*!
+    * \details Vector to make the animation move
+    */
     sf::IntRect image_vector;
 
     /*!
@@ -25,6 +35,12 @@ public:
      * \return Function to return velX
     */
     float getVelX();
+
+    /*!
+     * \brief Function to set velY value
+     * \param _velY float
+    */
+    void setVelY(float _velY);
 
     /*!
     * \brief Function to return movingRight
@@ -39,11 +55,6 @@ public:
     void setmovingRight(bool moving);
 
     /*!
-    * \brief Put the character in the initial position
-    * \details Is virtual because not all the characters start in the same position
-    */
-
-    /*!
     * \brief Function to return movingLeft
     * \return Return true if the player is moving left, false if is not
     */
@@ -51,7 +62,7 @@ public:
 
     /*!
      * \brief Function to set movingLeft true or false
-     * \details Function to set movingLeft true or false
+     * \param moving bool
     */
     void setmovingLeft(bool moving);
     /*!
@@ -65,6 +76,12 @@ public:
      * \return Function to return endJumping
     */
     bool isEndJumping();
+
+    /*!
+     *\brief Function to set movingLeft true or false
+     * \param _endJumping bool
+     */
+    void setEndJumping(bool _endJumping);
 
     /*!
      * \brief Main attack of the characters

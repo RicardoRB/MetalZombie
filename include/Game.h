@@ -26,7 +26,14 @@ public:
     void startGame();
 protected:
 private:
+    /*!
+    * \details The game will have levels
+    */
     Level *level1 = NULL;
+
+    /*!
+    * \details The game will have a window
+    */
     sf::RenderWindow *window = new sf::RenderWindow();
 };
 

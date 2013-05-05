@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1367447902 source:c:\users\ricardo\metalzombie\src\character.cpp
+1367764816 source:c:\users\ricardo\metalzombie\src\character.cpp
 	"../include/Character.h"
 
-1367444183 c:\users\ricardo\metalzombie\include\character.h
+1367769600 c:\users\ricardo\metalzombie\include\character.h
 	<SFML/Graphics.hpp>
 
 1331752015 c:\users\ricardo\downloads\sfml-2.0-rc-64\include\sfml\graphics.hpp
@@ -339,36 +339,39 @@
 	<string>
 	<vector>
 
-1367447019 source:c:\users\ricardo\metalzombie\src\level.cpp
+1367768928 source:c:\users\ricardo\metalzombie\src\level.cpp
 	"../include/Level.h"
 	<iostream>
 
-1367444816 c:\users\ricardo\metalzombie\include\level.h
+1367768238 c:\users\ricardo\metalzombie\include\level.h
 	"Player.h"
 	"Block.h"
+	"Builder.h"
+	"Sky.h"
 	<SFML/Audio.hpp>
 
-1367444293 c:\users\ricardo\metalzombie\include\player.h
+1367674388 c:\users\ricardo\metalzombie\include\player.h
 	"Character.h"
 
 1366995553 source:c:\users\ricardo\metalzombie\src\main.cpp
 	"../include/Main.h"
 
-1366995553 c:\users\ricardo\metalzombie\include\main.h
+1367673414 c:\users\ricardo\metalzombie\include\main.h
 	"Game.h"
 
-1367447835 source:c:\users\ricardo\metalzombie\src\player.cpp
+1367755724 source:c:\users\ricardo\metalzombie\src\player.cpp
 	"../include/Player.h"
 
 1366995553 source:c:\users\ricardo\metalzombie\src\zombie.cpp
 	"../include/Zombie.h"
 
-1366995553 c:\users\ricardo\metalzombie\include\zombie.h
+1367673477 c:\users\ricardo\metalzombie\include\zombie.h
+	"Character.h"
 
-1367443787 c:\users\ricardo\metalzombie\include\game.h
+1367674042 c:\users\ricardo\metalzombie\include\game.h
 	"Level.h"
 
-1367446945 source:c:\users\ricardo\metalzombie\src\game.cpp
+1367768299 source:c:\users\ricardo\metalzombie\src\game.cpp
 	"../include/Game.h"
 	<iostream>
 	<sstream>
@@ -1262,9 +1265,28 @@
 	<SFML/System/Thread.hpp>
 	<vector>
 
-1367447103 source:c:\users\ricardo\metalzombie\src\block.cpp
+1367614751 source:c:\users\ricardo\metalzombie\src\block.cpp
 	"../include/Block.h"
 
-1367447086 c:\users\ricardo\metalzombie\include\block.h
+1367674361 c:\users\ricardo\metalzombie\include\block.h
 	<SFML/Graphics.hpp>
+	"Object.h"
+
+1367723855 c:\users\ricardo\metalzombie\include\object.h
+	<SFML/Graphics.hpp>
+
+1367723862 source:c:\users\ricardo\metalzombie\src\object.cpp
+	"../include/Object.h"
+
+1367674546 source:c:\users\ricardo\metalzombie\src\builder.cpp
+	"../include/Builder.h"
+
+1367769140 c:\users\ricardo\metalzombie\include\builder.h
+	"Object.h"
+
+1367768006 c:\users\ricardo\metalzombie\include\sky.h
+	"Object.h"
+
+1367768257 source:c:\users\ricardo\metalzombie\src\sky.cpp
+	"../include/Sky.h"
 

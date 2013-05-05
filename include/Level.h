@@ -1,5 +1,7 @@
 #include "Player.h"
 #include "Block.h"
+#include "Builder.h"
+#include "Sky.h"
 #include <SFML/Audio.hpp>
 #ifndef LEVEL_H
 #define LEVEL_H
@@ -22,14 +24,48 @@ public:
     */
     Level(char file_music[], char file_image[]);
     virtual ~Level();
-    Player *player1 = NULL;
-    sf::Music *music = NULL;
-    sf::Texture backgroundImage;
-    sf::Sprite background;
-    Block *blocks[32];
+
+    /*!
+     * \brief Return the player in the level
+     * \return Player*
+     */
+    Player* getPlayer();
+    /*!
+     * \brief Return the sprite of the builders
+     * \return sf::Sprite
+     */
+    sf::Sprite getBuilders();
+    /*!
+    * \details Array of the blocks, static because I need use it with collisions
+    */
+    Block *blocks[50];
+    /*!
+    * \details Array of the builders
+    */
+    Builder *builders[20];
+
+    /*!
+    * \details Array of the skies
+    */
+    Sky *skies[40];
 protected:
 private:
-
+    /*!
+    * \details Player in the level
+    */
+    Player *player1 = NULL;
+    /*!
+    * \details Music in the level
+    */
+    sf::Music *music = NULL;
+    /*!
+    * \details Background texture, this is not always used
+    */
+    sf::Texture backgroundImage;
+    /*!
+    * \details Background sprite, this is not always used
+    */
+    sf::Sprite background;
 };
 
 #endif // LEVEL_H

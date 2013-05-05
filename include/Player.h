@@ -26,7 +26,14 @@ public:
     void moveLeft();
 protected:
 private:
+    /*!
+    * \details Player position X on the windows
+    */
     float posWindowX;
+
+    /*!
+    * \details Player position Y on the windows
+    */
     float posWindowY;
 };
 

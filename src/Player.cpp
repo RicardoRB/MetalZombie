@@ -14,7 +14,7 @@ Player::Player(char file_texture[])
     this->sprite.setTextureRect(image_vector);
     this->sprite.setTexture(*texture);
     this->sprite.setOrigin(13.5,13.f);
-    this->sprite.setPosition(100.f,600.f);
+    this->sprite.setPosition(100.f,100.f);
     this->velX = 12;
     this->posWindowX = this->sprite.getPosition().x;
     this->posWindowY = this->sprite.getPosition().y;
@@ -47,9 +47,9 @@ void Player::moveRight()
     } else {
         //Will move the player until the end of the picture
         //when the player arrive at the end of the picture, will move normal
-        if(this->sprite.getPosition().x <= 850) {
-            this->sprite.move(0.5f,velY);
-            camera.move(0.5f,0);
+        if(this->sprite.getPosition().x <= 9728) {
+            this->sprite.move(velX,velY);
+            camera.move(velX,0);
         } else {
             //The player will not can go out the window
             if(this->posWindowX <= 960) {

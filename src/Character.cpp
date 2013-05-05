@@ -16,6 +16,11 @@ float Character::getVelX()
     return velX;
 }
 
+void Character::setVelY(float _velY)
+{
+    this->velY = _velY;
+}
+
 bool Character::ismovingRight()
 {
     return movingRight;
@@ -44,6 +49,11 @@ bool Character::isJumping()
 bool Character::isEndJumping()
 {
     return endJumping;
+}
+
+void Character::setEndJumping(bool _endJumping)
+{
+    this->endJumping = _endJumping;
 }
 
 void Character::attack()
@@ -101,21 +111,15 @@ void Character::jump()
         endJumping = false;
         this->velY = 0;
     } else {
-        this->velY = -10.f;
+        this->velY = -12.f;
     }
     this->sprite.move(0,velY);
 }
 
 void Character::falling()
 {
-    //Collision with the floor (not yet implemented)
-    if(sprite.getPosition().y == 670.f) {
-        this->velY = 0;
-        endJumping = true;
-    } else {
-        jumping = false;
-        endJumping = false;
-        this->velY = 10.f;
-    }
+    jumping = false;
+    endJumping = false;
+    this->velY = 1.f;
     this->sprite.move(0,velY);
 }

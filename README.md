@@ -1,6 +1,5 @@
-﻿/ =========== \
-/ MetalZombie \
-/ =========== \
+﻿MetalZombie
+===========
 
 Project end of course. A videogame made with C++ for the school Salesianos from Cádiz, 2º of Desarrollo de Aplicaciones Multiplataformas(DAM). By Ricardo Romero B.
 
@@ -18,6 +17,18 @@ Web - http://www.jacobcharlesdietz.com/intro/
 CollegeKidSprites:
 
 DeviantArt - http://collegekidsprites.deviantart.com/
+
+---------------
+
+gvbn10
+
+DeviantArt - http://gvbn10.deviantart.com/
+
+---------------
+
+=xXBarTheAngelhogXx
+
+DeviantArt - http://xxbartheangelhogxx.deviantart.com/
 
 
 Attention - Advice
