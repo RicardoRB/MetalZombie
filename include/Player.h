@@ -1,4 +1,5 @@
 #include "Character.h"
+#include "Shot.h"
 #ifndef PLAYER_H
 #define PLAYER_H
 /*!
@@ -24,8 +25,10 @@ public:
     sf::View camera;
     void moveRight();
     void moveLeft();
+    void attack();
 protected:
 private:
+    Shot *shot = new Shot((char*)"res/images/characters/players/player1.png");
     /*!
     * \details Player position X on the windows
     */

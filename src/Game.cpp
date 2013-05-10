@@ -60,6 +60,10 @@ void Game::startGame()
             }
         }
 
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+            level1->getPlayer()->attack();
+        }
+
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Joystick::getAxisPosition(0, sf::Joystick::X) == 100) {
             level1->getPlayer()->moveRight();
         } else {

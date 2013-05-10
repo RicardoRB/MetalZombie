@@ -7,6 +7,7 @@ Player::Player(char file_texture[])
     } else {
         this->texture->loadFromFile(file_texture);
     }
+    //Player
     this->image_vector.top = 350;
     this->image_vector.left = 40;
     this->image_vector.width = 52;
@@ -15,6 +16,8 @@ Player::Player(char file_texture[])
     this->sprite.setTexture(*texture);
     this->sprite.setOrigin(13.5,13.f);
     this->sprite.setPosition(100.f,100.f);
+
+    //Shot
     this->velX = 12;
     this->posWindowX = this->sprite.getPosition().x;
     this->posWindowY = this->sprite.getPosition().y;
@@ -79,4 +82,15 @@ void Player::moveLeft()
         posWindowX -= velX;
         this->sprite.move(-velX,velY);
     }
+}
+
+void Player::attack(){
+    shot = new Shot((char*)"res/images/characters/players/player1.png");
+    shot->shot_vector.top = 339;
+    this->shot->shot_vector.left = 633;
+    this->shot->shot_vector.width = 8;
+    this->shot->shot_vector.height = 8;
+    this->shot->getSpriteObject()->setTextureRect(this->shot->shot_vector);
+    this->shot->getSpriteObject()->setPosition(this->sprite.getPosition().x,this->sprite.getPosition().y);
+    this->shot->getSpriteObject()->move(this->shot->getVelX(),0);
 }
