@@ -5,6 +5,7 @@
 
 Game::Game()
 {
+    this->window = new sf::RenderWindow();
     this->level1 = new Level((char*)"res/sounds/music/level1.ogg",(char*)"res/images/backgrounds/level1/boss.png");
     startGame();
 }
@@ -46,7 +47,7 @@ void Game::startGame()
         if((sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Joystick::getAxisPosition(0, sf::Joystick::Y) == -100) && (level1->getPlayer()->isEndJumping() && !level1->getPlayer()->isJumping())) {
             level1->getPlayer()->jump();
         } else {
-            for(int i = 0; i < (sizeof(level1->blocks)/sizeof(level1->blocks[i])); i++) {
+            for(unsigned int i = 0; i < (sizeof(level1->blocks)/sizeof(level1->blocks[i])); i++) {
                 //If the player is not on the block, he will fall
                 //(level1->blocks[i]->getSpriteObject()->getPosition().y - level1->blocks[i]->getSpriteObject()->getTexture()->getSize().y) + 4)
                 //is needed to better collision with the image, I do not need to know the size of the image
@@ -79,11 +80,11 @@ void Game::startGame()
         window->clear(sf::Color(52,28,27));
         window->setView(level1->getPlayer()->camera);
         //Draw skies
-        for(int i = 0; i<(sizeof(level1->skies)/sizeof(level1->skies[i])); i++) {
+        for(unsigned int i = 0; i<(sizeof(level1->skies)/sizeof(level1->skies[i])); i++) {
             window->draw(*level1->skies[i]->getSpriteObject());
         }
         //Draw builders
-        for(int i = 0; i<(sizeof(level1->builders)/sizeof(level1->builders[i])); i++) {
+        for(unsigned int i = 0; i<(sizeof(level1->builders)/sizeof(level1->builders[i])); i++) {
             window->draw(*level1->builders[i]->getSpriteObject());
         }
         //Draw the player
@@ -108,7 +109,7 @@ void Game::startGame()
             }
         }
         //Draw the blocks
-        for(int i = 0; i<(sizeof(level1->blocks)/sizeof(level1->blocks[i])); i++) {
+        for(unsigned int i = 0; i<(sizeof(level1->blocks)/sizeof(level1->blocks[i])); i++) {
             window->draw(*level1->blocks[i]->getSpriteObject());
         }
         window->display();

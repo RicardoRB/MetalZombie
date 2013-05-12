@@ -1,5 +1,4 @@
 #include "../include/Main.h"
-
 /*!
  *  \brief     Main class
  *  \author    Ricardo Romero B.

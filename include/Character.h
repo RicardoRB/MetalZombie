@@ -18,7 +18,7 @@ public:
     /*!
     * \details All characters will have texture (picture)
     */
-    sf::Texture *texture = new sf::Texture();
+    sf::Texture *texture;
 
     /*!
     * \details The sprite of the texture
@@ -129,43 +129,43 @@ protected:
     /*!
     * \details If the characters is living, then true, else will be false
     */
-    bool life = true;
+    bool life;
 
     /*!
      * \details If the characters is moving left, then true, else will be false
     */
-    bool movingLeft = false;
+    bool movingLeft;
 
     /*!
     * \details If the characters is moving right, then true, else will be false
     */
-    bool movingRight = false;
+    bool movingRight;
 
     /*!
     * \details If the characters is jumping, then true, else will be false
     */
-    bool jumping = false;
+    bool jumping;
 
     /*!
     * \details If the characters end jumping, then true, else will be false
     */
-    bool endJumping = true;
+    bool endJumping;
 
     /*!
     * \details Velocity of the character in X coordinate
     */
-    float velX = 0;
+    float velX;
 
     /*!
     * \details Velocity of the character in Y coordinate
     */
-    float velY = 0;
+    float velY;
 
-    bool attacking = false;
+    bool attacking;
 
-    bool lookRight = false;
+    bool lookRight;
 
-    bool lookLeft = true;
+    bool lookLeft;
 private:
 };
 

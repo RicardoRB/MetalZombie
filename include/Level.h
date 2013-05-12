@@ -53,11 +53,11 @@ private:
     /*!
     * \details Player in the level
     */
-    Player *player1 = NULL;
+    Player *player1;
     /*!
     * \details Music in the level
     */
-    sf::Music *music = NULL;
+    sf::Music *music;
     /*!
     * \details Background texture, this is not always used
     */

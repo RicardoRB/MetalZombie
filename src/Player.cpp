@@ -3,6 +3,7 @@
 
 Player::Player(char file_texture[])
 {
+    this->shot = new Shot((char*)"res/images/characters/players/player1.png");
     if(!texture->loadFromFile(file_texture)) {
 //        std::cout << "Error file texture player" << std::endl;
     } else {

@@ -27,11 +27,11 @@ private:
     /*!
     * \details Texture of the object
     */
-    sf::Texture *objectImage = new sf::Texture();
+    sf::Texture *objectImage;
     /*!
     * \details Sprite of the object
     */
-    sf::Sprite *object = new sf::Sprite();
+    sf::Sprite *object;
 };
 
 #endif // OBJECT_H

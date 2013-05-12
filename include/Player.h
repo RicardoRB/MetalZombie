@@ -29,7 +29,7 @@ public:
     Shot* getShot();
 protected:
 private:
-    Shot *shot = new Shot((char*)"res/images/characters/players/player1.png");
+    Shot *shot;
     /*!
     * \details Player position X on the windows
     */

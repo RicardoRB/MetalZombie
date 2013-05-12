@@ -3,10 +3,14 @@
 Object::Object()
 {
     //ctor
+    objectImage = new sf::Texture();
+    object = new sf::Sprite();
 }
 
 Object::Object(char file_texture[])
 {
+    objectImage = new sf::Texture();
+    object = new sf::Sprite();
     if(!this->objectImage->loadFromFile(file_texture)) {
 //        std::cout << "Error file texture player" << std::endl;
     } else {

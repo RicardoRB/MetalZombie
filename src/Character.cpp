@@ -3,6 +3,15 @@
 Character::Character()
 {
     //ctor
+    this->texture = new sf::Texture();
+    this->life = true;
+    this->movingLeft = false;
+    this->movingRight = false;
+    this->jumping = false;
+    this->endJumping = true;
+    this->attacking = false;
+    this->lookRight = false;
+    this->lookLeft = true;
 }
 
 Character::~Character()
@@ -80,6 +89,7 @@ void Character::attack()
 
 void Character::moveRight()
 {
+
     this->lookLeft = false;
     this->lookRight = true;
     this->movingLeft = false;
