@@ -26,6 +26,7 @@ public:
     void moveRight();
     void moveLeft();
     void attack();
+    Shot* getShot();
 protected:
 private:
     Shot *shot = new Shot((char*)"res/images/characters/players/player1.png");

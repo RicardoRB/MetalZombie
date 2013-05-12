@@ -1,4 +1,5 @@
 #include "../include/Player.h"
+#include <iostream>
 
 Player::Player(char file_texture[])
 {
@@ -30,6 +31,8 @@ Player::~Player()
 
 void Player::moveRight()
 {
+    this->lookLeft = false;
+    this->lookRight = true;
     this->movingLeft = false;
     this->movingRight = true;
     if(this->image_vector.left >= 432) {
@@ -65,6 +68,8 @@ void Player::moveRight()
 
 void Player::moveLeft()
 {
+    this->lookLeft = true;
+    this->lookRight = false;
     this->movingRight = false;
     this->movingLeft = true;
     if(this->image_vector.left >= 432) {
@@ -84,13 +89,21 @@ void Player::moveLeft()
     }
 }
 
-void Player::attack(){
-    shot = new Shot((char*)"res/images/characters/players/player1.png");
-    shot->shot_vector.top = 339;
-    this->shot->shot_vector.left = 633;
-    this->shot->shot_vector.width = 8;
-    this->shot->shot_vector.height = 8;
+void Player::attack()
+{
+    this->attacking = true;
+    this->shot->shot_vector.top = 678;
+    this->shot->shot_vector.left = 1266;
+    this->shot->shot_vector.width = 16;
+    this->shot->shot_vector.height = 16;
     this->shot->getSpriteObject()->setTextureRect(this->shot->shot_vector);
-    this->shot->getSpriteObject()->setPosition(this->sprite.getPosition().x,this->sprite.getPosition().y);
-    this->shot->getSpriteObject()->move(this->shot->getVelX(),0);
+    this->shot->getSpriteObject()->setPosition(this->sprite.getPosition().x,this->sprite.getPosition().y + 15);
+    this->shot->setPosWindowX(this->shot->getSpriteObject()->getPosition().x);
 }
+
+Shot* Player::getShot()
+{
+    return this->shot;
+}
+
+

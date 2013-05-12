@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1367764816 source:c:\users\ricardo\metalzombie\src\character.cpp
+1368208841 source:c:\users\ricardo\metalzombie\src\character.cpp
 	"../include/Character.h"
 
-1367769600 c:\users\ricardo\metalzombie\include\character.h
+1368208782 c:\users\ricardo\metalzombie\include\character.h
 	<SFML/Graphics.hpp>
 
 1331752015 c:\users\ricardo\downloads\sfml-2.0-rc-64\include\sfml\graphics.hpp
@@ -339,7 +339,7 @@
 	<string>
 	<vector>
 
-1367768928 source:c:\users\ricardo\metalzombie\src\level.cpp
+1367769366 source:c:\users\ricardo\metalzombie\src\level.cpp
 	"../include/Level.h"
 	<iostream>
 
@@ -350,8 +350,9 @@
 	"Sky.h"
 	<SFML/Audio.hpp>
 
-1367674388 c:\users\ricardo\metalzombie\include\player.h
+1368208855 c:\users\ricardo\metalzombie\include\player.h
 	"Character.h"
+	"Shot.h"
 
 1366995553 source:c:\users\ricardo\metalzombie\src\main.cpp
 	"../include/Main.h"
@@ -359,8 +360,9 @@
 1367673414 c:\users\ricardo\metalzombie\include\main.h
 	"Game.h"
 
-1367755724 source:c:\users\ricardo\metalzombie\src\player.cpp
+1368207937 source:c:\users\ricardo\metalzombie\src\player.cpp
 	"../include/Player.h"
+	<iostream>
 
 1366995553 source:c:\users\ricardo\metalzombie\src\zombie.cpp
 	"../include/Zombie.h"
@@ -371,7 +373,7 @@
 1367674042 c:\users\ricardo\metalzombie\include\game.h
 	"Level.h"
 
-1367768299 source:c:\users\ricardo\metalzombie\src\game.cpp
+1368208853 source:c:\users\ricardo\metalzombie\src\game.cpp
 	"../include/Game.h"
 	<iostream>
 	<sstream>
@@ -1324,5 +1326,11 @@
 	"Object.h"
 
 1368187330 source:c:\users\2ºdai\metalzombie\src\shot.cpp
+	"../include/Shot.h"
+
+1368207937 c:\users\ricardo\metalzombie\include\shot.h
+	"Object.h"
+
+1368207937 source:c:\users\ricardo\metalzombie\src\shot.cpp
 	"../include/Shot.h"
 

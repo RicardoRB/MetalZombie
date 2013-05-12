@@ -56,6 +56,23 @@ void Character::setEndJumping(bool _endJumping)
     this->endJumping = _endJumping;
 }
 
+bool Character::isAtacking()
+{
+    return attacking;
+}
+
+void Character::setAttacking(bool _Attacking){
+    this->attacking = _Attacking;
+}
+
+bool Character::isLookingRight(){
+    return this->lookRight;
+}
+
+bool Character::isLookingLeft(){
+    return this->lookLeft;
+}
+
 void Character::attack()
 {
 
@@ -63,6 +80,8 @@ void Character::attack()
 
 void Character::moveRight()
 {
+    this->lookLeft = false;
+    this->lookRight = true;
     this->movingLeft = false;
     this->movingRight = true;
     if(this->image_vector.left >= 432) {
@@ -79,6 +98,8 @@ void Character::moveRight()
 
 void Character::moveLeft()
 {
+    this->lookLeft = true;
+    this->lookRight = false;
     this->movingRight = false;
     this->movingLeft = true;
     if(this->image_vector.left >= 432) {

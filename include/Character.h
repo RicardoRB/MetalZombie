@@ -87,6 +87,13 @@ public:
      * \brief Main attack of the characters
      * \details Is virtual because not all the characters attack at the same way
     */
+
+    bool isAtacking();
+    void setAttacking(bool _Attacking);
+
+    bool isLookingRight();
+    bool isLookingLeft();
+
     void attack();
 
     /*!
@@ -153,6 +160,12 @@ protected:
     * \details Velocity of the character in Y coordinate
     */
     float velY = 0;
+
+    bool attacking = false;
+
+    bool lookRight = false;
+
+    bool lookLeft = true;
 private:
 };
 
