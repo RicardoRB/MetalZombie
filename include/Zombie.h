@@ -10,7 +10,7 @@
  *  \copyright GNU Public License.
  */
 
-class Zombie : public Character
+class Zombie : public NPC
 {
 public:
     Zombie();

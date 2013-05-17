@@ -61,7 +61,7 @@ void Game::startGame()
             }
         }
 
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !level1->getPlayer()->isAtacking()) {
             level1->getPlayer()->attack();
         }
 
@@ -88,26 +88,29 @@ void Game::startGame()
             window->draw(*level1->builders[i]->getSpriteObject());
         }
         //Draw the player
-
         window->draw(level1->getPlayer()->sprite);
 
         if(level1->getPlayer()->isAtacking()) {
-
-            window->draw(*(level1->getPlayer()->getShot()->getSpriteObject()));
-
-            if(level1->getPlayer()->isLookingRight()){
-                level1->getPlayer()->getShot()->getSpriteObject()->move(level1->getPlayer()->getShot()->getVelX(),0);
-            }else{
-                level1->getPlayer()->getShot()->getSpriteObject()->move(-level1->getPlayer()->getShot()->getVelX(),0);
+            if(level1->getPlayer()->getShot()->isShot()) {
+                if(level1->getPlayer()->isLookingRight()) {
+                    level1->getPlayer()->getShot()->setPosWindowX(level1->getPlayer()->getPosWindowX());
+                    level1->getPlayer()->getShot()->setDirectionRight(true);
+                    level1->getPlayer()->getShot()->setShot(false);
+                } else {
+                    level1->getPlayer()->getShot()->setPosWindowX(level1->getPlayer()->getPosWindowX());
+                    level1->getPlayer()->getShot()->setDirectionRight(false);
+                    level1->getPlayer()->getShot()->setShot(false);
+                }
             }
-
-            level1->getPlayer()->getShot()->setPosWindowX(level1->getPlayer()->getShot()->getSpriteObject()->getPosition().x);
-
             if(level1->getPlayer()->getShot()->getPosWindowX() > 1024 || level1->getPlayer()->getShot()->getPosWindowX() < 0) {
                 level1->getPlayer()->setAttacking(false);
                 delete level1->getPlayer()->getShot();
+            } else {
+                window->draw(*(level1->getPlayer()->getShot()->getSpriteObject()));
+                level1->getPlayer()->getShot()->moveShot(level1->getPlayer()->getShot()->isDirectionRight());
             }
         }
+
         //Draw the blocks
         for(unsigned int i = 0; i<(sizeof(level1->blocks)/sizeof(level1->blocks[i])); i++) {
             window->draw(*level1->blocks[i]->getSpriteObject());

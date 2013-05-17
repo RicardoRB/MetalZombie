@@ -3,7 +3,6 @@
 
 Player::Player(char file_texture[])
 {
-    this->shot = new Shot((char*)"res/images/characters/players/player1.png");
     if(!texture->loadFromFile(file_texture)) {
 //        std::cout << "Error file texture player" << std::endl;
     } else {
@@ -92,6 +91,7 @@ void Player::moveLeft()
 
 void Player::attack()
 {
+    this->shot = new Shot((char*)"res/images/characters/players/player1.png");
     this->attacking = true;
     this->shot->shot_vector.top = 678;
     this->shot->shot_vector.left = 1266;
@@ -105,6 +105,11 @@ void Player::attack()
 Shot* Player::getShot()
 {
     return this->shot;
+}
+
+float Player::getPosWindowX()
+{
+    return this->posWindowX;
 }
 
 

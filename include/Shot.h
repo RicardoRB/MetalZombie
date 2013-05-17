@@ -24,9 +24,16 @@ public:
     float getPosWindowX();
     float getVelX();
     void setPosWindowX(float _posWindowX);
+    void moveShot(bool _right);
+    bool isShot();
+    void setShot(bool _shot);
+    bool isDirectionRight();
+    void setDirectionRight(bool _direction);
     sf::IntRect shot_vector;
 protected:
 private:
+    bool shot;
+    bool directionRight;
     float velX;
     float posWindowX;
 };

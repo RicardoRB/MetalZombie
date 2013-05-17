@@ -70,15 +70,18 @@ bool Character::isAtacking()
     return attacking;
 }
 
-void Character::setAttacking(bool _Attacking){
+void Character::setAttacking(bool _Attacking)
+{
     this->attacking = _Attacking;
 }
 
-bool Character::isLookingRight(){
+bool Character::isLookingRight()
+{
     return this->lookRight;
 }
 
-bool Character::isLookingLeft(){
+bool Character::isLookingLeft()
+{
     return this->lookLeft;
 }
 

@@ -26,6 +26,7 @@ public:
     void moveRight();
     void moveLeft();
     void attack();
+    float getPosWindowX();
     Shot* getShot();
 protected:
 private:
