@@ -439,10 +439,10 @@
 	<SFML/System/Thread.hpp>
 	<vector>
 
-1368174753 source:c:\users\2ºdai\metalzombie\src\character.cpp
+1368784411 source:c:\users\2ºdai\metalzombie\src\character.cpp
 	"../include/Character.h"
 
-1368174752 c:\users\2ºdai\metalzombie\include\character.h
+1368784411 c:\users\2ºdai\metalzombie\include\character.h
 	<SFML/Graphics.hpp>
 
 1331752015 c:\users\2ºdai\downloads\sfml-2.0-rc\include\sfml\graphics.hpp
@@ -779,23 +779,23 @@
 	<string>
 	<vector>
 
-1368186554 source:c:\users\2ºdai\metalzombie\src\game.cpp
+1368790582 source:c:\users\2ºdai\metalzombie\src\game.cpp
 	"../include/Game.h"
 	<iostream>
 	<sstream>
 	<ctime>
 
-1368174752 c:\users\2ºdai\metalzombie\include\game.h
+1368784411 c:\users\2ºdai\metalzombie\include\game.h
 	"Level.h"
 
-1368174752 c:\users\2ºdai\metalzombie\include\level.h
+1368784411 c:\users\2ºdai\metalzombie\include\level.h
 	"Player.h"
 	"Block.h"
 	"Builder.h"
 	"Sky.h"
 	<SFML/Audio.hpp>
 
-1368187229 c:\users\2ºdai\metalzombie\include\player.h
+1368789558 c:\users\2ºdai\metalzombie\include\player.h
 	"Character.h"
 	"Shot.h"
 
@@ -859,24 +859,25 @@
 	<SFML/System/Thread.hpp>
 	<vector>
 
-1368174753 source:c:\users\2ºdai\metalzombie\src\level.cpp
+1368784411 source:c:\users\2ºdai\metalzombie\src\level.cpp
 	"../include/Level.h"
 	<iostream>
 
-1367574740 source:c:\users\2ºdai\metalzombie\src\main.cpp
+1368784411 source:c:\users\2ºdai\metalzombie\src\main.cpp
 	"../include/Main.h"
 
 1368174752 c:\users\2ºdai\metalzombie\include\main.h
 	"Game.h"
 
-1368187582 source:c:\users\2ºdai\metalzombie\src\player.cpp
+1368790097 source:c:\users\2ºdai\metalzombie\src\player.cpp
 	"../include/Player.h"
+	<iostream>
 
 1367574740 source:c:\users\2ºdai\metalzombie\src\zombie.cpp
 	"../include/Zombie.h"
 
-1368174752 c:\users\2ºdai\metalzombie\include\zombie.h
-	"Character.h"
+1368784879 c:\users\2ºdai\metalzombie\include\zombie.h
+	"NPC.h"
 
 1365237032 c:\users\ricardo\downloads\sfml-2.0\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
@@ -1301,7 +1302,7 @@
 	<SFML/Graphics.hpp>
 	"Object.h"
 
-1368174752 c:\users\2ºdai\metalzombie\include\object.h
+1368784411 c:\users\2ºdai\metalzombie\include\object.h
 	<SFML/Graphics.hpp>
 
 1368174752 c:\users\2ºdai\metalzombie\include\builder.h
@@ -1316,17 +1317,18 @@
 1368174753 source:c:\users\2ºdai\metalzombie\src\builder.cpp
 	"../include/Builder.h"
 
-1368174753 source:c:\users\2ºdai\metalzombie\src\object.cpp
+1368784411 source:c:\users\2ºdai\metalzombie\src\object.cpp
 	"../include/Object.h"
 
 1368174753 source:c:\users\2ºdai\metalzombie\src\sky.cpp
 	"../include/Sky.h"
 
-1368187599 c:\users\2ºdai\metalzombie\include\shot.h
+1368789625 c:\users\2ºdai\metalzombie\include\shot.h
 	"Object.h"
 
-1368187330 source:c:\users\2ºdai\metalzombie\src\shot.cpp
+1368790078 source:c:\users\2ºdai\metalzombie\src\shot.cpp
 	"../include/Shot.h"
+	<iostream>
 
 1368387673 c:\users\ricardo\metalzombie\include\shot.h
 	"Object.h"
@@ -1334,4 +1336,10 @@
 1368387519 source:c:\users\ricardo\metalzombie\src\shot.cpp
 	"../include/Shot.h"
 	<iostream>
+
+1368784724 source:c:\users\2ºdai\metalzombie\src\npc.cpp
+	"../include/NPC.h"
+
+1368784865 c:\users\2ºdai\metalzombie\include\npc.h
+	"Character.h"
 

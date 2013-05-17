@@ -17,11 +17,11 @@ Player::Player(char file_texture[])
     this->sprite.setTexture(*texture);
     this->sprite.setOrigin(13.5,13.f);
     this->sprite.setPosition(100.f,100.f);
-
-    //Shot
     this->velX = 12;
     this->posWindowX = this->sprite.getPosition().x;
     this->posWindowY = this->sprite.getPosition().y;
+    //Shot
+    this->shot = new Shot((char*)"res/images/characters/players/player1.png");
 }
 
 Player::~Player()
@@ -91,13 +91,7 @@ void Player::moveLeft()
 
 void Player::attack()
 {
-    this->shot = new Shot((char*)"res/images/characters/players/player1.png");
     this->attacking = true;
-    this->shot->shot_vector.top = 678;
-    this->shot->shot_vector.left = 1266;
-    this->shot->shot_vector.width = 16;
-    this->shot->shot_vector.height = 16;
-    this->shot->getSpriteObject()->setTextureRect(this->shot->shot_vector);
     this->shot->getSpriteObject()->setPosition(this->sprite.getPosition().x,this->sprite.getPosition().y + 15);
     this->shot->setPosWindowX(this->shot->getSpriteObject()->getPosition().x);
 }

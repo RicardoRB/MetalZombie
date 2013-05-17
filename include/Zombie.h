@@ -1,4 +1,4 @@
-#include "Character.h"
+#include "NPC.h"
 #ifndef ZOMBIE_H
 #define ZOMBIE_H
 /*!

@@ -1,3 +1,4 @@
+#include "Character.h"
 #ifndef NPC_H
 #define NPC_H
 

@@ -25,6 +25,7 @@ public:
     float getVelX();
     void setPosWindowX(float _posWindowX);
     void moveShot(bool _right);
+    void endShot();
     bool isShot();
     void setShot(bool _shot);
     bool isDirectionRight();

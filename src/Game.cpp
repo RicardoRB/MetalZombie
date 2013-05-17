@@ -61,7 +61,7 @@ void Game::startGame()
             }
         }
 
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !level1->getPlayer()->isAtacking()) {
+        if((sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || sf::Joystick::isButtonPressed(0,0)) && !level1->getPlayer()->isAtacking()) {
             level1->getPlayer()->attack();
         }
 
@@ -104,7 +104,9 @@ void Game::startGame()
             }
             if(level1->getPlayer()->getShot()->getPosWindowX() > 1024 || level1->getPlayer()->getShot()->getPosWindowX() < 0) {
                 level1->getPlayer()->setAttacking(false);
-                delete level1->getPlayer()->getShot();
+                //delete level1->getPlayer()->getShot();
+                //level1->getPlayer()->getShot()->endShot();
+                level1->getPlayer()->getShot()->setShot(true);
             } else {
                 window->draw(*(level1->getPlayer()->getShot()->getSpriteObject()));
                 level1->getPlayer()->getShot()->moveShot(level1->getPlayer()->getShot()->isDirectionRight());
