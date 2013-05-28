@@ -71,12 +71,12 @@
 			<debugger />
 			<lib_finder disable_auto="1" />
 			<DoxyBlocks>
-				<comment_style block="0" line="0" />
+				<comment_style block="3" line="3" />
 				<doxyfile_project />
 				<doxyfile_build />
 				<doxyfile_warnings />
 				<doxyfile_output />
-				<doxyfile_dot />
+				<doxyfile_dot class_diagrams="1" />
 				<general />
 			</DoxyBlocks>
 		</Extensions>

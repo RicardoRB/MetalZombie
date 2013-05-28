@@ -15,15 +15,6 @@ class Character
 public:
     Character();
     virtual ~Character();
-    /*!
-    * \details All characters will have texture (picture)
-    */
-    sf::Texture *texture;
-
-    /*!
-    * \details The sprite of the texture
-    */
-    sf::Sprite sprite;
 
     /*!
     * \details Vector to make the animation move
@@ -94,6 +85,8 @@ public:
     bool isLookingRight();
     bool isLookingLeft();
 
+    sf::Sprite getSprite();
+
     void attack();
 
     /*!
@@ -126,6 +119,15 @@ public:
     void falling();
 
 protected:
+    /*!
+    * \details All characters will have texture (picture)
+    */
+    sf::Texture *texture;
+
+    /*!
+    * \details The sprite of the texture
+    */
+    sf::Sprite sprite;
     /*!
     * \details If the characters is living, then true, else will be false
     */
@@ -160,6 +162,16 @@ protected:
     * \details Velocity of the character in Y coordinate
     */
     float velY;
+
+    /*!
+    * \details Player position X on the windows
+    */
+    float posWindowX;
+
+    /*!
+    * \details Player position Y on the windows
+    */
+    float posWindowY;
 
     bool attacking;
 

@@ -30,11 +30,14 @@ private:
     * \details The game will have levels
     */
     Level *level1;
-
+    void takeScreenshot();
     /*!
     * \details The game will have a window
     */
     sf::RenderWindow *window;
+
+    sf::SoundBuffer bufferCameraShot;
+    sf::Sound soundCameraShot;
 };
 
 #endif // GAME_H

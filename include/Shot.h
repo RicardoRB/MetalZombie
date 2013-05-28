@@ -1,4 +1,5 @@
 #include "Object.h"
+#include <SFML/Audio.hpp>
 #ifndef SHOT_H
 #define SHOT_H
 
@@ -19,7 +20,7 @@ public:
     * \brief Call the constructor of the parent class
     * \param file_texture[] char
     */
-    Shot(char file_texture[]);
+    Shot(char file_texture[],char file_sound[]);
     virtual ~Shot();
     float getPosWindowX();
     float getVelX();
@@ -30,6 +31,7 @@ public:
     void setShot(bool _shot);
     bool isDirectionRight();
     void setDirectionRight(bool _direction);
+    void playShot();
     sf::IntRect shot_vector;
 protected:
 private:
@@ -37,6 +39,9 @@ private:
     bool directionRight;
     float velX;
     float posWindowX;
+    char* path_sound;
+    sf::SoundBuffer bufferShot;
+    sf::Sound soundShot;
 };
 
 #endif // SHOT_H

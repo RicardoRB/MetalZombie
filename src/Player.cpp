@@ -15,13 +15,16 @@ Player::Player(char file_texture[])
     this->image_vector.height = 58;
     this->sprite.setTextureRect(image_vector);
     this->sprite.setTexture(*texture);
-    this->sprite.setOrigin(13.5,13.f);
+    this->sprite.setOrigin(13.5f,13.f);
     this->sprite.setPosition(100.f,100.f);
+    this->sprite.setScale(-1.f,1.f);
     this->velX = 12;
+    this->lookRight = true;
+    this->lookLeft = false;
     this->posWindowX = this->sprite.getPosition().x;
     this->posWindowY = this->sprite.getPosition().y;
     //Shot
-    this->shot = new Shot((char*)"res/images/characters/players/player1.png");
+    this->shot = new Shot((char*)"res/images/characters/players/player1.png",(char*)"res/sounds/effects/shots/shot.ogg");
 }
 
 Player::~Player()
@@ -92,6 +95,7 @@ void Player::moveLeft()
 void Player::attack()
 {
     this->attacking = true;
+    this->shot->playShot();
     this->shot->getSpriteObject()->setPosition(this->sprite.getPosition().x,this->sprite.getPosition().y + 15);
     this->shot->setPosWindowX(this->shot->getSpriteObject()->getPosition().x);
 }
@@ -104,6 +108,16 @@ Shot* Player::getShot()
 float Player::getPosWindowX()
 {
     return this->posWindowX;
+}
+
+sf::View Player::getCamera()
+{
+    return this->camera;
+}
+
+void Player::setCamera(sf::View _camera)
+{
+    this->camera = _camera;
 }
 
 

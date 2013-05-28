@@ -10,8 +10,6 @@ Character::Character()
     this->jumping = false;
     this->endJumping = true;
     this->attacking = false;
-    this->lookRight = false;
-    this->lookLeft = true;
 }
 
 Character::~Character()
@@ -83,6 +81,11 @@ bool Character::isLookingRight()
 bool Character::isLookingLeft()
 {
     return this->lookLeft;
+}
+
+sf::Sprite Character::getSprite()
+{
+    return this->sprite;
 }
 
 void Character::attack()

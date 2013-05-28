@@ -5,6 +5,7 @@ Level::Level(char file_music[],char file_image_background[])
 {
     //I create the player and music in the level
     this->player1 = new Player((char*)"res/images/characters/players/player1.png");
+    this->zombie1 = new Zombie((char*)"res/images/characters/npc/enemys/zombies/cool_zombie_sprite_by_gvbn10-d39mzxg.png");
     this->music = new sf::Music();
     if(!music->openFromFile(file_music)) {
 //        std::cout << "Error music in level" << std::endl;
@@ -33,6 +34,7 @@ Level::Level(char file_music[],char file_image_background[])
 
 Level::~Level()
 {
+    delete zombie1;
     delete player1;
     delete music;
     delete blocks;
@@ -42,4 +44,9 @@ Level::~Level()
 Player* Level::getPlayer()
 {
     return this->player1;
+}
+
+Zombie* Level::getZombie()
+{
+    return this->zombie1;
 }

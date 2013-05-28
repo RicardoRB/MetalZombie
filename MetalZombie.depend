@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1368384284 source:c:\users\ricardo\metalzombie\src\character.cpp
+1369692768 source:c:\users\ricardo\metalzombie\src\character.cpp
 	"../include/Character.h"
 
-1368357120 c:\users\ricardo\metalzombie\include\character.h
+1368965458 c:\users\ricardo\metalzombie\include\character.h
 	<SFML/Graphics.hpp>
 
 1331752015 c:\users\ricardo\downloads\sfml-2.0-rc-64\include\sfml\graphics.hpp
@@ -339,18 +339,19 @@
 	<string>
 	<vector>
 
-1368384528 source:c:\users\ricardo\metalzombie\src\level.cpp
+1368980836 source:c:\users\ricardo\metalzombie\src\level.cpp
 	"../include/Level.h"
 	<iostream>
 
-1368357463 c:\users\ricardo\metalzombie\include\level.h
+1368976651 c:\users\ricardo\metalzombie\include\level.h
 	"Player.h"
 	"Block.h"
 	"Builder.h"
 	"Sky.h"
+	"Zombie.h"
 	<SFML/Audio.hpp>
 
-1368384147 c:\users\ricardo\metalzombie\include\player.h
+1368975333 c:\users\ricardo\metalzombie\include\player.h
 	"Character.h"
 	"Shot.h"
 
@@ -360,20 +361,20 @@
 1367673414 c:\users\ricardo\metalzombie\include\main.h
 	"Game.h"
 
-1368384284 source:c:\users\ricardo\metalzombie\src\player.cpp
+1369692834 source:c:\users\ricardo\metalzombie\src\player.cpp
 	"../include/Player.h"
 	<iostream>
 
-1366995553 source:c:\users\ricardo\metalzombie\src\zombie.cpp
+1369693015 source:c:\users\ricardo\metalzombie\src\zombie.cpp
 	"../include/Zombie.h"
 
-1367673477 c:\users\ricardo\metalzombie\include\zombie.h
-	"Character.h"
+1368994171 c:\users\ricardo\metalzombie\include\zombie.h
+	"NPC.h"
 
-1368357375 c:\users\ricardo\metalzombie\include\game.h
+1369073442 c:\users\ricardo\metalzombie\include\game.h
 	"Level.h"
 
-1368387626 source:c:\users\ricardo\metalzombie\src\game.cpp
+1369692542 source:c:\users\ricardo\metalzombie\src\game.cpp
 	"../include/Game.h"
 	<iostream>
 	<sstream>
@@ -1330,10 +1331,11 @@
 	"../include/Shot.h"
 	<iostream>
 
-1368387673 c:\users\ricardo\metalzombie\include\shot.h
+1368812871 c:\users\ricardo\metalzombie\include\shot.h
 	"Object.h"
+	<SFML/Audio.hpp>
 
-1368387519 source:c:\users\ricardo\metalzombie\src\shot.cpp
+1368993604 source:c:\users\ricardo\metalzombie\src\shot.cpp
 	"../include/Shot.h"
 	<iostream>
 
@@ -1342,4 +1344,10 @@
 
 1368784865 c:\users\2ºdai\metalzombie\include\npc.h
 	"Character.h"
+
+1368993604 c:\users\ricardo\metalzombie\include\npc.h
+	"Character.h"
+
+1368804534 source:c:\users\ricardo\metalzombie\src\npc.cpp
+	"../include/NPC.h"
 

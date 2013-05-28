@@ -13,11 +13,11 @@
 
 class NPC : public Character
 {
-    public:
-        NPC();
-        virtual ~NPC();
-    protected:
-    private:
+public:
+    NPC();
+    virtual ~NPC();
+protected:
+private:
 };
 
 #endif // NPC_H

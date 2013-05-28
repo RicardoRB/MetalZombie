@@ -22,7 +22,8 @@ public:
     */
     Player(char file_texture[]);
     virtual ~Player();
-    sf::View camera;
+    sf::View getCamera();
+    void setCamera(sf::View _camera);
     void moveRight();
     void moveLeft();
     void attack();
@@ -31,15 +32,7 @@ public:
 protected:
 private:
     Shot *shot;
-    /*!
-    * \details Player position X on the windows
-    */
-    float posWindowX;
-
-    /*!
-    * \details Player position Y on the windows
-    */
-    float posWindowY;
+    sf::View camera;
 };
 
 #endif // PLAYER_H

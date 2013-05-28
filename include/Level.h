@@ -2,6 +2,7 @@
 #include "Block.h"
 #include "Builder.h"
 #include "Sky.h"
+#include "Zombie.h"
 #include <SFML/Audio.hpp>
 #ifndef LEVEL_H
 #define LEVEL_H
@@ -30,6 +31,12 @@ public:
      * \return Player*
      */
     Player* getPlayer();
+
+    /*!
+     * \brief Return the zombie in the level
+     * \return Zombie*
+     */
+    Zombie* getZombie();
     /*!
      * \brief Return the sprite of the builders
      * \return sf::Sprite
@@ -54,6 +61,10 @@ private:
     * \details Player in the level
     */
     Player *player1;
+    /*!
+    * \details Zombies in the level
+    */
+    Zombie *zombie1;
     /*!
     * \details Music in the level
     */

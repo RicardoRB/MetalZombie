@@ -30,6 +30,11 @@ DeviantArt - http://gvbn10.deviantart.com/
 
 DeviantArt - http://xxbartheangelhogxx.deviantart.com/
 
+--------------
+Camera Sound
+
+http://soundbible.com/563-Camera-Shutter-Click.html
+
 
 Attention - Advice
 ===========

@@ -14,6 +14,8 @@ class Zombie : public NPC
 {
 public:
     Zombie();
+    Zombie(char file_texture[]);
+    void moveLeft();
     virtual ~Zombie();
 protected:
 private:
