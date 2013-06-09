@@ -16,8 +16,9 @@ Object::Object(char file_texture[])
     } else {
         this->objectImage->loadFromFile(file_texture);
     }
-    this->objectImage->setRepeated(true);
+    //this->objectImage->setRepeated(true);
     this->object->setTexture(*objectImage);
+
 }
 
 Object::~Object()
@@ -30,4 +31,15 @@ Object::~Object()
 sf::Sprite* Object::getSpriteObject()
 {
     return this->object;
+}
+
+sf::IntRect Object::getObjectVector()
+{
+    return this->objectVector;
+}
+
+void Object::setObjectVector(sf::IntRect _rect)
+{
+    this->objectVector = _rect;
+    this->object->setTextureRect(_rect);
 }

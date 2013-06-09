@@ -18,10 +18,12 @@ public:
     Object(char file_texture[]);
     virtual ~Object();
     /*!
-     * \brief Return the sprite of the object
-     * \return sf::Sprite*
-     */
+         * \brief Return the sprite of the object
+         * \return sf::Sprite*
+         */
     sf::Sprite* getSpriteObject();
+    sf::IntRect getObjectVector();
+    void setObjectVector(sf::IntRect _rect);
 protected:
 private:
     /*!
@@ -32,6 +34,7 @@ private:
     * \details Sprite of the object
     */
     sf::Sprite *object;
+    sf::IntRect objectVector;
 };
 
 #endif // OBJECT_H

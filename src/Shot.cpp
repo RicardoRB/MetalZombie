@@ -17,6 +17,7 @@ Shot::Shot(char file_texture[], char file_sound[]) : Object(file_texture)
     this->path_sound = file_sound;
     this->velX = 30;
     this->shot = true;
+    this->endShot();
 }
 
 Shot::~Shot()
@@ -37,7 +38,7 @@ void Shot::moveShot(bool _right)
 
 void Shot::endShot()
 {
-    this->getSpriteObject()->setPosition(0,10);
+    this->getSpriteObject()->setPosition(-50,-50);
 }
 
 void Shot::setPosWindowX(float _posWindowX)
@@ -69,6 +70,7 @@ bool Shot::isDirectionRight()
 {
     return this->directionRight;
 }
+
 void Shot::setDirectionRight(bool _direction)
 {
     this->directionRight = _direction;

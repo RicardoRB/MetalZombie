@@ -4,6 +4,7 @@ Character::Character()
 {
     //ctor
     this->texture = new sf::Texture();
+    this->sprite = new sf::Sprite();
     this->life = true;
     this->movingLeft = false;
     this->movingRight = false;
@@ -16,6 +17,7 @@ Character::~Character()
 {
     //dtor
     delete texture;
+    delete sprite;
 }
 
 float Character::getVelX()
@@ -83,7 +85,7 @@ bool Character::isLookingLeft()
     return this->lookLeft;
 }
 
-sf::Sprite Character::getSprite()
+sf::Sprite* Character::getSprite()
 {
     return this->sprite;
 }
@@ -108,8 +110,8 @@ void Character::moveRight()
     } else {
         this->image_vector.left = 112;
     }
-    this->sprite.setScale(-1.f,1.f);
-    this->sprite.setTextureRect(image_vector);
+    this->sprite->setScale(-1.f,1.f);
+    this->sprite->setTextureRect(image_vector);
 }
 
 void Character::moveLeft()
@@ -126,9 +128,9 @@ void Character::moveLeft()
     } else {
         this->image_vector.left = 112;
     }
-    this->sprite.setScale(1.f,1.f);
-    this->sprite.setTextureRect(image_vector);
-    this->sprite.move(-velX,velY);
+    this->sprite->setScale(1.f,1.f);
+    this->sprite->setTextureRect(image_vector);
+    this->sprite->move(-velX,velY);
 }
 
 void Character::moveRemain()
@@ -137,20 +139,20 @@ void Character::moveRemain()
     this->movingRight = false;
     this->image_vector.left = 40;
     this->image_vector.top = 350;
-    this->sprite.setTextureRect(image_vector);
+    this->sprite->setTextureRect(image_vector);
 }
 
 void Character::jump()
 {
     //The player go the maximum position to jump
-    if(this->sprite.getPosition().y <= 550.f) {
+    if(this->sprite->getPosition().y <= 550.f) {
         this->jumping = true;
         endJumping = false;
         this->velY = 0;
     } else {
         this->velY = -12.f;
     }
-    this->sprite.move(0,velY);
+    this->sprite->move(0,velY);
 }
 
 void Character::falling()
@@ -158,5 +160,5 @@ void Character::falling()
     jumping = false;
     endJumping = false;
     this->velY = 1.f;
-    this->sprite.move(0,velY);
+    this->sprite->move(0,velY);
 }

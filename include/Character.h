@@ -85,7 +85,7 @@ public:
     bool isLookingRight();
     bool isLookingLeft();
 
-    sf::Sprite getSprite();
+    sf::Sprite* getSprite();
 
     void attack();
 
@@ -127,7 +127,7 @@ protected:
     /*!
     * \details The sprite of the texture
     */
-    sf::Sprite sprite;
+    sf::Sprite *sprite;
     /*!
     * \details If the characters is living, then true, else will be false
     */

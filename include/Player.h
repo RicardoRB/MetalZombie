@@ -29,8 +29,10 @@ public:
     void attack();
     float getPosWindowX();
     Shot* getShot();
+    int getLives();
 protected:
 private:
+    int lives;
     Shot *shot;
     sf::View camera;
 };

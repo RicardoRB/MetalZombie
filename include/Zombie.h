@@ -17,6 +17,7 @@ public:
     Zombie(char file_texture[]);
     void moveLeft();
     virtual ~Zombie();
+    void attack();
 protected:
 private:
 };
