@@ -28,7 +28,7 @@ void Game::startGame()
         //-------------------------Player control-----------------------------
         //--------------------------------------------------------------------
         //If the player is not moving, then the sprite will draw like standing
-        if(!level1->getPlayer()->ismovingLeft() && !level1->getPlayer()->ismovingRight()) {
+        if((!level1->getPlayer()->ismovingLeft() && !level1->getPlayer()->ismovingRight()) && level1->getPlayer()->isLife()) {
             level1->getPlayer()->moveRemain();
         }
 
@@ -44,7 +44,9 @@ void Game::startGame()
         }
 
         if((sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Joystick::getAxisPosition(0, sf::Joystick::Y) == -100) && (level1->getPlayer()->isEndJumping() && !level1->getPlayer()->isJumping())) {
-            level1->getPlayer()->jump();
+            if(level1->getPlayer()->isLife()) {
+                level1->getPlayer()->jump();
+            }
         } else {
             for(unsigned int i = 0; i < (sizeof(level1->blocks)/sizeof(level1->blocks[i])); i++) {
                 //If the player is not on the block, he will fall
@@ -60,19 +62,23 @@ void Game::startGame()
             }
         }
 
-        if((sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || sf::Joystick::isButtonPressed(0,0)) && !level1->getPlayer()->isAtacking()) {
+        if(((sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || sf::Joystick::isButtonPressed(0,0)) && !level1->getPlayer()->isAtacking())&& level1->getPlayer()->isLife()) {
             level1->getPlayer()->attack();
         }
 
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Joystick::getAxisPosition(0, sf::Joystick::X) == 100) {
-            level1->getPlayer()->moveRight();
-            level1->moveIU();
+        if((sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Joystick::getAxisPosition(0, sf::Joystick::X) == 100)) {
+            if(level1->getPlayer()->isLife()) {
+                level1->getPlayer()->moveRight();
+                level1->moveIU();
+            }
         } else {
             level1->getPlayer()->setmovingRight(false);
         }
 
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Joystick::getAxisPosition(0, sf::Joystick::X) == -100) {
-            level1->getPlayer()->moveLeft();
+        if((sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Joystick::getAxisPosition(0, sf::Joystick::X) == -100)) {
+            if(level1->getPlayer()->isLife()) {
+                level1->getPlayer()->moveLeft();
+            }
         } else {
             level1->getPlayer()->setmovingLeft(false);
         }
@@ -91,8 +97,10 @@ void Game::startGame()
                     level1->zombies[j]->setVelY(0);
                 }
             }
-            if((level1->zombies[j]->getSprite()->getPosition().x - 40 <= level1->getPlayer()->getSprite()->getPosition().x && level1->zombies[j]->getSprite()->getPosition().x > level1->getPlayer()->getSprite()->getPosition().x) && (level1->zombies[j]->getSprite()->getPosition().y <= level1->getPlayer()->getSprite()->getPosition().y)) {
+
+            if(level1->getPlayer()->isLife() && (level1->zombies[j]->getSprite()->getPosition().x - 40 <= level1->getPlayer()->getSprite()->getPosition().x && level1->zombies[j]->getSprite()->getPosition().x > level1->getPlayer()->getSprite()->getPosition().x) && (level1->zombies[j]->getSprite()->getPosition().y <= level1->getPlayer()->getSprite()->getPosition().y)) {
                 level1->zombies[j]->attack();
+                level1->getPlayer()->die();
             } else {
                 level1->zombies[j]->moveLeft();
             }

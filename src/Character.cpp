@@ -90,14 +90,8 @@ sf::Sprite* Character::getSprite()
     return this->sprite;
 }
 
-void Character::attack()
-{
-
-};
-
 void Character::moveRight()
 {
-
     this->lookLeft = false;
     this->lookRight = true;
     this->movingLeft = false;
@@ -112,25 +106,6 @@ void Character::moveRight()
     }
     this->sprite->setScale(-1.f,1.f);
     this->sprite->setTextureRect(image_vector);
-}
-
-void Character::moveLeft()
-{
-    this->lookLeft = true;
-    this->lookRight = false;
-    this->movingRight = false;
-    this->movingLeft = true;
-    if(this->image_vector.left >= 432) {
-        this->image_vector.left = 112;
-    }
-    if(this->image_vector.left >= 112) {
-        this->image_vector.left += 52 + 12;
-    } else {
-        this->image_vector.left = 112;
-    }
-    this->sprite->setScale(1.f,1.f);
-    this->sprite->setTextureRect(image_vector);
-    this->sprite->move(-velX,velY);
 }
 
 void Character::moveRemain()

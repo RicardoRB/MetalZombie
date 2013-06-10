@@ -18,6 +18,7 @@ public:
     void moveLeft();
     virtual ~Zombie();
     void attack();
+    void die();
 protected:
 private:
 };

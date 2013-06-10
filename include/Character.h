@@ -87,7 +87,7 @@ public:
 
     sf::Sprite* getSprite();
 
-    void attack();
+    virtual void attack() = 0;
 
     /*!
      * \brief Function to move the character to right
@@ -99,7 +99,7 @@ public:
      * \brief Function to move the character to left
      * \details Subtract the position of the variable, flip the sprite to left and move the sprite to left
     */
-    virtual void moveLeft();
+    virtual void moveLeft() = 0;
 
     /*!
      * \brief Function to remain player
@@ -116,7 +116,13 @@ public:
      * \brief Do the character falling
      * \details Will move down the character in Y direction and will change the boolean if the character did end jumping
     */
-    void falling();
+    virtual void falling();
+
+    /*!
+     * \brief The character die
+     * \details Will kill the character
+    */
+    virtual void die() = 0;
 
 protected:
     /*!

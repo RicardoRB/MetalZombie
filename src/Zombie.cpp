@@ -74,3 +74,7 @@ void Zombie::attack()
     }
     this->sprite->setTextureRect(image_vector);
 }
+
+void Zombie::die(){
+
+}

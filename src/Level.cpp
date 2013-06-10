@@ -147,32 +147,38 @@ sf::Time Level::getTime()
     return this->time;
 }
 
-Object* Level::getLivesFace(){
+Object* Level::getLivesFace()
+{
     return this->livesFace;
 }
 
-sf::Text Level::getTextLives(){
+sf::Text Level::getTextLives()
+{
     std::stringstream livesString;
     livesString << "x " << this->getPlayer()->getLives();
     this->livesText.setString(livesString.str());
     return this->livesText;
 }
 
-Object* Level::getZombiesFace(){
+Object* Level::getZombiesFace()
+{
     return this->zombiesFace;
 }
 
-sf::Text Level::getTextZombies(){
+sf::Text Level::getTextZombies()
+{
     std::stringstream zombiesString;
     zombiesString << "x " << this->getContZombies();
     this->zombiesText.setString(zombiesString.str());
     return this->zombiesText;
 }
 
-int Level::getContZombies(){
+int Level::getContZombies()
+{
     return this->contZombies;
 }
 
-void Level::setContZombies(int _contZombies){
+void Level::setContZombies(int _contZombies)
+{
     this->contZombies = _contZombies;
 }
