@@ -138,9 +138,4 @@ int Player::getLives()
     return this->lives;
 }
 
-bool Player::isLife()
-{
-    return this->life;
-}
-
 

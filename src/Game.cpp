@@ -99,10 +99,11 @@ void Game::startGame()
             }
 
             if(level1->getPlayer()->isLife() && (level1->zombies[j]->getSprite()->getPosition().x - 40 <= level1->getPlayer()->getSprite()->getPosition().x && level1->zombies[j]->getSprite()->getPosition().x > level1->getPlayer()->getSprite()->getPosition().x) && (level1->zombies[j]->getSprite()->getPosition().y <= level1->getPlayer()->getSprite()->getPosition().y)) {
-                level1->zombies[j]->attack();
-                level1->getPlayer()->die();
+                level1->zombies[j]->attack(level1->getPlayer());
             } else {
-                level1->zombies[j]->moveLeft();
+                if(level1->zombies[j]->isLife()){
+                    level1->zombies[j]->moveLeft();
+                }
             }
         }
 
@@ -153,13 +154,15 @@ void Game::startGame()
                 //Zombies
             } else {
                 for(unsigned int i = 0; i < (sizeof(level1->zombies)/sizeof(level1->zombies[i])); i++) {
-                    if(level1->getPlayer()->isLookingRight() && (level1->getPlayer()->getShot()->getSpriteObject()->getPosition().x >= level1->zombies[i]->getSprite()->getPosition().x && level1->getPlayer()->getShot()->getSpriteObject()->getPosition().y >= level1->zombies[i]->getSprite()->getPosition().y && level1->getPlayer()->getPosWindowX() <= level1->zombies[i]->getSprite()->getPosition().x)) {
+                    if(level1->zombies[i]->isLife() && level1->getPlayer()->isLookingRight() && (level1->getPlayer()->getShot()->getSpriteObject()->getPosition().x >= level1->zombies[i]->getSprite()->getPosition().x && level1->getPlayer()->getShot()->getSpriteObject()->getPosition().y >= level1->zombies[i]->getSprite()->getPosition().y && level1->getPlayer()->getPosWindowX() <= level1->zombies[i]->getSprite()->getPosition().x)) {
                         level1->getPlayer()->setAttacking(false);
                         level1->getPlayer()->getShot()->setShot(true);
+                        level1->zombies[i]->die();
                         level1->getPlayer()->getShot()->endShot();
-                    } else if (level1->getPlayer()->isLookingLeft() && (level1->getPlayer()->getShot()->getSpriteObject()->getPosition().x <= level1->zombies[i]->getSprite()->getPosition().x && level1->getPlayer()->getShot()->getSpriteObject()->getPosition().y >= level1->zombies[i]->getSprite()->getPosition().y && level1->getPlayer()->getPosWindowX() >= level1->zombies[i]->getSprite()->getPosition().x)) {
+                    } else if (level1->zombies[i]->isLife() && level1->getPlayer()->isLookingLeft() && (level1->getPlayer()->getShot()->getSpriteObject()->getPosition().x <= level1->zombies[i]->getSprite()->getPosition().x && level1->getPlayer()->getShot()->getSpriteObject()->getPosition().y >= level1->zombies[i]->getSprite()->getPosition().y && level1->getPlayer()->getPosWindowX() >= level1->zombies[i]->getSprite()->getPosition().x)) {
                         level1->getPlayer()->setAttacking(false);
                         level1->getPlayer()->getShot()->setShot(true);
+                        level1->zombies[i]->die();
                         level1->getPlayer()->getShot()->endShot();
                     } else {
                         level1->getPlayer()->getShot()->moveShot(level1->getPlayer()->getShot()->isDirectionRight());

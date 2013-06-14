@@ -90,6 +90,11 @@ sf::Sprite* Character::getSprite()
     return this->sprite;
 }
 
+bool Character::isLife()
+{
+    return this->life;
+}
+
 void Character::moveRight()
 {
     this->lookLeft = false;
@@ -136,4 +141,8 @@ void Character::falling()
     endJumping = false;
     this->velY = 1.f;
     this->sprite->move(0,velY);
+}
+
+void Character::attack(){
+
 }

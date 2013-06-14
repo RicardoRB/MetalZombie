@@ -1,4 +1,6 @@
 #include "NPC.h"
+#include "Player.h"
+#include <iostream>
 #ifndef ZOMBIE_H
 #define ZOMBIE_H
 /*!
@@ -17,7 +19,7 @@ public:
     Zombie(char file_texture[]);
     void moveLeft();
     virtual ~Zombie();
-    void attack();
+    void attack(Player *_player);
     void die();
 protected:
 private:

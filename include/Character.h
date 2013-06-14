@@ -84,10 +84,11 @@ public:
 
     bool isLookingRight();
     bool isLookingLeft();
+    bool isLife();
 
     sf::Sprite* getSprite();
 
-    virtual void attack() = 0;
+    virtual void attack();
 
     /*!
      * \brief Function to move the character to right

@@ -31,7 +31,7 @@ public:
     Shot* getShot();
     int getLives();
     void die();
-    bool isLife();
+
 protected:
 private:
     int lives;
