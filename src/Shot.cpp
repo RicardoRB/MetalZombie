@@ -1,13 +1,11 @@
 #include "../include/Shot.h"
 #include <iostream>
 
-Shot::Shot()
-{
+Shot::Shot() {
     //ctor
 }
 
-Shot::Shot(char file_texture[], char file_sound[]) : Object(file_texture)
-{
+Shot::Shot(char file_texture[], char file_sound[]) : Object(file_texture) {
     //ctor father
     this->shot_vector.top = 678;
     this->shot_vector.left = 1266;
@@ -20,13 +18,11 @@ Shot::Shot(char file_texture[], char file_sound[]) : Object(file_texture)
     this->endShot();
 }
 
-Shot::~Shot()
-{
+Shot::~Shot() {
     //dtor
 }
 
-void Shot::moveShot(bool _right)
-{
+void Shot::moveShot(bool _right) {
     if(_right) {
         this->getSpriteObject()->move(this->getVelX(),0);
         this->setPosWindowX((this->getPosWindowX()+this->getVelX()));
@@ -36,48 +32,39 @@ void Shot::moveShot(bool _right)
     }
 }
 
-void Shot::endShot()
-{
+void Shot::endShot() {
     this->getSpriteObject()->setPosition(-50,-50);
 }
 
-void Shot::setPosWindowX(float _posWindowX)
-{
+void Shot::setPosWindowX(float _posWindowX) {
     posWindowX = _posWindowX;
 }
 
-float Shot::getPosWindowX()
-{
+float Shot::getPosWindowX() {
     return this->posWindowX;
 }
 
-float Shot::getVelX()
-{
+float Shot::getVelX() {
     return this->velX;
 }
 
-bool Shot::isShot()
-{
+bool Shot::isShot() {
     return this->shot;
 }
 
-void Shot::setShot(bool _shot)
-{
+void Shot::setShot(bool _shot) {
     this->shot = _shot;
 }
 
-bool Shot::isDirectionRight()
-{
+bool Shot::isDirectionRight() {
     return this->directionRight;
 }
 
-void Shot::setDirectionRight(bool _direction)
-{
+void Shot::setDirectionRight(bool _direction) {
     this->directionRight = _direction;
 }
 
-void Shot::playShot()
-{
+void Shot::playShot() {
     this->bufferShot.loadFromFile(this->path_sound);
     this->soundShot.setBuffer(this->bufferShot);
     this->soundShot.play();

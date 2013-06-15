@@ -1,15 +1,12 @@
 #include "../include/Block.h"
 
-Block::Block()
-{
+Block::Block() {
     //ctor
 }
-Block::Block(char file_texture[]) : Object(file_texture)
-{
+Block::Block(char file_texture[]) : Object(file_texture) {
     //ctor father
 }
 
-Block::~Block()
-{
+Block::~Block() {
     //dtor
 }

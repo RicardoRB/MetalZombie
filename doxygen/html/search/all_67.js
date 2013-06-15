@@ -1,7 +1,21 @@
 var searchData=
 [
   ['game',['Game',['../class_game.html',1,'Game'],['../class_game.html#ad59df6562a58a614fda24622d3715b65',1,'Game::Game()']]],
-  ['getbuilders',['getBuilders',['../class_level.html#a5163e490d54cb9f6a3d79133d839e28a',1,'Level']]],
+  ['game_2ecpp',['Game.cpp',['../_game_8cpp.html',1,'']]],
+  ['game_2eh',['Game.h',['../_game_8h.html',1,'']]],
+  ['getcamera',['getCamera',['../class_player.html#a95d44bc2e043b3d935c51a6eff12856e',1,'Player']]],
+  ['getcontzombies',['getContZombies',['../class_level.html#ae344b07e05dacbac2ea2d55095c69460',1,'Level']]],
+  ['getlives',['getLives',['../class_player.html#af56ac33b9b2ebd9f97c8a6f485cf2d47',1,'Player']]],
+  ['getlivesface',['getLivesFace',['../class_level.html#acb264559367ba901d8984682e5294ee0',1,'Level']]],
+  ['getobjectvector',['getObjectVector',['../class_object.html#ae27d4eb7705f9e11721a984bb1805128',1,'Object']]],
   ['getplayer',['getPlayer',['../class_level.html#a98b9579253fbf55f7d631853c4cd7e9c',1,'Level']]],
-  ['getvelx',['getVelX',['../class_character.html#a73b6b751b6ec30164402911c20e0c986',1,'Character']]]
+  ['getposwindowx',['getPosWindowX',['../class_player.html#a419f8ea90ef1164b93db061fb38dd3b4',1,'Player::getPosWindowX()'],['../class_shot.html#aed9bc48d9b7c29aa6a618ce9432e0b0a',1,'Shot::getPosWindowX()']]],
+  ['getshot',['getShot',['../class_player.html#a7f6097dc061aca1326d9d7b398a2e8ba',1,'Player']]],
+  ['getsprite',['getSprite',['../class_character.html#a3097508965d2581b566805897d88e94c',1,'Character']]],
+  ['getspriteobject',['getSpriteObject',['../class_object.html#ae8e20b37d4ea189e187ba7e1762f30ce',1,'Object']]],
+  ['gettextlives',['getTextLives',['../class_level.html#ab17b520594ac84d957e41c362f0832d8',1,'Level']]],
+  ['gettexttime',['getTextTime',['../class_level.html#a662fe835f9befbb8ba41c0e68b66466c',1,'Level']]],
+  ['gettextzombies',['getTextZombies',['../class_level.html#a9015dd13f298858db7071ed32a204625',1,'Level']]],
+  ['getvelx',['getVelX',['../class_character.html#a73b6b751b6ec30164402911c20e0c986',1,'Character::getVelX()'],['../class_shot.html#a915296cb7ded586656a1afa56d708dab',1,'Shot::getVelX()']]],
+  ['getzombiesface',['getZombiesFace',['../class_level.html#a2a61d7e1a3cdc2512c968e338680d598',1,'Level']]]
 ];

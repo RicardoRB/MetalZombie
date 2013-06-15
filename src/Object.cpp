@@ -1,14 +1,12 @@
 #include "../include/Object.h"
 
-Object::Object()
-{
+Object::Object() {
     //ctor
     objectImage = new sf::Texture();
     object = new sf::Sprite();
 }
 
-Object::Object(char file_texture[])
-{
+Object::Object(char file_texture[]) {
     objectImage = new sf::Texture();
     object = new sf::Sprite();
     if(!this->objectImage->loadFromFile(file_texture)) {
@@ -21,25 +19,21 @@ Object::Object(char file_texture[])
 
 }
 
-Object::~Object()
-{
+Object::~Object() {
     //dtor
     delete object;
     delete objectImage;
 }
 
-sf::Sprite* Object::getSpriteObject()
-{
+sf::Sprite* Object::getSpriteObject() {
     return this->object;
 }
 
-sf::IntRect Object::getObjectVector()
-{
+sf::IntRect Object::getObjectVector() {
     return this->objectVector;
 }
 
-void Object::setObjectVector(sf::IntRect _rect)
-{
+void Object::setObjectVector(sf::IntRect _rect) {
     this->objectVector = _rect;
     this->object->setTextureRect(_rect);
 }

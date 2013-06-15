@@ -2,8 +2,7 @@
 #include <iostream>
 #include <sstream>
 
-Level::Level(char file_music[],char file_image_background[])
-{
+Level::Level(char file_music[],char file_image_background[]) {
     if (!this->font.loadFromFile("res/fonts/BrushRunes.otf")) {
         //error
     } else {
@@ -94,7 +93,7 @@ Level::Level(char file_music[],char file_image_background[])
             break;
         default:
             break;
-            //instrucción(es);
+            //instrucciÃ³n(es);
         };
         this->soldiers[i]->setObjectVector(rect_aux);
         this->soldiers[i]->getSpriteObject()->setScale(-1.f,1.f);
@@ -102,23 +101,23 @@ Level::Level(char file_music[],char file_image_background[])
     }
 }
 
-Level::~Level()
-{
+Level::~Level() {
     delete zombies;
-    delete player1;
-    delete music;
     delete blocks;
     delete builders;
+    delete skies;
+    delete soldiers;
+    delete player1;
+    delete music;
     delete livesFace;
+    delete zombiesFace;
 }
 
-Player* Level::getPlayer()
-{
+Player* Level::getPlayer() {
     return this->player1;
 }
 
-void Level::moveIU()
-{
+void Level::moveUI() {
     if(this->getPlayer()->getPosWindowX() >= 512 && this->getPlayer()->getSprite()->getPosition().x <= 9728) {
         this->timeText.setPosition(this->getPlayer()->getSprite()->getPosition().x,55.f);
         this->livesText.setPosition(this->getPlayer()->getSprite()->getPosition().x - 442.f,55.f);
@@ -127,8 +126,7 @@ void Level::moveIU()
         this->zombiesFace->getSpriteObject()->setPosition(this->getPlayer()->getSprite()->getPosition().x + 442.f,55.f);
     }
 }
-sf::Text Level::getTextTime()
-{
+sf::Text Level::getTextTime() {
     this->time = this->clockTime.getElapsedTime();
     //Convert time to string
     std::stringstream timeString;
@@ -137,48 +135,32 @@ sf::Text Level::getTextTime()
     return this->timeText;
 }
 
-sf::Clock Level::getClockTime()
-{
-    return this->clockTime;
-}
-
-sf::Time Level::getTime()
-{
-    return this->time;
-}
-
-Object* Level::getLivesFace()
-{
+Object* Level::getLivesFace() {
     return this->livesFace;
 }
 
-sf::Text Level::getTextLives()
-{
+sf::Text Level::getTextLives() {
     std::stringstream livesString;
     livesString << "x " << this->getPlayer()->getLives();
     this->livesText.setString(livesString.str());
     return this->livesText;
 }
 
-Object* Level::getZombiesFace()
-{
+Object* Level::getZombiesFace() {
     return this->zombiesFace;
 }
 
-sf::Text Level::getTextZombies()
-{
+sf::Text Level::getTextZombies() {
     std::stringstream zombiesString;
     zombiesString << "x " << this->getContZombies();
     this->zombiesText.setString(zombiesString.str());
     return this->zombiesText;
 }
 
-int Level::getContZombies()
-{
+int Level::getContZombies() {
     return this->contZombies;
 }
 
-void Level::setContZombies(int _contZombies)
-{
+void Level::setContZombies(int _contZombies) {
     this->contZombies = _contZombies;
 }

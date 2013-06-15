@@ -11,8 +11,7 @@
  *  \copyright GNU Public License.
  */
 
-class NPC : public Character
-{
+class NPC : public Character {
 public:
     NPC();
     virtual ~NPC();

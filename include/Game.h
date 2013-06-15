@@ -10,8 +10,7 @@
  *  \copyright GNU Public License.
  */
 
-class Game
-{
+class Game {
 public:
     /*!
      * \brief Constructor of class Game
@@ -30,13 +29,22 @@ private:
     * \details The game will have levels
     */
     Level *level1;
+    /*!
+     * \brief When you call the method, this will take a screenshot of the game windows
+     * \details Will take a screenshot of the game with the date and hour in the name
+    */
     void takeScreenshot();
     /*!
     * \details The game will have a window
     */
     sf::RenderWindow *window;
-
+    /*!
+    * \details Buffer of sound effect of the camera shot
+    */
     sf::SoundBuffer bufferCameraShot;
+    /*!
+    * \details Sound file of the camera shot
+    */
     sf::Sound soundCameraShot;
 };
 

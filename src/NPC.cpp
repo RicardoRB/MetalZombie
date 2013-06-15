@@ -1,11 +1,9 @@
 #include "../include/NPC.h"
 
-NPC::NPC()
-{
+NPC::NPC() {
     //ctor
 }
 
-NPC::~NPC()
-{
+NPC::~NPC() {
     //dtor
 }

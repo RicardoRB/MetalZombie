@@ -1,0 +1,6 @@
+<map id="Level::Level" name="Level::Level">
+<area shape="rect" id="node3" href="$class_object.html#a8eb15a49ed638b24dfb44abbdad96727" title="Put the vector to the vector of the param. " alt="" coords="147,5,309,35"/>
+<area shape="rect" id="node5" href="$class_object.html#ae8e20b37d4ea189e187ba7e1762f30ce" title="Return the sprite of the object. " alt="" coords="149,59,307,88"/>
+<area shape="rect" id="node7" href="$class_character.html#a3097508965d2581b566805897d88e94c" title="Return the sprite pointer of the character. " alt="" coords="159,112,297,141"/>
+<area shape="rect" id="node9" href="$class_object.html#ae27d4eb7705f9e11721a984bb1805128" title="Return tIntRect to the picture position. " alt="" coords="147,165,309,195"/>
+</map>

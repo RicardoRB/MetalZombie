@@ -1,16 +1,13 @@
 #include "../include/Builder.h"
 
-Builder::Builder()
-{
+Builder::Builder() {
     //ctor
 }
 
-Builder::Builder(char file_texture[]) : Object(file_texture)
-{
+Builder::Builder(char file_texture[]) : Object(file_texture) {
     //ctor father
 }
 
-Builder::~Builder()
-{
+Builder::~Builder() {
     //dtor
 }

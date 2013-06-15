@@ -15,7 +15,7 @@ PROJECT_BRIEF          =
 PROJECT_LOGO           =
 OUTPUT_DIRECTORY       =
 CREATE_SUBDIRS         = NO
-OUTPUT_LANGUAGE        = English
+OUTPUT_LANGUAGE        = Spanish
 BRIEF_MEMBER_DESC      = YES
 REPEAT_BRIEF           = YES
 ABBREVIATE_BRIEF       =
@@ -48,9 +48,9 @@ SYMBOL_CACHE_SIZE      = 0
 #---------------------------------------------------------------------------
 # Build related configuration options
 #---------------------------------------------------------------------------
-EXTRACT_ALL            = NO
-EXTRACT_PRIVATE        = NO
-EXTRACT_STATIC         = NO
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
 EXTRACT_LOCAL_CLASSES  = YES
 EXTRACT_LOCAL_METHODS  = NO
 EXTRACT_ANON_NSPACES   = NO
@@ -91,23 +91,35 @@ WARN_IF_UNDOCUMENTED   = NO
 WARN_IF_DOC_ERROR      = YES
 WARN_NO_PARAMDOC       = YES
 WARN_FORMAT            = "$file:$line: $text"
-WARN_LOGFILE            = "C:\Users\2ºDAI\MetalZombie\doxygen\doxygen.log"
+WARN_LOGFILE            = "/home/richy/MetalZombie/doxygen/doxygen.log"
 #---------------------------------------------------------------------------
 # configuration options related to the input files
 #---------------------------------------------------------------------------
 INPUT                  = \
-	"..\include\Character.h" \
-	"..\include\Game.h" \
-	"..\include\Level.h" \
-	"..\include\Main.h" \
-	"..\include\Player.h" \
-	"..\include\Zombie.h" \
-	"..\src\Character.cpp" \
-	"..\src\Game.cpp" \
-	"..\src\Level.cpp" \
-	"..\src\Main.cpp" \
-	"..\src\Player.cpp" \
-	"..\src\Zombie.cpp" 
+	"../src/Player.cpp" \
+	"../include/Builder.h" \
+	"../src/NPC.cpp" \
+	"../src/Zombie.cpp" \
+	"../src/Character.cpp" \
+	"../include/Block.h" \
+	"../include/Player.h" \
+	"../src/Builder.cpp" \
+	"../include/Character.h" \
+	"../include/Object.h" \
+	"../src/Main.cpp" \
+	"../src/Level.cpp" \
+	"../src/Game.cpp" \
+	"../include/Level.h" \
+	"../include/Main.h" \
+	"../src/Block.cpp" \
+	"../include/Sky.h" \
+	"../src/Sky.cpp" \
+	"../include/Shot.h" \
+	"../include/Game.h" \
+	"../include/Zombie.h" \
+	"../src/Object.cpp" \
+	"../include/NPC.h" \
+	"../src/Shot.cpp" 
 INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          =
 RECURSIVE              = NO
@@ -263,10 +275,10 @@ PERL_PATH              = /usr/bin/perl
 #---------------------------------------------------------------------------
 # Configuration options related to the dot tool
 #---------------------------------------------------------------------------
-CLASS_DIAGRAMS         = NO
+CLASS_DIAGRAMS         = YES
 MSCGEN_PATH            =
 HIDE_UNDOC_RELATIONS   = YES
-HAVE_DOT               = NO
+HAVE_DOT               = YES
 DOT_NUM_THREADS        = 0
 DOT_FONTNAME           = Helvetica
 DOT_FONTSIZE           = 10

@@ -11,8 +11,7 @@
  *  \copyright GNU Public License.
  */
 
-class Sky : public Object
-{
+class Sky : public Object {
 public:
     Sky();
     /*!

@@ -72,11 +72,11 @@
 			<lib_finder disable_auto="1" />
 			<DoxyBlocks>
 				<comment_style block="3" line="3" />
-				<doxyfile_project />
-				<doxyfile_build />
+				<doxyfile_project output_language="Spanish" />
+				<doxyfile_build extract_all="1" extract_private="1" extract_static="1" />
 				<doxyfile_warnings />
 				<doxyfile_output />
-				<doxyfile_dot class_diagrams="1" />
+				<doxyfile_dot class_diagrams="1" have_dot="1" />
 				<general />
 			</DoxyBlocks>
 		</Extensions>

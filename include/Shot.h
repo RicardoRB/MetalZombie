@@ -12,8 +12,7 @@
  *  \copyright GNU Public License.
  */
 
-class Shot : public Object
-{
+class Shot : public Object {
 public:
     Shot();
     /*!
@@ -22,12 +21,40 @@ public:
     */
     Shot(char file_texture[],char file_sound[]);
     virtual ~Shot();
+    /*!
+     * \brief Return position in X coordinate on window
+     * \return float posWindowX
+     */
     float getPosWindowX();
+    /*!
+     * \brief Return velocity in X coordinate
+     * \return float velX
+     */
     float getVelX();
+    /*!
+     * \brief Set the window position in X coordinate
+     * \param float _posWIndowX
+     */
     void setPosWindowX(float _posWindowX);
+    /*!
+     * \brief Move the shot to the side left or right
+     * \param bool _right
+     */
     void moveShot(bool _right);
+    /*!
+     * \brief Put the show picture away from window
+     * \details This method is so usefull when you kill a zombie or go out of window
+     */
     void endShot();
+    /*!
+     * \brief Return true if the object is shot, else will return false
+     * \return bool shot
+     */
     bool isShot();
+    /*!
+     * \brief Put the show picture away from window
+     * \details This method is so usefull when you kill a zombie or go out of window
+     */
     void setShot(bool _shot);
     bool isDirectionRight();
     void setDirectionRight(bool _direction);
@@ -35,12 +62,33 @@ public:
     sf::IntRect shot_vector;
 protected:
 private:
+    /*!
+    * \details If the shot was shot
+    */
     bool shot;
+    /*!
+    * \details If the direction of the shot is Right, true, else false
+    */
     bool directionRight;
+    /*!
+    * \details Velocity in X coordinate
+    */
     float velX;
+    /*!
+    * \details Position in X coordinate on window
+    */
     float posWindowX;
+    /*!
+    * \details Path of the file sound
+    */
     char* path_sound;
+    /*!
+    * \details Buffer of the shot audio effect
+    */
     sf::SoundBuffer bufferShot;
+    /*!
+    * \details Sound of the file shot audio
+    */
     sf::Sound soundShot;
 };
 

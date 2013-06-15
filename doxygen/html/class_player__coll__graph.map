@@ -1,0 +1,5 @@
+<map id="Player" name="Player">
+<area shape="rect" id="node2" href="$class_character.html" title="Class of characters. " alt="" coords="5,85,83,115"/>
+<area shape="rect" id="node4" href="$class_shot.html" title="Class of the shot. " alt="" coords="107,85,155,115"/>
+<area shape="rect" id="node6" href="$class_object.html" title="Class of all objects. " alt="" coords="101,5,160,35"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="Level::moveUI" name="Level::moveUI">
+<area shape="rect" id="node3" href="$class_level.html#a98b9579253fbf55f7d631853c4cd7e9c" title="Return the player in the level. " alt="" coords="183,5,297,35"/>
+<area shape="rect" id="node5" href="$class_object.html#ae8e20b37d4ea189e187ba7e1762f30ce" title="Return the sprite of the object. " alt="" coords="161,59,319,88"/>
+</map>

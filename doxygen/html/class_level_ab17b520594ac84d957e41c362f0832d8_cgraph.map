@@ -1,0 +1,4 @@
+<map id="Level::getTextLives" name="Level::getTextLives">
+<area shape="rect" id="node3" href="$class_level.html#a98b9579253fbf55f7d631853c4cd7e9c" title="Return the player in the level. " alt="" coords="191,5,305,35"/>
+<area shape="rect" id="node5" href="$class_player.html#af56ac33b9b2ebd9f97c8a6f485cf2d47" title="Player::getLives" alt="" coords="191,59,305,88"/>
+</map>

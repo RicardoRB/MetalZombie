@@ -1,0 +1,15 @@
+Warning: The selected output language "spanish" has not been updated
+since release 1.8.2.  As a result some sentences may appear in English.
+
+/home/richy/MetalZombie/include/Level.h:91: Warning: argument 'int' of command @param is not found in the argument list of Level::setContZombies(int _contZombies)
+/home/richy/MetalZombie/include/Level.h:91: Warning: The following parameters of Level::setContZombies(int _contZombies) are not documented:
+  parameter '_contZombies'
+/home/richy/MetalZombie/include/Object.h:34: Warning: argument 'sf' of command @param is not found in the argument list of Object::setObjectVector(sf::IntRect _rect)
+/home/richy/MetalZombie/include/Object.h:34: Warning: argument 'IntRect' of command @param is not found in the argument list of Object::setObjectVector(sf::IntRect _rect)
+/home/richy/MetalZombie/include/Object.h:34: Warning: The following parameters of Object::setObjectVector(sf::IntRect _rect) are not documented:
+  parameter '_rect'
+/home/richy/MetalZombie/include/Shot.h:19: Warning: The following parameters of Shot::Shot(char file_texture[], char file_sound[]) are not documented:
+  parameter 'file_sound'
+/home/richy/MetalZombie/include/Zombie.h:32: Warning: argument 'Player' of command @param is not found in the argument list of Zombie::attack(Player *_player)
+/home/richy/MetalZombie/include/Zombie.h:32: Warning: The following parameters of Zombie::attack(Player *_player) are not documented:
+  parameter '_player'

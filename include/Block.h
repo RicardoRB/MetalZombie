@@ -12,14 +12,13 @@
  *  \copyright GNU Public License.
  */
 
-class Block : public Object
-{
+class Block : public Object {
 public:
     Block();
     /*!
-     * \brief Call the constructor of the parent class
-     * \param file_texture[] char
-     */
+    * \brief Call the constructor of the parent class
+    * \param file_texture[] char
+    */
     Block(char file_texture[]);
     virtual ~Block();
 protected:

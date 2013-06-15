@@ -11,8 +11,7 @@
  *  \copyright GNU Public License.
  */
 
-class Main
-{
+class Main {
 public:
     Main();
     virtual ~Main();

@@ -15,8 +15,7 @@
  *  \copyright GNU Public License.
  */
 
-class Level
-{
+class Level {
 public:
     Level();
     /*!
@@ -37,21 +36,6 @@ public:
     */
     Zombie *zombies[2];
     /*!
-     * \brief Return the sprite of the builders
-     * \return sf::Sprite
-     */
-    sf::Sprite getBuilders();
-    sf::Text getTextTime();
-    sf::Text getTextLives();
-    sf::Text getTextZombies();
-    sf::Clock getClockTime();
-    sf::Time getTime();
-    Object* getLivesFace();
-    Object* getZombiesFace();
-    int getContZombies();
-    void setContZombies(int _contZombies);
-    void moveIU();
-    /*!
     * \details Array of the blocks, static because I need use it with collisions
     */
     Block *blocks[320];
@@ -68,6 +52,51 @@ public:
     * \details Array of the soldiers friends
     */
     Object *soldiers[10];
+    /*!
+     * \brief Return the text time
+     * \details Text of the time since start level
+     * \return sf::Text TextTime
+     */
+    sf::Text getTextTime();
+    /*!
+     * \brief Return the text lives
+     * \details Text of the rest lives
+     * \return sf::Text TextLives
+     */
+    sf::Text getTextLives();
+    /*!
+     * \brief Return the text of zombies
+     * \details Text of the all zombies dont killed
+     * \return sf::Text TextZombies
+     */
+    sf::Text getTextZombies();
+    /*!
+     * \brief Return the Object livesFace to the IU
+     * \details Face picture on UI to lives
+     * \return Object* livesFace
+     */
+    Object* getLivesFace();
+    /*!
+     * \brief Return the Object ZombiesFace to the IU
+     * \details Face Zombie picture on UI to lives
+     * \return Object* zombiesFace
+     */
+    Object* getZombiesFace();
+    /*!
+     * \brief Return the number of zombies that pass the window
+     * \return int contZombies
+     */
+    int getContZombies();
+    /*!
+     * \brief Put the contZombies the number of parameter
+     * \param int _contZombies
+     */
+    void setContZombies(int _contZombies);
+    /*!
+     * \brief Move the UI on the window
+     * \details This method will move all the UI when the player move the camera
+     */
+    void moveUI();
 protected:
 private:
     /*!
@@ -86,14 +115,41 @@ private:
     * \details Background sprite, this is not always used
     */
     sf::Sprite background;
+    /*!
+    * \details Lives face picture to the UI
+    */
     Object *livesFace;
+    /*!
+    * \details Zombies face picture to the UI
+    */
     Object *zombiesFace;
+    /*!
+    * \details Default font file used in the game
+    */
     sf::Font font;
+    /*!
+    * \details Text of the time delay
+    */
     sf::Text timeText;
+    /*!
+    * \details Text of lives left
+    */
     sf::Text livesText;
+    /*!
+    * \details Text of all zombies than go away from window
+    */
     sf::Text zombiesText;
+    /*!
+    * \details Clock delay when the level start
+    */
     sf::Clock clockTime;
+    /*!
+    * \details Time to take the seconds of the clock delay when the level start
+    */
     sf::Time time;
+    /*!
+    * \details Count of the how many zombies go away form window
+    */
     int contZombies;
 };
 

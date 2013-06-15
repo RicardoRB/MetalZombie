@@ -1,0 +1,5 @@
+<map id="Character" name="Character">
+<area shape="rect" id="node3" href="$class_n_p_c.html" title="Class of the non&#45;players character. " alt="" coords="12,83,63,112"/>
+<area shape="rect" id="node7" href="$class_player.html" title="Class of the players. " alt="" coords="87,83,145,112"/>
+<area shape="rect" id="node5" href="$class_zombie.html" title="Class of the main enemy&#39;s, Zombies. " alt="" coords="5,160,69,189"/>
+</map>

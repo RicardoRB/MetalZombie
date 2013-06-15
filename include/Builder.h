@@ -11,8 +11,7 @@
  *  \copyright GNU Public License.
  */
 
-class Builder : public Object
-{
+class Builder : public Object {
 public:
     Builder();
     /*!

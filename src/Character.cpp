@@ -1,7 +1,6 @@
 #include "../include/Character.h"
 
-Character::Character()
-{
+Character::Character() {
     //ctor
     this->texture = new sf::Texture();
     this->sprite = new sf::Sprite();
@@ -13,90 +12,77 @@ Character::Character()
     this->attacking = false;
 }
 
-Character::~Character()
-{
+Character::~Character() {
     //dtor
     delete texture;
     delete sprite;
 }
 
-float Character::getVelX()
-{
+float Character::getVelX() {
     return velX;
 }
 
-void Character::setVelY(float _velY)
-{
+void Character::setVelY(float _velY) {
     this->velY = _velY;
 }
 
-bool Character::ismovingRight()
-{
+bool Character::ismovingRight() {
     return movingRight;
 }
 
-void Character::setmovingRight(bool moving)
-{
+void Character::setmovingRight(bool moving) {
     this->movingRight = moving;
 }
 
-bool Character::ismovingLeft()
-{
+bool Character::ismovingLeft() {
     return movingLeft;
 }
 
-void Character::setmovingLeft(bool moving)
-{
+void Character::setmovingLeft(bool moving) {
     this->movingLeft = moving;
 }
 
-bool Character::isJumping()
-{
+bool Character::isJumping() {
     return jumping;
 }
 
-bool Character::isEndJumping()
-{
+bool Character::isEndJumping() {
     return endJumping;
 }
 
-void Character::setEndJumping(bool _endJumping)
-{
+void Character::setEndJumping(bool _endJumping) {
     this->endJumping = _endJumping;
 }
 
-bool Character::isAtacking()
-{
+bool Character::isAtacking() {
     return attacking;
 }
 
-void Character::setAttacking(bool _Attacking)
-{
+void Character::setAttacking(bool _Attacking) {
     this->attacking = _Attacking;
 }
 
-bool Character::isLookingRight()
-{
+bool Character::isLookingRight() {
     return this->lookRight;
 }
 
-bool Character::isLookingLeft()
-{
+bool Character::isLookingLeft() {
     return this->lookLeft;
 }
 
-sf::Sprite* Character::getSprite()
-{
+sf::Sprite* Character::getSprite() {
     return this->sprite;
 }
 
-bool Character::isLife()
-{
+bool Character::isLife() {
     return this->life;
 }
 
-void Character::moveRight()
-{
+void Character::setLife(bool _life) {
+    this->life = _life;
+}
+
+void Character::moveRight() {
     this->lookLeft = false;
     this->lookRight = true;
     this->movingLeft = false;
@@ -113,8 +99,7 @@ void Character::moveRight()
     this->sprite->setTextureRect(image_vector);
 }
 
-void Character::moveRemain()
-{
+void Character::moveRemain() {
     this->movingLeft = false;
     this->movingRight = false;
     this->image_vector.left = 40;
@@ -122,8 +107,7 @@ void Character::moveRemain()
     this->sprite->setTextureRect(image_vector);
 }
 
-void Character::jump()
-{
+void Character::jump() {
     //The player go the maximum position to jump
     if(this->sprite->getPosition().y <= 550.f) {
         this->jumping = true;
@@ -135,14 +119,13 @@ void Character::jump()
     this->sprite->move(0,velY);
 }
 
-void Character::falling()
-{
+void Character::falling() {
     jumping = false;
     endJumping = false;
     this->velY = 1.f;
     this->sprite->move(0,velY);
 }
 
-void Character::attack(){
+void Character::attack() {
 
 }

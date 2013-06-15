@@ -1355,32 +1355,32 @@
 1370190359 source:c:\users\ricardo\metalzombie\src\npc.cpp
 	"../include/NPC.h"
 
-1370813569 source:/home/richy/MetalZombie/src/Block.cpp
+1371323608 source:/home/richy/MetalZombie/src/Block.cpp
 	"../include/Block.h"
 
-1370813569 /home/richy/MetalZombie/include/Block.h
+1371323609 /home/richy/MetalZombie/include/Block.h
 	<SFML/Graphics.hpp>
 	"Object.h"
 
-1370813569 /home/richy/MetalZombie/include/Object.h
+1371323608 /home/richy/MetalZombie/include/Object.h
 	<SFML/Graphics.hpp>
 
-1370813569 source:/home/richy/MetalZombie/src/Builder.cpp
+1371323609 source:/home/richy/MetalZombie/src/Builder.cpp
 	"../include/Builder.h"
 
-1370813569 /home/richy/MetalZombie/include/Builder.h
+1371323609 /home/richy/MetalZombie/include/Builder.h
 	"Object.h"
 
-1370813569 source:/home/richy/MetalZombie/src/Main.cpp
+1371323609 source:/home/richy/MetalZombie/src/Main.cpp
 	"../include/Main.h"
 
-1370813569 /home/richy/MetalZombie/include/Main.h
+1371323610 /home/richy/MetalZombie/include/Main.h
 	"Game.h"
 
-1370813569 /home/richy/MetalZombie/include/Game.h
+1371323609 /home/richy/MetalZombie/include/Game.h
 	"Level.h"
 
-1370813569 /home/richy/MetalZombie/include/Level.h
+1371323608 /home/richy/MetalZombie/include/Level.h
 	"Player.h"
 	"Block.h"
 	"Builder.h"
@@ -1388,60 +1388,60 @@
 	"Zombie.h"
 	<SFML/Audio.hpp>
 
-1371161874 /home/richy/MetalZombie/include/Player.h
+1371303915 /home/richy/MetalZombie/include/Player.h
 	"Character.h"
 	"Shot.h"
 
-1371161830 /home/richy/MetalZombie/include/Character.h
+1371324214 /home/richy/MetalZombie/include/Character.h
 	<SFML/Graphics.hpp>
 
-1370813569 /home/richy/MetalZombie/include/Shot.h
+1371323609 /home/richy/MetalZombie/include/Shot.h
 	"Object.h"
 	<SFML/Audio.hpp>
 
-1370813569 /home/richy/MetalZombie/include/Sky.h
+1371323610 /home/richy/MetalZombie/include/Sky.h
 	"Object.h"
 
-1371157564 /home/richy/MetalZombie/include/Zombie.h
+1371330975 /home/richy/MetalZombie/include/Zombie.h
 	"NPC.h"
 	"Player.h"
 	<iostream>
 
-1370813569 /home/richy/MetalZombie/include/NPC.h
+1371323609 /home/richy/MetalZombie/include/NPC.h
 	"Character.h"
 
-1370813569 source:/home/richy/MetalZombie/src/NPC.cpp
+1371303143 source:/home/richy/MetalZombie/src/NPC.cpp
 	"../include/NPC.h"
 
-1370813569 source:/home/richy/MetalZombie/src/Object.cpp
+1371303143 source:/home/richy/MetalZombie/src/Object.cpp
 	"../include/Object.h"
 
-1370813569 source:/home/richy/MetalZombie/src/Shot.cpp
+1371303143 source:/home/richy/MetalZombie/src/Shot.cpp
 	"../include/Shot.h"
 	<iostream>
 
-1370813569 source:/home/richy/MetalZombie/src/Sky.cpp
+1371323609 source:/home/richy/MetalZombie/src/Sky.cpp
 	"../include/Sky.h"
 
-1371161902 source:/home/richy/MetalZombie/src/Character.cpp
+1371330988 source:/home/richy/MetalZombie/src/Character.cpp
 	"../include/Character.h"
 
-1371162308 source:/home/richy/MetalZombie/src/Game.cpp
+1371331367 source:/home/richy/MetalZombie/src/Game.cpp
 	"../include/Game.h"
 	<iostream>
 	<sstream>
 	<ctime>
 
-1370905114 source:/home/richy/MetalZombie/src/Level.cpp
+1371323609 source:/home/richy/MetalZombie/src/Level.cpp
 	"../include/Level.h"
 	<iostream>
 	<sstream>
 
-1371161873 source:/home/richy/MetalZombie/src/Player.cpp
+1371323609 source:/home/richy/MetalZombie/src/Player.cpp
 	"../include/Player.h"
 	<iostream>
 
-1371163532 source:/home/richy/MetalZombie/src/Zombie.cpp
+1371331011 source:/home/richy/MetalZombie/src/Zombie.cpp
 	"../include/Zombie.h"
 
 1365358536 /home/richy/Descargas/SFML-2.0/include/SFML/Graphics.hpp

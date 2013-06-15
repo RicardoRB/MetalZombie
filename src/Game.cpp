@@ -3,8 +3,7 @@
 #include <sstream>
 #include <ctime>
 
-Game::Game()
-{
+Game::Game() {
     this->window = new sf::RenderWindow();
     this->bufferCameraShot.loadFromFile((char*)"res/sounds/effects/shots/CameraShutterClick-SoundBible-228518582.wav");
     this->soundCameraShot.setBuffer(this->bufferCameraShot);
@@ -12,14 +11,12 @@ Game::Game()
     startGame();
 }
 
-Game::~Game()
-{
+Game::~Game() {
     delete window;
     delete level1;
 }
 
-void Game::startGame()
-{
+void Game::startGame() {
     window->create(sf::VideoMode(1024,768), "MetalZombie", sf::Style::Default);
     window->setFramerateLimit(18);
     level1->getPlayer()->setCamera(window->getDefaultView());
@@ -69,7 +66,7 @@ void Game::startGame()
         if((sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Joystick::getAxisPosition(0, sf::Joystick::X) == 100)) {
             if(level1->getPlayer()->isLife()) {
                 level1->getPlayer()->moveRight();
-                level1->moveIU();
+                level1->moveUI();
             }
         } else {
             level1->getPlayer()->setmovingRight(false);
@@ -98,12 +95,15 @@ void Game::startGame()
                 }
             }
 
-            if(level1->getPlayer()->isLife() && (level1->zombies[j]->getSprite()->getPosition().x - 40 <= level1->getPlayer()->getSprite()->getPosition().x && level1->zombies[j]->getSprite()->getPosition().x > level1->getPlayer()->getSprite()->getPosition().x) && (level1->zombies[j]->getSprite()->getPosition().y <= level1->getPlayer()->getSprite()->getPosition().y)) {
-                level1->zombies[j]->attack(level1->getPlayer());
-            } else {
-                if(level1->zombies[j]->isLife()){
+            if(level1->zombies[j]->isLife()) {
+                if(level1->getPlayer()->isLife() && (level1->zombies[j]->getSprite()->getPosition().x - 40 <= level1->getPlayer()->getSprite()->getPosition().x && level1->zombies[j]->getSprite()->getPosition().x > level1->getPlayer()->getSprite()->getPosition().x) && (level1->zombies[j]->getSprite()->getPosition().y <= level1->getPlayer()->getSprite()->getPosition().y)) {
+                    level1->zombies[j]->attack(level1->getPlayer());
+
+                } else {
                     level1->zombies[j]->moveLeft();
                 }
+            }else{
+                level1->zombies[j]->die();
             }
         }
 
@@ -156,13 +156,13 @@ void Game::startGame()
                 for(unsigned int i = 0; i < (sizeof(level1->zombies)/sizeof(level1->zombies[i])); i++) {
                     if(level1->zombies[i]->isLife() && level1->getPlayer()->isLookingRight() && (level1->getPlayer()->getShot()->getSpriteObject()->getPosition().x >= level1->zombies[i]->getSprite()->getPosition().x && level1->getPlayer()->getShot()->getSpriteObject()->getPosition().y >= level1->zombies[i]->getSprite()->getPosition().y && level1->getPlayer()->getPosWindowX() <= level1->zombies[i]->getSprite()->getPosition().x)) {
                         level1->getPlayer()->setAttacking(false);
+                        level1->zombies[i]->setLife(false);
                         level1->getPlayer()->getShot()->setShot(true);
-                        level1->zombies[i]->die();
                         level1->getPlayer()->getShot()->endShot();
                     } else if (level1->zombies[i]->isLife() && level1->getPlayer()->isLookingLeft() && (level1->getPlayer()->getShot()->getSpriteObject()->getPosition().x <= level1->zombies[i]->getSprite()->getPosition().x && level1->getPlayer()->getShot()->getSpriteObject()->getPosition().y >= level1->zombies[i]->getSprite()->getPosition().y && level1->getPlayer()->getPosWindowX() >= level1->zombies[i]->getSprite()->getPosition().x)) {
                         level1->getPlayer()->setAttacking(false);
+                        level1->zombies[i]->setLife(false);
                         level1->getPlayer()->getShot()->setShot(true);
-                        level1->zombies[i]->die();
                         level1->getPlayer()->getShot()->endShot();
                     } else {
                         level1->getPlayer()->getShot()->moveShot(level1->getPlayer()->getShot()->isDirectionRight());
@@ -180,8 +180,7 @@ void Game::startGame()
     }
 }
 
-void Game::takeScreenshot()
-{
+void Game::takeScreenshot() {
     this->soundCameraShot.play();
     sf::Image Screen = window->capture();
     time_t tSac = time(NULL);

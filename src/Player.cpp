@@ -1,8 +1,7 @@
 #include "../include/Player.h"
 #include <iostream>
 
-Player::Player(char file_texture[])
-{
+Player::Player(char file_texture[]) {
     if(!texture->loadFromFile(file_texture)) {
 //        std::cout << "Error file texture player" << std::endl;
     } else {
@@ -28,13 +27,12 @@ Player::Player(char file_texture[])
     this->shot = new Shot((char*)"res/images/characters/players/player1.png",(char*)"res/sounds/effects/shots/shot.ogg");
 }
 
-Player::~Player()
-{
+Player::~Player() {
     //dtor
+    delete shot;
 }
 
-void Player::moveRight()
-{
+void Player::moveRight() {
     this->lookLeft = false;
     this->lookRight = true;
     this->movingLeft = false;
@@ -70,8 +68,7 @@ void Player::moveRight()
     }
 }
 
-void Player::moveLeft()
-{
+void Player::moveLeft() {
     this->lookLeft = true;
     this->lookRight = false;
     this->movingRight = false;
@@ -93,16 +90,14 @@ void Player::moveLeft()
     }
 }
 
-void Player::attack()
-{
+void Player::attack() {
     this->attacking = true;
     this->shot->playShot();
     this->shot->getSpriteObject()->setPosition(this->sprite->getPosition().x,this->sprite->getPosition().y + 15);
     this->shot->setPosWindowX(this->shot->getSpriteObject()->getPosition().x);
 }
 
-void Player::die()
-{
+void Player::die() {
     this->life = false;
     this->lives = this->lives - 1;
     this->image_vector.top = 232;
@@ -110,31 +105,25 @@ void Player::die()
     this->image_vector.width = 56;
     this->image_vector.height = 24;
     this->sprite->setTextureRect(image_vector);
-    this->sprite->setPosition(this->sprite->getPosition().x,(500.f));
 }
 
-Shot* Player::getShot()
-{
+Shot* Player::getShot() {
     return this->shot;
 }
 
-float Player::getPosWindowX()
-{
+float Player::getPosWindowX() {
     return this->posWindowX;
 }
 
-sf::View Player::getCamera()
-{
+sf::View Player::getCamera() {
     return this->camera;
 }
 
-void Player::setCamera(sf::View _camera)
-{
+void Player::setCamera(sf::View _camera) {
     this->camera = _camera;
 }
 
-int Player::getLives()
-{
+int Player::getLives() {
     return this->lives;
 }
 
