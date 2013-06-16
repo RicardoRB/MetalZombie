@@ -3,7 +3,8 @@
 #include "Builder.h"
 #include "Sky.h"
 #include "Zombie.h"
-#include <SFML/Audio.hpp>
+#include <iostream>
+#include <sstream>
 #ifndef LEVEL_H
 #define LEVEL_H
 /*!
@@ -22,7 +23,7 @@ public:
     *  \brief     Constructor overloaded to which you pass the file of music and file of background
     *  \details   Constructor overloaded to which you pass the file of music and file of background, to create a new player and music, playing it and looping it
     */
-    Level(char file_music[], char file_image[]);
+    Level(char file_music[]);
     virtual ~Level();
 
     /*!
@@ -97,6 +98,7 @@ public:
      * \details This method will move all the UI when the player move the camera
      */
     void moveUI();
+    void restart();
 protected:
 private:
     /*!
@@ -108,13 +110,9 @@ private:
     */
     sf::Music *music;
     /*!
-    * \details Background texture, this is not always used
+    * \details Background boss, this is not always used
     */
-    sf::Texture backgroundImage;
-    /*!
-    * \details Background sprite, this is not always used
-    */
-    sf::Sprite background;
+    Object *backgroundBoss;
     /*!
     * \details Lives face picture to the UI
     */

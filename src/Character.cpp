@@ -104,6 +104,8 @@ void Character::moveRemain() {
     this->movingRight = false;
     this->image_vector.left = 40;
     this->image_vector.top = 350;
+    this->image_vector.width = 52;
+    this->image_vector.height = 58;
     this->sprite->setTextureRect(image_vector);
 }
 

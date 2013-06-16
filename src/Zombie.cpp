@@ -31,7 +31,6 @@ Zombie::~Zombie() {
 }
 
 void Zombie::moveLeft() {
-
     this->lookLeft = true;
     this->lookRight = false;
     this->movingRight = false;
@@ -39,7 +38,7 @@ void Zombie::moveLeft() {
     this->image_vector.top = 383;
     this->image_vector.width = 55;
     this->image_vector.height = 65;
-    if(this->image_vector.left >= 397 || (!this->movingLeft && this->attacking)) {
+    if((this->image_vector.left >= 397 || (!this->movingLeft && this->attacking)) || (this->image_vector.left == 0)) {
         this->image_vector.left = 213;
     }
     if(this->image_vector.left >= 213) {
@@ -62,7 +61,6 @@ void Zombie::attack(Player *_player) {
     if(this->image_vector.left >= 167) {
         this->image_vector.left += image_vector.width;
         if(this->image_vector.left >= 503) {
-            this->sprite->setTextureRect(image_vector);
             _player->die();
         }
     }
@@ -71,6 +69,8 @@ void Zombie::attack(Player *_player) {
 }
 
 void Zombie::die() {
+    this->movingLeft = false;
+    this->attacking = false;
     this->image_vector.left = 0;
     this->sprite->setPosition(this->sprite->getPosition().x,this->sprite->getPosition().y - 61.f);
     this->image_vector.top = 753;

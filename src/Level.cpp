@@ -1,8 +1,8 @@
-#include "../include/Level.h"
 #include <iostream>
-#include <sstream>
+#include "../include/Level.h"
 
-Level::Level(char file_music[],char file_image_background[]) {
+
+Level::Level(char file_music[]) {
     if (!this->font.loadFromFile("res/fonts/BrushRunes.otf")) {
         //error
     } else {
@@ -34,15 +34,6 @@ Level::Level(char file_music[],char file_image_background[]) {
     cara.width = 25;
     this->zombiesFace->setObjectVector(cara);
     this->zombiesFace->getSpriteObject()->setPosition(935.f,55.f);
-    this->music = new sf::Music();
-    if(!music->openFromFile(file_music)) {
-//        std::cout << "Error music in level" << std::endl;
-    } else {
-        this->music->openFromFile(file_music);
-    }
-    this->music->play();
-    this->music->setLoop(true);
-    this->backgroundImage.loadFromFile(file_image_background);
 
     for(unsigned int i = 0; i < (sizeof(this->zombies)/sizeof(this->zombies[i])); i++) {
         this->zombies[i] = new Zombie((char*)"res/images/characters/npc/enemys/zombies/cool_zombie_sprite_by_gvbn10-d39mzxg.png");
@@ -93,12 +84,22 @@ Level::Level(char file_music[],char file_image_background[]) {
             break;
         default:
             break;
-            //instrucciÃ³n(es);
+            //instrucción(es);
         };
         this->soldiers[i]->setObjectVector(rect_aux);
         this->soldiers[i]->getSpriteObject()->setScale(-1.f,1.f);
 
     }
+
+
+    this->music = new sf::Music();
+    if(!music->openFromFile(file_music)) {
+//        std::cout << "Error music in level" << std::endl;
+    } else {
+        this->music->play();
+        this->music->setLoop(true);
+    }
+
 }
 
 Level::~Level() {
@@ -111,6 +112,7 @@ Level::~Level() {
     delete music;
     delete livesFace;
     delete zombiesFace;
+    delete backgroundBoss;
 }
 
 Player* Level::getPlayer() {
@@ -119,11 +121,11 @@ Player* Level::getPlayer() {
 
 void Level::moveUI() {
     if(this->getPlayer()->getPosWindowX() >= 512 && this->getPlayer()->getSprite()->getPosition().x <= 9728) {
-        this->timeText.setPosition(this->getPlayer()->getSprite()->getPosition().x,55.f);
-        this->livesText.setPosition(this->getPlayer()->getSprite()->getPosition().x - 442.f,55.f);
-        this->livesFace->getSpriteObject()->setPosition(this->getPlayer()->getSprite()->getPosition().x - 479.f,55.f);
-        this->zombiesText.setPosition(this->getPlayer()->getSprite()->getPosition().x + 479.f,55.f);
-        this->zombiesFace->getSpriteObject()->setPosition(this->getPlayer()->getSprite()->getPosition().x + 442.f,55.f);
+        this->timeText.setPosition(this->getPlayer()->getSprite()->getPosition().x - 8.f,55.f);
+        this->livesText.setPosition(this->getPlayer()->getSprite()->getPosition().x - 450.f,55.f);
+        this->livesFace->getSpriteObject()->setPosition(this->getPlayer()->getSprite()->getPosition().x - 487.f,55.f);
+        this->zombiesText.setPosition(this->getPlayer()->getSprite()->getPosition().x + 450.f,55.f);
+        this->zombiesFace->getSpriteObject()->setPosition(this->getPlayer()->getSprite()->getPosition().x + 415.f,55.f);
     }
 }
 sf::Text Level::getTextTime() {
@@ -163,4 +165,22 @@ int Level::getContZombies() {
 
 void Level::setContZombies(int _contZombies) {
     this->contZombies = _contZombies;
+}
+
+void Level::restart() {
+    this->music->stop();
+    this->timeText.setPosition(512.f,55.f);
+    this->livesText.setPosition(70.f,55.f);
+    this->zombiesText.setPosition(970.f,55.f);
+    for(unsigned int i = 0; i < (sizeof(this->zombies)/sizeof(this->zombies[i])); i++) {
+        this->zombies[i]->setLife(true);
+        this->zombies[i]->getSprite()->setPosition(((i+1)*300),100.f);
+    }
+    this->getPlayer()->moveRemain();
+    this->getPlayer()->setLife(true);
+    this->getPlayer()->setPosWindowX(100.f);
+    this->getPlayer()->getSprite()->setPosition(100.f,100.f);
+    this->contZombies = 0;
+    this->music->play();
+    this->music->setLoop(true);
 }

@@ -19,6 +19,7 @@ Player::Player(char file_texture[]) {
     this->sprite->setPosition(100.f,100.f);
     this->sprite->setScale(-1.f,1.f);
     this->velX = 12;
+    this->attacking = false;
     this->lookRight = true;
     this->lookLeft = false;
     this->posWindowX = this->sprite->getPosition().x;
@@ -113,6 +114,10 @@ Shot* Player::getShot() {
 
 float Player::getPosWindowX() {
     return this->posWindowX;
+}
+
+void Player::setPosWindowX(float _posWindowX) {
+    this->posWindowX = _posWindowX;
 }
 
 sf::View Player::getCamera() {

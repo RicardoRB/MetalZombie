@@ -27,6 +27,7 @@ public:
     void moveLeft();
     void attack();
     float getPosWindowX();
+    void setPosWindowX(float _posWindowX);
     Shot* getShot();
     int getLives();
     void die();

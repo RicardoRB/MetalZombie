@@ -1,4 +1,3 @@
-#include <SFML/Graphics.hpp>
 #include "Object.h"
 #ifndef BLOCK_H
 #define BLOCK_H

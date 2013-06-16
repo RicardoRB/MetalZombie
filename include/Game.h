@@ -1,4 +1,7 @@
 #include "Level.h"
+#include "Menu.h"
+#include <SFML/Audio.hpp>
+#include <SFML/Graphics.hpp>
 #ifndef GAME_H
 #define GAME_H
 /*!
@@ -18,6 +21,11 @@ public:
     */
     Game();
     virtual ~Game();
+    /*!
+    * \brief Do the menu begins
+    * \details This functions is called to start the menu title
+    */
+    void startMenu();
     /*!
     * \brief Do the game begins
     * \details This functions is called to start the game
@@ -46,6 +54,10 @@ private:
     * \details Sound file of the camera shot
     */
     sf::Sound soundCameraShot;
+    /*!
+    * \details Main menu of the game
+    */
+    Menu *menuTitle;
 };
 
 #endif // GAME_H

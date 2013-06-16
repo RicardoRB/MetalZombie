@@ -65,7 +65,8 @@ void Shot::setDirectionRight(bool _direction) {
 }
 
 void Shot::playShot() {
-    this->bufferShot.loadFromFile(this->path_sound);
-    this->soundShot.setBuffer(this->bufferShot);
-    this->soundShot.play();
+    if(this->bufferShot.loadFromFile(this->path_sound)) {
+        this->soundShot.setBuffer(this->bufferShot);
+        this->soundShot.play();
+    }
 }

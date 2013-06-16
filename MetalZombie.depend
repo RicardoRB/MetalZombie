@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1370904260 source:c:\users\ricardo\metalzombie\src\character.cpp
+1371409742 source:c:\users\ricardo\metalzombie\src\character.cpp
 	"../include/Character.h"
 
-1370902845 c:\users\ricardo\metalzombie\include\character.h
+1371414770 c:\users\ricardo\metalzombie\include\character.h
 	<SFML/Graphics.hpp>
 
 1331752015 c:\users\ricardo\downloads\sfml-2.0-rc-64\include\sfml\graphics.hpp
@@ -339,43 +339,48 @@
 	<string>
 	<vector>
 
-1370907774 source:c:\users\ricardo\metalzombie\src\level.cpp
-	"../include/Level.h"
+1371424612 source:c:\users\ricardo\metalzombie\src\level.cpp
 	<iostream>
-	<sstream>
+	"../include/Level.h"
 
-1370809048 c:\users\ricardo\metalzombie\include\level.h
+1371424353 c:\users\ricardo\metalzombie\include\level.h
 	"Player.h"
 	"Block.h"
 	"Builder.h"
 	"Sky.h"
 	"Zombie.h"
-	<SFML/Audio.hpp>
+	<iostream>
+	<sstream>
 
-1370903249 c:\users\ricardo\metalzombie\include\player.h
+1371409226 c:\users\ricardo\metalzombie\include\player.h
 	"Character.h"
 	"Shot.h"
 
-1370190359 source:c:\users\ricardo\metalzombie\src\main.cpp
+1371407578 source:c:\users\ricardo\metalzombie\src\main.cpp
 	"../include/Main.h"
 
-1370190359 c:\users\ricardo\metalzombie\include\main.h
+1371407578 c:\users\ricardo\metalzombie\include\main.h
 	"Game.h"
 
-1370907774 source:c:\users\ricardo\metalzombie\src\player.cpp
+1371409163 source:c:\users\ricardo\metalzombie\src\player.cpp
 	"../include/Player.h"
 	<iostream>
 
-1370902856 source:c:\users\ricardo\metalzombie\src\zombie.cpp
+1371411140 source:c:\users\ricardo\metalzombie\src\zombie.cpp
 	"../include/Zombie.h"
 
-1370902487 c:\users\ricardo\metalzombie\include\zombie.h
+1371407578 c:\users\ricardo\metalzombie\include\zombie.h
 	"NPC.h"
+	"Player.h"
+	<iostream>
 
-1370190359 c:\users\ricardo\metalzombie\include\game.h
+1371416064 c:\users\ricardo\metalzombie\include\game.h
 	"Level.h"
+	"Menu.h"
+	<SFML/Audio.hpp>
+	<SFML/Graphics.hpp>
 
-1370907611 source:c:\users\ricardo\metalzombie\src\game.cpp
+1371426533 source:c:\users\ricardo\metalzombie\src\game.cpp
 	"../include/Game.h"
 	<iostream>
 	<sstream>
@@ -1277,29 +1282,28 @@
 	<SFML/System/Thread.hpp>
 	<vector>
 
-1370190359 source:c:\users\ricardo\metalzombie\src\block.cpp
+1371407578 source:c:\users\ricardo\metalzombie\src\block.cpp
 	"../include/Block.h"
 
-1370190359 c:\users\ricardo\metalzombie\include\block.h
-	<SFML/Graphics.hpp>
+1371414693 c:\users\ricardo\metalzombie\include\block.h
 	"Object.h"
 
-1370190359 c:\users\ricardo\metalzombie\include\object.h
+1371407578 c:\users\ricardo\metalzombie\include\object.h
 	<SFML/Graphics.hpp>
 
-1370805836 source:c:\users\ricardo\metalzombie\src\object.cpp
+1371407578 source:c:\users\ricardo\metalzombie\src\object.cpp
 	"../include/Object.h"
 
-1370190359 source:c:\users\ricardo\metalzombie\src\builder.cpp
+1371407578 source:c:\users\ricardo\metalzombie\src\builder.cpp
 	"../include/Builder.h"
 
-1370190359 c:\users\ricardo\metalzombie\include\builder.h
+1371407578 c:\users\ricardo\metalzombie\include\builder.h
 	"Object.h"
 
-1370190359 c:\users\ricardo\metalzombie\include\sky.h
+1371407578 c:\users\ricardo\metalzombie\include\sky.h
 	"Object.h"
 
-1370190359 source:c:\users\ricardo\metalzombie\src\sky.cpp
+1371407578 source:c:\users\ricardo\metalzombie\src\sky.cpp
 	"../include/Sky.h"
 
 1369999365 c:\users\2ºdai\metalzombie\include\block.h
@@ -1335,11 +1339,11 @@
 	"../include/Shot.h"
 	<iostream>
 
-1370190359 c:\users\ricardo\metalzombie\include\shot.h
+1371407578 c:\users\ricardo\metalzombie\include\shot.h
 	"Object.h"
 	<SFML/Audio.hpp>
 
-1370799159 source:c:\users\ricardo\metalzombie\src\shot.cpp
+1371422248 source:c:\users\ricardo\metalzombie\src\shot.cpp
 	"../include/Shot.h"
 	<iostream>
 
@@ -1349,10 +1353,10 @@
 1369999365 c:\users\2ºdai\metalzombie\include\npc.h
 	"Character.h"
 
-1370190359 c:\users\ricardo\metalzombie\include\npc.h
+1371407578 c:\users\ricardo\metalzombie\include\npc.h
 	"Character.h"
 
-1370190359 source:c:\users\ricardo\metalzombie\src\npc.cpp
+1371407578 source:c:\users\ricardo\metalzombie\src\npc.cpp
 	"../include/NPC.h"
 
 1371323608 source:/home/richy/MetalZombie/src/Block.cpp
@@ -1837,4 +1841,13 @@
 	<SFML/Audio/Export.hpp>
 	<SFML/System/Thread.hpp>
 	<vector>
+
+1371423990 c:\users\ricardo\metalzombie\include\menu.h
+	"Object.h"
+	<SFML/Audio.hpp>
+	<SFML/Graphics.hpp>
+	<sstream>
+
+1371426549 source:c:\users\ricardo\metalzombie\src\menu.cpp
+	"../include/Menu.h"
 
