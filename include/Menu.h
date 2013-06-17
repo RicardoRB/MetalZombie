@@ -18,6 +18,7 @@
 class Menu {
 public:
     Menu();
+    Menu(char text[]);
     virtual ~Menu();
     sf::Text getTextTitle();
     sf::Text getTextStart();

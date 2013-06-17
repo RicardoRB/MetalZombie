@@ -72,6 +72,12 @@ public:
      */
     sf::Text getTextZombies();
     /*!
+     * \brief Return the text of game over
+     * \details Text to end game
+     * \return sf::Text TextGameOver
+     */
+    sf::Text getTextGameOver();
+    /*!
      * \brief Return the Object livesFace to the IU
      * \details Face picture on UI to lives
      * \return Object* livesFace
@@ -137,6 +143,10 @@ private:
     * \details Text of all zombies than go away from window
     */
     sf::Text zombiesText;
+    /*!
+    * \details Text of Game Over
+    */
+    sf::Text gameOverText;
     /*!
     * \details Clock delay when the level start
     */

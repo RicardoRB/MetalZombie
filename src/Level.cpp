@@ -15,6 +15,11 @@ Level::Level(char file_music[]) {
         this->zombiesText.setFont(this->font);
         this->zombiesText.setColor(sf::Color::Red);
         this->zombiesText.setPosition(970.f,55.f);
+        this->gameOverText.setFont(this->font);
+        this->gameOverText.setColor(sf::Color::Red);
+        this->gameOverText.setPosition(362.f,384.f);
+        this->gameOverText.setCharacterSize(150U);
+        this->gameOverText.setString("Game Over");
     }
     this->contZombies = 0;
     //I create the player and music in the level
@@ -126,6 +131,7 @@ void Level::moveUI() {
         this->livesFace->getSpriteObject()->setPosition(this->getPlayer()->getSprite()->getPosition().x - 487.f,55.f);
         this->zombiesText.setPosition(this->getPlayer()->getSprite()->getPosition().x + 450.f,55.f);
         this->zombiesFace->getSpriteObject()->setPosition(this->getPlayer()->getSprite()->getPosition().x + 415.f,55.f);
+        this->gameOverText.setPosition(this->getPlayer()->getSprite()->getPosition().x - 158.f ,384.f);
     }
 }
 sf::Text Level::getTextTime() {
@@ -147,6 +153,11 @@ sf::Text Level::getTextLives() {
     this->livesText.setString(livesString.str());
     return this->livesText;
 }
+
+sf::Text Level::getTextGameOver() {
+    return this->gameOverText;
+}
+
 
 Object* Level::getZombiesFace() {
     return this->zombiesFace;

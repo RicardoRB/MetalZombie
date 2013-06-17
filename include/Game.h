@@ -58,6 +58,10 @@ private:
     * \details Main menu of the game
     */
     Menu *menuTitle;
+    /*!
+    * \details Bool to know if the menu is on or not
+    */
+    bool menu;
 };
 
 #endif // GAME_H

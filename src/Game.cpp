@@ -8,25 +8,22 @@ Game::Game() {
     this->bufferCameraShot.loadFromFile((char*)"res/sounds/effects/shots/CameraShutterClick-SoundBible-228518582.wav");
     this->soundCameraShot.setBuffer(this->bufferCameraShot);
     this->menuTitle = new Menu();
+    this->menu = true;
     this->level1 = NULL;
     window->create(sf::VideoMode(1024,768), "MetalZombie", sf::Style::Default);
     window->setFramerateLimit(18);
-    while (window->isOpen()) {
-        if(!menuTitle == 0) {
-            startMenu();
-        } else {
-            startGame();
-        }
+    window->setMouseCursorVisible(false);
+    while (this->window->isOpen()) {
+        startMenu();
     }
 }
 
 Game::~Game() {
     delete window;
-    if(!level1 == 0) {
-        delete level1;
-    }
-    if(!menuTitle == 0) {
+    //If the menu is true, delete them
+    if(this->menu) {
         delete menuTitle;
+        delete level1;
     }
 }
 
@@ -53,20 +50,20 @@ void Game::startMenu() {
                 this->menuTitle->playStart();
                 this->level1 = new Level((char*)"res/sounds/music/level1.ogg");
                 level1->getPlayer()->setCamera(window->getDefaultView());
-                startGame();
+                this->menu = false;
                 delete menuTitle;
+                while (window->isOpen()) {
+                    startGame();
+                }
                 break;
             default:
                 window->close();
                 break;
             }
         }
-        //Take a screenshot
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::F1)) {
-            this->takeScreenshot();
-        }
+
     }
-    if(!menuTitle == 0) {
+    if(this->menu) {
         window->draw(menuTitle->getTextTitle());
         window->draw(menuTitle->getTextStart());
         window->draw(menuTitle->getTextExit());
@@ -117,11 +114,13 @@ void Game::startGame() {
     }
 
     if(((sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || sf::Joystick::isButtonPressed(0,0)) && !level1->getPlayer()->isAtacking())) {
-        if(level1->getPlayer()->isLife()) {
-            level1->getPlayer()->attack();
+        if(this->level1->getPlayer()->isLife()) {
+            this->level1->getPlayer()->attack();
         } else {
-            level1->restart();
-            level1->getPlayer()->setCamera(window->getDefaultView());
+            this->level1->getPlayer()->setCamera(window->getDefaultView());
+            if(this->level1->getPlayer()->getLives() > 0) {
+                this->level1->restart();
+            }
         }
     }
 
@@ -160,7 +159,6 @@ void Game::startGame() {
         if(level1->zombies[j]->isLife()) {
             if(level1->getPlayer()->isLife() && (level1->zombies[j]->getSprite()->getPosition().x - 40 <= level1->getPlayer()->getSprite()->getPosition().x && level1->zombies[j]->getSprite()->getPosition().x > level1->getPlayer()->getSprite()->getPosition().x) && (level1->zombies[j]->getSprite()->getPosition().y <= level1->getPlayer()->getSprite()->getPosition().y)) {
                 level1->zombies[j]->attack(level1->getPlayer());
-
             } else {
                 level1->zombies[j]->moveLeft();
             }
@@ -183,6 +181,9 @@ void Game::startGame() {
         window->draw(*level1->soldiers[i]->getSpriteObject());
     }
     //Draw IU
+    if(this->level1->getPlayer()->getLives() <= 0){
+        window->draw(level1->getTextGameOver());
+    }
     window->draw(level1->getTextTime());
     window->draw(*level1->getLivesFace()->getSpriteObject());
     window->draw(level1->getTextLives());
@@ -222,11 +223,13 @@ void Game::startGame() {
                     level1->zombies[i]->setLife(false);
                     level1->getPlayer()->getShot()->setShot(true);
                     level1->getPlayer()->getShot()->endShot();
+                    level1->setContZombies(level1->getContZombies() + 1);
                 } else if (level1->zombies[i]->isLife() && level1->getPlayer()->isLookingLeft() && (level1->getPlayer()->getShot()->getSpriteObject()->getPosition().x <= level1->zombies[i]->getSprite()->getPosition().x && level1->getPlayer()->getShot()->getSpriteObject()->getPosition().y >= level1->zombies[i]->getSprite()->getPosition().y && level1->getPlayer()->getSprite()->getPosition().x >= level1->zombies[i]->getSprite()->getPosition().x)) {
                     level1->getPlayer()->setAttacking(false);
                     level1->zombies[i]->setLife(false);
                     level1->getPlayer()->getShot()->setShot(true);
                     level1->getPlayer()->getShot()->endShot();
+                    level1->setContZombies(level1->getContZombies() + 1);
                 } else {
                     level1->getPlayer()->getShot()->moveShot(level1->getPlayer()->getShot()->isDirectionRight());
                 }
