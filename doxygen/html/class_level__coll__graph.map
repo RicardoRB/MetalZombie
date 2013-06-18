@@ -1,11 +1,11 @@
 <map id="Level" name="Level">
-<area shape="rect" id="node2" href="$class_zombie.html" title="Class of the main enemy&#39;s, Zombies. " alt="" coords="5,216,69,245"/>
+<area shape="rect" id="node2" href="$class_zombie.html" title="Class of the main enemy&#39;s, Zombies. " alt="" coords="5,232,69,261"/>
 <area shape="rect" id="node4" href="$class_n_p_c.html" title="Class of the non&#45;players character. " alt="" coords="19,85,69,115"/>
 <area shape="rect" id="node6" href="$class_character.html" title="Class of characters. " alt="" coords="47,5,124,35"/>
-<area shape="rect" id="node15" href="$class_player.html" title="Class of the players. " alt="" coords="93,216,152,245"/>
-<area shape="rect" id="node8" href="$class_block.html" title="Class of blocks. " alt="" coords="456,151,509,180"/>
+<area shape="rect" id="node15" href="$class_player.html" title="Class of the players. " alt="" coords="93,232,152,261"/>
+<area shape="rect" id="node8" href="$class_block.html" title="Class of blocks. " alt="" coords="479,159,532,188"/>
 <area shape="rect" id="node10" href="$class_object.html" title="Class of all objects. " alt="" coords="255,5,313,35"/>
-<area shape="rect" id="node12" href="$class_sky.html" title="Class of the builders. " alt="" coords="199,151,244,180"/>
+<area shape="rect" id="node12" href="$class_sky.html" title="Class of the builders. " alt="" coords="199,159,244,188"/>
 <area shape="rect" id="node18" href="$class_shot.html" title="Class of the shot. " alt="" coords="147,85,195,115"/>
-<area shape="rect" id="node22" href="$class_builder.html" title="Class of the builders. " alt="" coords="253,151,315,180"/>
+<area shape="rect" id="node22" href="$class_builder.html" title="Class of the builders. " alt="" coords="253,159,315,188"/>
 </map>

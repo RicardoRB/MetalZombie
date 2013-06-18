@@ -1,51 +1,51 @@
 <map id="Game::Game" name="Game::Game">
-<area shape="rect" id="node3" href="$class_game.html#ae8638ccdb0ef3bf39a6affa30aa1258f" title="Do the game begins. " alt="" coords="156,1141,281,1171"/>
-<area shape="rect" id="node5" href="$class_level.html#a98b9579253fbf55f7d631853c4cd7e9c" title="Return the player in the level. " alt="" coords="580,59,695,88"/>
-<area shape="rect" id="node7" href="$class_player.html#a7981140919384b4a44849ac327472f31" title="Player::setCamera" alt="" coords="355,475,485,504"/>
-<area shape="rect" id="node9" href="$class_character.html#ac50618272d92f669ba4fc219bfbbbcba" title="Method to return movingLeft. " alt="" coords="340,528,500,557"/>
-<area shape="rect" id="node11" href="$class_character.html#a3eb574ad29a453484f7fe595a8cfdfb9" title="Method to return movingRight. " alt="" coords="335,581,505,611"/>
-<area shape="rect" id="node13" href="$class_character.html#ad80e3cbd06c5bf59c908b265f93e4d8f" title="Return if the character is alive. " alt="" coords="361,635,479,664"/>
-<area shape="rect" id="node15" href="$class_character.html#aa3b9b4525ef97b6d3efe41db9d8ef86a" title="Method to remain player. " alt="" coords="339,688,501,717"/>
-<area shape="rect" id="node17" href="$class_game.html#aff27656166e9ba39c3d427b6de5580a3" title="When you call the method, this will take a screenshot of the game windows. " alt="" coords="343,741,497,771"/>
-<area shape="rect" id="node19" href="$class_character.html#a333906444bc92fe63e986cfb026f277c" title="Return if the character is end jumping. " alt="" coords="336,795,504,824"/>
-<area shape="rect" id="node21" href="$class_character.html#a93201fbed6069c60c502aa8bda1d628b" title="Return if the character is jumping. " alt="" coords="347,848,493,877"/>
-<area shape="rect" id="node23" href="$class_character.html#a95cf7b5c50efcabc7e8731a5958b53ca" title="Makes the character jump. " alt="" coords="363,901,477,931"/>
-<area shape="rect" id="node25" href="$class_character.html#a3097508965d2581b566805897d88e94c" title="Return the sprite pointer of the character. " alt="" coords="351,955,489,984"/>
-<area shape="rect" id="node27" href="$class_object.html#ae8e20b37d4ea189e187ba7e1762f30ce" title="Return the sprite of the object. " alt="" coords="559,213,716,243"/>
-<area shape="rect" id="node29" href="$class_character.html#a14b717c19eda3bb7f1e07365e16b0fc6" title="Do the character falling. " alt="" coords="360,1008,480,1037"/>
-<area shape="rect" id="node31" href="$class_character.html#a49fd467b5096f68807d001a5ddd742a7" title="Method to set velY value. " alt="" coords="353,1061,487,1091"/>
-<area shape="rect" id="node33" href="$class_character.html#ad0e8f875029bf0fb04a383acd2d41e48" title="Method to set movingLeft true or false. " alt="" coords="332,1115,508,1144"/>
-<area shape="rect" id="node35" href="$class_character.html#afc714197d33fbe5e51fb1d96a6fd99a2" title="Return if the character is end attacking. " alt="" coords="347,1168,493,1197"/>
-<area shape="rect" id="node37" href="$class_player.html#aeea45f839f224a5320dfadfd2ff3ebe9" title="Method that character attack. " alt="" coords="369,267,471,296"/>
-<area shape="rect" id="node42" href="$class_shot.html#a156c55ed3336d529833dd1b4653cd192" title="Shot::setPosWindowX" alt="" coords="560,320,715,349"/>
-<area shape="rect" id="node44" href="$class_player.html#a6a2b68bc4b21d4c4a79a23b498896ec2" title="Method to move the character to right. " alt="" coords="355,1221,485,1251"/>
-<area shape="rect" id="node46" href="$class_level.html#ae40a3c287e77ecf606e811856c59bd2d" title="Move the UI on the window. " alt="" coords="367,109,473,139"/>
-<area shape="rect" id="node50" href="$class_character.html#ad030ed4e44f8f40bdce933e8af475d5b" title="Method to set movingRight true or false. " alt="" coords="331,1275,509,1304"/>
-<area shape="rect" id="node52" href="$class_player.html#ae3bbcf1159bdc059bff1c2513f2505f7" title="Method to move the character to left. " alt="" coords="360,1328,480,1357"/>
-<area shape="rect" id="node54" href="$class_character.html#aef4951b79fe3f6b3e71601bcc59e8a1a" title="Method to set movingLeft true or false. " alt="" coords="336,1381,504,1411"/>
-<area shape="rect" id="node56" href="$class_zombie.html#a3f1e081dcf3b13d17af5336cb09e4131" title="Attack the player passed. " alt="" coords="365,1435,475,1464"/>
-<area shape="rect" id="node60" href="$class_zombie.html#a40f6dc6569aa2e5c25dfd14477c96c3f" title="Method to move the zombie to left. " alt="" coords="357,1488,483,1517"/>
-<area shape="rect" id="node62" href="$class_player.html#a95d44bc2e043b3d935c51a6eff12856e" title="Player::getCamera" alt="" coords="355,1541,485,1571"/>
-<area shape="rect" id="node64" href="$class_level.html#a662fe835f9befbb8ba41c0e68b66466c" title="Return the text time. " alt="" coords="353,1595,487,1624"/>
-<area shape="rect" id="node66" href="$class_level.html#acb264559367ba901d8984682e5294ee0" title="Return the Object livesFace to the IU. " alt="" coords="351,1648,489,1677"/>
-<area shape="rect" id="node68" href="$class_level.html#ab17b520594ac84d957e41c362f0832d8" title="Return the text lives. " alt="" coords="352,5,488,35"/>
-<area shape="rect" id="node73" href="$class_level.html#a2a61d7e1a3cdc2512c968e338680d598" title="Return the Object ZombiesFace to the IU. " alt="" coords="341,1701,499,1731"/>
-<area shape="rect" id="node75" href="$class_level.html#a9015dd13f298858db7071ed32a204625" title="Return the text of zombies. " alt="" coords="343,1755,497,1784"/>
-<area shape="rect" id="node79" href="$class_player.html#a7f6097dc061aca1326d9d7b398a2e8ba" title="Player::getShot" alt="" coords="364,1808,476,1837"/>
-<area shape="rect" id="node81" href="$class_shot.html#a328a70c7ea277d15f2ad120ca55f85e4" title="Shot::isShot" alt="" coords="373,1861,467,1891"/>
-<area shape="rect" id="node83" href="$class_character.html#ad69db74d356ec3c3ea02a55ff424fc7f" title="Return if the character is looking right. " alt="" coords="333,1915,507,1944"/>
-<area shape="rect" id="node86" href="$class_player.html#a419f8ea90ef1164b93db061fb38dd3b4" title="Player::getPosWindowX" alt="" coords="339,1968,501,1997"/>
-<area shape="rect" id="node88" href="$class_shot.html#a77df0effc73cdd73661c6c40c4f81f2a" title="Shot::setDirectionRight" alt="" coords="341,2021,499,2051"/>
-<area shape="rect" id="node90" href="$class_shot.html#a733217564c6757e6040a5e1eef75a322" title="Shot::setShot" alt="" coords="369,2075,471,2104"/>
-<area shape="rect" id="node92" href="$class_shot.html#aed9bc48d9b7c29aa6a618ce9432e0b0a" title="Shot::getPosWindowX" alt="" coords="560,399,715,428"/>
-<area shape="rect" id="node94" href="$class_character.html#a9d4f5614ee232c3682c844202583065d" title="Method to set attacking true or false. " alt="" coords="340,2128,500,2157"/>
-<area shape="rect" id="node96" href="$class_shot.html#aec0c0a81b70545d57edcb1f064c188ea" title="Shot::endShot" alt="" coords="368,213,472,243"/>
-<area shape="rect" id="node99" href="$class_zombie.html#a3c3ac233bba072b5d725b1e646342da1" title="The zombie die. " alt="" coords="375,2181,465,2211"/>
-<area shape="rect" id="node101" href="$class_character.html#a1ad78e50e9d7c75eb32e0ea40c86b103" title="Return if the character is looking left. " alt="" coords="339,2235,501,2264"/>
-<area shape="rect" id="node103" href="$class_shot.html#aefdb3a8cfad9336ac6cf505e5518539f" title="Shot::moveShot" alt="" coords="363,320,477,349"/>
-<area shape="rect" id="node108" href="$class_shot.html#a1977b62636123c235c4ee62a9f8b45f2" title="Shot::isDirectionRight" alt="" coords="345,2288,495,2317"/>
-<area shape="rect" id="node39" href="$class_shot.html#a776ebe09ba2ef518852e8baac1f9188d" title="Shot::playShot" alt="" coords="584,267,691,296"/>
-<area shape="rect" id="node58" href="$class_player.html#a1e4b3e6ef91fc400ff2c6c26b1370f8c" title="The character die. " alt="" coords="596,1435,679,1464"/>
-<area shape="rect" id="node71" href="$class_player.html#af56ac33b9b2ebd9f97c8a6f485cf2d47" title="Player::getLives" alt="" coords="580,5,695,35"/>
-<area shape="rect" id="node77" href="$class_level.html#ae344b07e05dacbac2ea2d55095c69460" title="Return the number of zombies that pass the window. " alt="" coords="559,1755,716,1784"/>
+<area shape="rect" id="node3" href="$class_game.html#aee9d460c00d3f3a1f498201b924f6a80" title="Do the menu begins. " alt="" coords="155,295,277,324"/>
+<area shape="rect" id="node5" href="$class_menu.html#aef339add970fc9b01d5d033e124eb223" title="Return the number option choosed. " alt="" coords="339,5,456,35"/>
+<area shape="rect" id="node7" href="$class_menu.html#a1017e480350a97006b102c79c7835dd6" title="Play the select sound effect. " alt="" coords="336,59,459,88"/>
+<area shape="rect" id="node9" href="$class_menu.html#aa3cd0c24ce350a867697c07f255d940b" title="Set the option number. " alt="" coords="339,112,456,141"/>
+<area shape="rect" id="node11" href="$class_menu.html#a436ffece151c39795cbf09a63b57c8ee" title="Return the object option to draw it. " alt="" coords="327,165,468,195"/>
+<area shape="rect" id="node13" href="$class_object.html#ae8e20b37d4ea189e187ba7e1762f30ce" title="Return the sprite of the object. " alt="" coords="753,399,911,428"/>
+<area shape="rect" id="node15" href="$class_menu.html#a78b10d20b91a070808e6021ea0887469" title="Play the start sound effect. " alt="" coords="340,1243,455,1272"/>
+<area shape="rect" id="node17" href="$class_level.html#a98b9579253fbf55f7d631853c4cd7e9c" title="Return the player in the level. " alt="" coords="775,849,889,879"/>
+<area shape="rect" id="node19" href="$class_player.html#a7981140919384b4a44849ac327472f31" title="Set the camera player from the parameter. " alt="" coords="544,320,675,349"/>
+<area shape="rect" id="node21" href="$class_game.html#ae8638ccdb0ef3bf39a6affa30aa1258f" title="Do the game begins. " alt="" coords="335,1189,460,1219"/>
+<area shape="rect" id="node107" href="$class_menu.html#a699ff9dd74520a2469a464e46b83fdbc" title="Return the titleText from menu. " alt="" coords="332,1296,463,1325"/>
+<area shape="rect" id="node109" href="$class_menu.html#a011845abc95d5e960b9bce57317529ee" title="Return the startText from menu. " alt="" coords="331,1349,464,1379"/>
+<area shape="rect" id="node111" href="$class_menu.html#a6331b9ab5b04ecf372319f0c22aaf5b5" title="Return the exitText from menu. " alt="" coords="333,1403,461,1432"/>
+<area shape="rect" id="node24" href="$class_character.html#ac50618272d92f669ba4fc219bfbbbcba" title="Method to return movingLeft. " alt="" coords="529,1320,689,1349"/>
+<area shape="rect" id="node26" href="$class_character.html#a3eb574ad29a453484f7fe595a8cfdfb9" title="Method to return movingRight. " alt="" coords="524,1373,695,1403"/>
+<area shape="rect" id="node28" href="$class_character.html#ad80e3cbd06c5bf59c908b265f93e4d8f" title="Return if the character is alive. " alt="" coords="551,1427,668,1456"/>
+<area shape="rect" id="node30" href="$class_character.html#aa3b9b4525ef97b6d3efe41db9d8ef86a" title="Method to remain player. " alt="" coords="751,1137,913,1167"/>
+<area shape="rect" id="node32" href="$class_game.html#aff27656166e9ba39c3d427b6de5580a3" title="When you call the method, this will take a screenshot of the game windows. " alt="" coords="532,1480,687,1509"/>
+<area shape="rect" id="node34" href="$class_character.html#a333906444bc92fe63e986cfb026f277c" title="Return if the character is end jumping. " alt="" coords="525,1533,693,1563"/>
+<area shape="rect" id="node36" href="$class_character.html#a93201fbed6069c60c502aa8bda1d628b" title="Return if the character is jumping. " alt="" coords="536,1587,683,1616"/>
+<area shape="rect" id="node38" href="$class_character.html#a95cf7b5c50efcabc7e8731a5958b53ca" title="Makes the character jump. " alt="" coords="552,1640,667,1669"/>
+<area shape="rect" id="node40" href="$class_character.html#a3097508965d2581b566805897d88e94c" title="Return the sprite pointer of the character. " alt="" coords="763,1243,901,1272"/>
+<area shape="rect" id="node43" href="$class_character.html#a14b717c19eda3bb7f1e07365e16b0fc6" title="Do the character falling. " alt="" coords="549,1693,669,1723"/>
+<area shape="rect" id="node45" href="$class_character.html#a49fd467b5096f68807d001a5ddd742a7" title="Method to set velY value. " alt="" coords="543,1747,676,1776"/>
+<area shape="rect" id="node47" href="$class_character.html#ad0e8f875029bf0fb04a383acd2d41e48" title="Method to set movingLeft true or false. " alt="" coords="521,1800,697,1829"/>
+<area shape="rect" id="node49" href="$class_character.html#afc714197d33fbe5e51fb1d96a6fd99a2" title="Return if the character is end attacking. " alt="" coords="536,1853,683,1883"/>
+<area shape="rect" id="node51" href="$class_player.html#aeea45f839f224a5320dfadfd2ff3ebe9" title="The player will attack. " alt="" coords="559,1008,660,1037"/>
+<area shape="rect" id="node54" href="$class_shot.html#a156c55ed3336d529833dd1b4653cd192" title="Set the window position in X coordinate. " alt="" coords="755,1033,909,1063"/>
+<area shape="rect" id="node57" href="$class_player.html#af56ac33b9b2ebd9f97c8a6f485cf2d47" title="Return the number of lives of the player. " alt="" coords="775,1613,889,1643"/>
+<area shape="rect" id="node59" href="$class_level.html#ab18900b8195c469cc78c906216eb9eb0" title="Level::restart" alt="" coords="560,1163,659,1192"/>
+<area shape="rect" id="node64" href="$class_player.html#a6a2b68bc4b21d4c4a79a23b498896ec2" title="Move the player to right. " alt="" coords="544,1957,675,1987"/>
+<area shape="rect" id="node66" href="$class_level.html#ae40a3c287e77ecf606e811856c59bd2d" title="Move the UI on the window. " alt="" coords="556,424,663,453"/>
+<area shape="rect" id="node70" href="$class_character.html#ad030ed4e44f8f40bdce933e8af475d5b" title="Method to set movingRight true or false. " alt="" coords="520,2011,699,2040"/>
+<area shape="rect" id="node72" href="$class_player.html#ae3bbcf1159bdc059bff1c2513f2505f7" title="Move the player to left. " alt="" coords="549,2064,669,2093"/>
+<area shape="rect" id="node74" href="$class_character.html#aef4951b79fe3f6b3e71601bcc59e8a1a" title="Method to set movingLeft true or false. " alt="" coords="525,2117,693,2147"/>
+<area shape="rect" id="node76" href="$class_zombie.html#a3f1e081dcf3b13d17af5336cb09e4131" title="Attack the player passed. " alt="" coords="555,2171,664,2200"/>
+<area shape="rect" id="node78" href="$class_zombie.html#a40f6dc6569aa2e5c25dfd14477c96c3f" title="Method to move the zombie to left. " alt="" coords="547,2224,672,2253"/>
+<area shape="rect" id="node80" href="$class_zombie.html#a3c3ac233bba072b5d725b1e646342da1" title="The zombie die. " alt="" coords="564,2277,655,2307"/>
+<area shape="rect" id="node82" href="$class_player.html#a95d44bc2e043b3d935c51a6eff12856e" title="Return the camera of the player. " alt="" coords="544,2331,675,2360"/>
+<area shape="rect" id="node84" href="$class_level.html#a87aac743e8efa705862d75cafa495298" title="Return the text of game over. " alt="" coords="525,477,693,507"/>
+<area shape="rect" id="node86" href="$class_level.html#a662fe835f9befbb8ba41c0e68b66466c" title="Return the text time. " alt="" coords="543,531,676,560"/>
+<area shape="rect" id="node88" href="$class_level.html#acb264559367ba901d8984682e5294ee0" title="Return the Object livesFace to the IU. " alt="" coords="540,584,679,613"/>
+<area shape="rect" id="node90" href="$class_level.html#ab17b520594ac84d957e41c362f0832d8" title="Return the text lives. " alt="" coords="541,1216,677,1245"/>
+<area shape="rect" id="node94" href="$class_level.html#a2a61d7e1a3cdc2512c968e338680d598" title="Return the Object ZombiesFace to the IU. " alt="" coords="531,637,688,667"/>
+<area shape="rect" id="node96" href="$class_level.html#a9015dd13f298858db7071ed32a204625" title="Return the text of zombies. " alt="" coords="532,691,687,720"/>
+<area shape="rect" id="node98" href="$class_player.html#a7f6097dc061aca1326d9d7b398a2e8ba" title="Return the shot object of the player. " alt="" coords="553,744,665,773"/>
+<area shape="rect" id="node100" href="$class_shot.html#a328a70c7ea277d15f2ad120ca55f85e4" title="Return true if the object is shot, else will return false. " alt="" coords="563,797,656,827"/>
+<area shape="rect" id="node102" href="$class_character.html#ad69db74d356ec3c3ea02a55ff424fc7f" title="Return if the character is looking right. " alt="" coords="523,901,696,931"/>
+<area shape="rect" id="node105" href="$class_character.html#a0d5768089ecdad34d59945ccbd6294ba" title="Return the sprite position in window. " alt="" coords="517,955,701,984"/>
 </map>

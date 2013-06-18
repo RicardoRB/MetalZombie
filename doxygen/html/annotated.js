@@ -6,6 +6,7 @@ var annotated =
     [ "Game", "class_game.html", "class_game" ],
     [ "Level", "class_level.html", "class_level" ],
     [ "Main", "class_main.html", "class_main" ],
+    [ "Menu", "class_menu.html", "class_menu" ],
     [ "NPC", "class_n_p_c.html", "class_n_p_c" ],
     [ "Object", "class_object.html", "class_object" ],
     [ "Player", "class_player.html", "class_player" ],

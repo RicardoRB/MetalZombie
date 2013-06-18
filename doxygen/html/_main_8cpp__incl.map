@@ -1,14 +1,15 @@
 <map id="Main.cpp" name="Main.cpp">
-<area shape="rect" id="node3" href="$_main_8h.html" title="../include/Main.h" alt="" coords="203,83,320,112"/>
-<area shape="rect" id="node5" href="$_game_8h.html" title="Game.h" alt="" coords="228,160,295,189"/>
-<area shape="rect" id="node7" href="$_level_8h.html" title="Level.h" alt="" coords="229,237,293,267"/>
-<area shape="rect" id="node9" href="$_player_8h.html" title="Player.h" alt="" coords="379,392,448,421"/>
-<area shape="rect" id="node22" href="$_block_8h.html" title="Block.h" alt="" coords="5,469,72,499"/>
-<area shape="rect" id="node26" href="$_builder_8h.html" title="Builder.h" alt="" coords="80,315,152,344"/>
-<area shape="rect" id="node29" href="$_sky_8h.html" title="Sky.h" alt="" coords="183,315,239,344"/>
-<area shape="rect" id="node32" href="$_zombie_8h.html" title="Zombie.h" alt="" coords="275,315,349,344"/>
-<area shape="rect" id="node11" href="$_character_8h.html" title="Character.h" alt="" coords="197,469,288,499"/>
-<area shape="rect" id="node15" href="$_shot_8h.html" title="Shot.h" alt="" coords="384,469,443,499"/>
-<area shape="rect" id="node17" href="$_object_8h.html" title="Object.h" alt="" coords="101,547,171,576"/>
-<area shape="rect" id="node34" href="$_n_p_c_8h.html" title="NPC.h" alt="" coords="197,392,259,421"/>
+<area shape="rect" id="node3" href="$_main_8h.html" title="../include/Main.h" alt="" coords="31,83,148,112"/>
+<area shape="rect" id="node5" href="$_game_8h.html" title="Game.h" alt="" coords="56,160,123,189"/>
+<area shape="rect" id="node7" href="$_level_8h.html" title="Level.h" alt="" coords="349,237,413,267"/>
+<area shape="rect" id="node42" href="$_menu_8h.html" title="Menu.h" alt="" coords="99,469,163,499"/>
+<area shape="rect" id="node9" href="$_player_8h.html" title="Player.h" alt="" coords="396,392,465,421"/>
+<area shape="rect" id="node22" href="$_block_8h.html" title="Block.h" alt="" coords="489,392,556,421"/>
+<area shape="rect" id="node25" href="$_builder_8h.html" title="Builder.h" alt="" coords="517,315,589,344"/>
+<area shape="rect" id="node28" href="$_sky_8h.html" title="Sky.h" alt="" coords="615,315,671,344"/>
+<area shape="rect" id="node31" href="$_zombie_8h.html" title="Zombie.h" alt="" coords="304,315,379,344"/>
+<area shape="rect" id="node11" href="$_character_8h.html" title="Character.h" alt="" coords="296,469,387,499"/>
+<area shape="rect" id="node15" href="$_shot_8h.html" title="Shot.h" alt="" coords="411,469,469,499"/>
+<area shape="rect" id="node17" href="$_object_8h.html" title="Object.h" alt="" coords="443,547,512,576"/>
+<area shape="rect" id="node33" href="$_n_p_c_8h.html" title="NPC.h" alt="" coords="311,392,372,421"/>
 </map>

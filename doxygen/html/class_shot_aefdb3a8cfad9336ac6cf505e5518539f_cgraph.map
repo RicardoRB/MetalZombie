@@ -1,6 +1,6 @@
 <map id="Shot::moveShot" name="Shot::moveShot">
 <area shape="rect" id="node3" href="$class_object.html#ae8e20b37d4ea189e187ba7e1762f30ce" title="Return the sprite of the object. " alt="" coords="172,5,329,35"/>
-<area shape="rect" id="node5" href="$class_shot.html#a915296cb7ded586656a1afa56d708dab" title="Shot::getVelX" alt="" coords="200,59,301,88"/>
-<area shape="rect" id="node7" href="$class_shot.html#a156c55ed3336d529833dd1b4653cd192" title="Shot::setPosWindowX" alt="" coords="173,112,328,141"/>
-<area shape="rect" id="node9" href="$class_shot.html#aed9bc48d9b7c29aa6a618ce9432e0b0a" title="Shot::getPosWindowX" alt="" coords="173,165,328,195"/>
+<area shape="rect" id="node5" href="$class_shot.html#a915296cb7ded586656a1afa56d708dab" title="Return velocity in X coordinate. " alt="" coords="200,59,301,88"/>
+<area shape="rect" id="node7" href="$class_shot.html#a156c55ed3336d529833dd1b4653cd192" title="Set the window position in X coordinate. " alt="" coords="173,112,328,141"/>
+<area shape="rect" id="node9" href="$class_shot.html#aed9bc48d9b7c29aa6a618ce9432e0b0a" title="Return position in X coordinate on window. " alt="" coords="173,165,328,195"/>
 </map>

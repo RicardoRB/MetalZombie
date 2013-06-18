@@ -6,6 +6,7 @@ var searchData=
   ['_7egame',['~Game',['../class_game.html#ae3d112ca6e0e55150d2fdbc704474530',1,'Game']]],
   ['_7elevel',['~Level',['../class_level.html#a249eac1e8f19ff44134efa5e986feaca',1,'Level']]],
   ['_7emain',['~Main',['../class_main.html#a6509d28ba0e266073dfec1b56fe6563d',1,'Main']]],
+  ['_7emenu',['~Menu',['../class_menu.html#a831387f51358cfb88cd018e1777bc980',1,'Menu']]],
   ['_7enpc',['~NPC',['../class_n_p_c.html#a67c0caca129b56c82bb7ec8bce6be52b',1,'NPC']]],
   ['_7eobject',['~Object',['../class_object.html#ae8f5483f459e46687bd01e6f9977afd3',1,'Object']]],
   ['_7eplayer',['~Player',['../class_player.html#a749d2c00e1fe0f5c2746f7505a58c062',1,'Player']]],

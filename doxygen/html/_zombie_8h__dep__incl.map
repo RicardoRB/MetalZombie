@@ -1,9 +1,9 @@
 <map id="Zombie.h" name="Zombie.h">
-<area shape="rect" id="node3" href="$_zombie_8cpp.html" title="Zombie.cpp" alt="" coords="5,83,96,112"/>
-<area shape="rect" id="node5" href="$_level_8h.html" title="Level.h" alt="" coords="120,83,184,112"/>
-<area shape="rect" id="node7" href="$_game_8h.html" title="Game.h" alt="" coords="71,160,137,189"/>
-<area shape="rect" id="node15" href="$_level_8cpp.html" title="Level.cpp" alt="" coords="161,160,239,189"/>
-<area shape="rect" id="node9" href="$_main_8h.html" title="Main.h" alt="" coords="25,237,87,267"/>
-<area shape="rect" id="node13" href="$_game_8cpp.html" title="Game.cpp" alt="" coords="111,237,193,267"/>
-<area shape="rect" id="node11" href="$_main_8cpp.html" title="Main.cpp" alt="" coords="19,315,93,344"/>
+<area shape="rect" id="node3" href="$_level_8h.html" title="Level.h" alt="" coords="107,83,171,112"/>
+<area shape="rect" id="node15" href="$_zombie_8cpp.html" title="Zombie.cpp" alt="" coords="195,83,285,112"/>
+<area shape="rect" id="node5" href="$_game_8h.html" title="Game.h" alt="" coords="57,160,124,189"/>
+<area shape="rect" id="node13" href="$_level_8cpp.html" title="Level.cpp" alt="" coords="148,160,225,189"/>
+<area shape="rect" id="node7" href="$_main_8h.html" title="Main.h" alt="" coords="12,237,73,267"/>
+<area shape="rect" id="node11" href="$_game_8cpp.html" title="Game.cpp" alt="" coords="97,237,180,267"/>
+<area shape="rect" id="node9" href="$_main_8cpp.html" title="Main.cpp" alt="" coords="5,315,80,344"/>
 </map>

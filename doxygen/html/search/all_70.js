@@ -5,7 +5,9 @@ var searchData=
   ['player_2ecpp',['Player.cpp',['../_player_8cpp.html',1,'']]],
   ['player_2eh',['Player.h',['../_player_8h.html',1,'']]],
   ['player1',['player1',['../class_level.html#a92a8acbc7d4563178bfbbff974d81663',1,'Level']]],
+  ['playselect',['playSelect',['../class_menu.html#a1017e480350a97006b102c79c7835dd6',1,'Menu']]],
   ['playshot',['playShot',['../class_shot.html#a776ebe09ba2ef518852e8baac1f9188d',1,'Shot']]],
+  ['playstart',['playStart',['../class_menu.html#a78b10d20b91a070808e6021ea0887469',1,'Menu']]],
   ['poswindowx',['posWindowX',['../class_character.html#a7d141fcc9806ed5ed309a259d7e1a8cb',1,'Character::posWindowX()'],['../class_shot.html#adbe848d8af0205f95fba99486b640bdc',1,'Shot::posWindowX()']]],
   ['poswindowy',['posWindowY',['../class_character.html#a543ae2179d343751de5f189b8679e828',1,'Character']]]
 ];

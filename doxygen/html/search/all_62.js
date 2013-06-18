@@ -6,6 +6,7 @@ var searchData=
   ['block_2eh',['Block.h',['../_block_8h.html',1,'']]],
   ['blocks',['blocks',['../class_level.html#abe7413c26e43fa65424c6a76b43f6602',1,'Level']]],
   ['buffercamerashot',['bufferCameraShot',['../class_game.html#a6a27445e22ed0eb506f02571fde87339',1,'Game']]],
+  ['buffereffect',['bufferEffect',['../class_menu.html#a7ebbba6ca9c9f2e09b5b0718db028962',1,'Menu']]],
   ['buffershot',['bufferShot',['../class_shot.html#ab23ac783288f0a69f088b4f9f229182a',1,'Shot']]],
   ['builder',['Builder',['../class_builder.html',1,'Builder'],['../class_builder.html#af8e018e77879c6136e6dabbd5eab0634',1,'Builder::Builder()'],['../class_builder.html#a81356af49d57b46958f5697027b89d53',1,'Builder::Builder(char file_texture[])']]],
   ['builder_2ecpp',['Builder.cpp',['../_builder_8cpp.html',1,'']]],

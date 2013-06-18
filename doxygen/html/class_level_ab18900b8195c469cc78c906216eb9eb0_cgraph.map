@@ -1,0 +1,7 @@
+<map id="Level::restart" name="Level::restart">
+<area shape="rect" id="node3" href="$class_character.html#a5a8ea4778880e93be55cb5e403d5f57f" title="Method to set life true or false. " alt="" coords="181,5,307,35"/>
+<area shape="rect" id="node5" href="$class_character.html#a3097508965d2581b566805897d88e94c" title="Return the sprite pointer of the character. " alt="" coords="175,59,313,88"/>
+<area shape="rect" id="node7" href="$class_level.html#a98b9579253fbf55f7d631853c4cd7e9c" title="Return the player in the level. " alt="" coords="187,112,301,141"/>
+<area shape="rect" id="node9" href="$class_character.html#aa3b9b4525ef97b6d3efe41db9d8ef86a" title="Method to remain player. " alt="" coords="163,165,325,195"/>
+<area shape="rect" id="node11" href="$class_character.html#a4011acdc4bc3120a9fff3714600bf972" title="Set the posWindowX. " alt="" coords="152,219,336,248"/>
+</map>

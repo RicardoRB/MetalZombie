@@ -9,6 +9,7 @@ var searchData=
   ['setmovingleft',['setmovingLeft',['../class_character.html#aef4951b79fe3f6b3e71601bcc59e8a1a',1,'Character']]],
   ['setmovingright',['setmovingRight',['../class_character.html#ad030ed4e44f8f40bdce933e8af475d5b',1,'Character']]],
   ['setobjectvector',['setObjectVector',['../class_object.html#a8eb15a49ed638b24dfb44abbdad96727',1,'Object']]],
+  ['setoption',['setOption',['../class_menu.html#aa3cd0c24ce350a867697c07f255d940b',1,'Menu']]],
   ['setposwindowx',['setPosWindowX',['../class_character.html#a4011acdc4bc3120a9fff3714600bf972',1,'Character::setPosWindowX()'],['../class_shot.html#a156c55ed3336d529833dd1b4653cd192',1,'Shot::setPosWindowX()']]],
   ['setshot',['setShot',['../class_shot.html#a733217564c6757e6040a5e1eef75a322',1,'Shot']]],
   ['setvely',['setVelY',['../class_character.html#a49fd467b5096f68807d001a5ddd742a7',1,'Character']]],

@@ -7,7 +7,7 @@
 
 /*!
  *  \brief     Class of the title menu
- *  \details   This class will show the menu of the beginning game, with options
+*  \details   This class will show the menu of the beginning game, with options
  *  \author    Ricardo Romero B.
  *  \version   0.1
  *  \date      6/16/2013

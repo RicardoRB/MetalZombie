@@ -96,30 +96,32 @@ WARN_LOGFILE            = "/home/richy/MetalZombie/doxygen/doxygen.log"
 # configuration options related to the input files
 #---------------------------------------------------------------------------
 INPUT                  = \
-	"../src/Player.cpp" \
-	"../include/Builder.h" \
 	"../src/NPC.cpp" \
-	"../src/Zombie.cpp" \
-	"../src/Character.cpp" \
-	"../include/Block.h" \
-	"../include/Player.h" \
-	"../src/Builder.cpp" \
-	"../include/Character.h" \
+	"../include/NPC.h" \
 	"../include/Object.h" \
 	"../src/Main.cpp" \
-	"../src/Level.cpp" \
-	"../src/Game.cpp" \
+	"../include/Character.h" \
+	"../src/Menu.cpp" \
 	"../include/Level.h" \
-	"../include/Main.h" \
 	"../src/Block.cpp" \
+	"../src/Player.cpp" \
 	"../include/Sky.h" \
-	"../src/Sky.cpp" \
-	"../include/Shot.h" \
-	"../include/Game.h" \
+	"../src/Game.cpp" \
 	"../include/Zombie.h" \
+	"../src/Level.cpp" \
+	"../include/Menu.h" \
+	"../src/Zombie.cpp" \
+	"../src/Builder.cpp" \
+	"../include/Shot.h" \
+	"../include/Player.h" \
+	"../include/Game.h" \
+	"../src/Shot.cpp" \
+	"../include/Builder.h" \
 	"../src/Object.cpp" \
-	"../include/NPC.h" \
-	"../src/Shot.cpp" 
+	"../src/Sky.cpp" \
+	"../include/Block.h" \
+	"../src/Character.cpp" \
+	"../include/Main.h" 
 INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          =
 RECURSIVE              = NO

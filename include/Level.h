@@ -91,6 +91,7 @@ public:
     Object* getZombiesFace();
     /*!
      * \brief Return the number of zombies that pass the window
+     * \details The numbers of the killed zombies
      * \return int contZombies
      */
     int getContZombies();

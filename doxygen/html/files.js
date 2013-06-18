@@ -24,6 +24,10 @@ var files =
     [ "Main.h", "_main_8h.html", [
       [ "Main", "class_main.html", "class_main" ]
     ] ],
+    [ "Menu.cpp", "_menu_8cpp.html", null ],
+    [ "Menu.h", "_menu_8h.html", [
+      [ "Menu", "class_menu.html", "class_menu" ]
+    ] ],
     [ "NPC.cpp", "_n_p_c_8cpp.html", null ],
     [ "NPC.h", "_n_p_c_8h.html", [
       [ "NPC", "class_n_p_c.html", "class_n_p_c" ]

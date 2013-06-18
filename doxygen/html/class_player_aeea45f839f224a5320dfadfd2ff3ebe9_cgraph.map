@@ -1,5 +1,5 @@
 <map id="Player::attack" name="Player::attack">
-<area shape="rect" id="node3" href="$class_shot.html#a776ebe09ba2ef518852e8baac1f9188d" title="Shot::playShot" alt="" coords="184,5,291,35"/>
+<area shape="rect" id="node3" href="$class_shot.html#a776ebe09ba2ef518852e8baac1f9188d" title="Play the sound of the shot when is called. " alt="" coords="184,5,291,35"/>
 <area shape="rect" id="node5" href="$class_object.html#ae8e20b37d4ea189e187ba7e1762f30ce" title="Return the sprite of the object. " alt="" coords="159,59,316,88"/>
-<area shape="rect" id="node7" href="$class_shot.html#a156c55ed3336d529833dd1b4653cd192" title="Shot::setPosWindowX" alt="" coords="160,112,315,141"/>
+<area shape="rect" id="node7" href="$class_shot.html#a156c55ed3336d529833dd1b4653cd192" title="Set the window position in X coordinate. " alt="" coords="160,112,315,141"/>
 </map>

@@ -1,7 +1,3 @@
 <map id="Representación gráfica de la clase" name="Representación gráfica de la clase">
-<area shape="rect" id="node1" href="$class_object.html" title="Class of all objects. " alt="" coords="7,85,65,115"/>
-<area shape="rect" id="node3" href="$class_block.html" title="Class of blocks. " alt="" coords="120,5,173,35"/>
-<area shape="rect" id="node5" href="$class_builder.html" title="Class of the builders. " alt="" coords="116,59,177,88"/>
-<area shape="rect" id="node7" href="$class_shot.html" title="Class of the shot. " alt="" coords="123,112,171,141"/>
-<area shape="rect" id="node9" href="$class_sky.html" title="Class of the builders. " alt="" coords="124,165,169,195"/>
+<area shape="rect" id="node1" href="$class_menu.html" title="Class of the title menu. " alt="" coords="7,5,60,35"/>
 </map>

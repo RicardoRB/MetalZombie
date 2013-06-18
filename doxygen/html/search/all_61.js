@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['attack',['attack',['../class_player.html#aeea45f839f224a5320dfadfd2ff3ebe9',1,'Player::attack()'],['../class_character.html#a891042a5f9ba38a4ab98d79e32a590b9',1,'Character::attack()'],['../class_zombie.html#a3f1e081dcf3b13d17af5336cb09e4131',1,'Zombie::attack()']]],
+  ['attack',['attack',['../class_character.html#a891042a5f9ba38a4ab98d79e32a590b9',1,'Character::attack()'],['../class_zombie.html#a3f1e081dcf3b13d17af5336cb09e4131',1,'Zombie::attack()'],['../class_player.html#aeea45f839f224a5320dfadfd2ff3ebe9',1,'Player::attack()']]],
   ['attacking',['attacking',['../class_character.html#adc96ad0c978fff10a1ee70156b7d608e',1,'Character']]]
 ];

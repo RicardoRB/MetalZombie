@@ -10,7 +10,7 @@ Game::Game() {
     this->menuTitle = new Menu();
     this->menu = true;
     this->level1 = NULL;
-    window->create(sf::VideoMode(1024,768), "MetalZombie", sf::Style::Default);
+    window->create(sf::VideoMode(1024,768), "MetalZombie", sf::Style::Fullscreen);
     window->setFramerateLimit(18);
     window->setMouseCursorVisible(false);
     while (this->window->isOpen()) {
@@ -181,7 +181,7 @@ void Game::startGame() {
         window->draw(*level1->soldiers[i]->getSpriteObject());
     }
     //Draw IU
-    if(this->level1->getPlayer()->getLives() <= 0){
+    if(this->level1->getPlayer()->getLives() <= 0) {
         window->draw(level1->getTextGameOver());
     }
     window->draw(level1->getTextTime());
