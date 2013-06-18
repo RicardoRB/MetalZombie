@@ -10,7 +10,7 @@ Game::Game() {
     this->menuTitle = new Menu();
     this->menu = true;
     this->level1 = NULL;
-    window->create(sf::VideoMode(1024,768), "MetalZombie", sf::Style::Fullscreen);
+    window->create(sf::VideoMode(1024,768), "MetalZombie", sf::Style::Default);
     window->setFramerateLimit(18);
     window->setMouseCursorVisible(false);
     while (this->window->isOpen()) {
@@ -117,8 +117,9 @@ void Game::startGame() {
         if(this->level1->getPlayer()->isLife()) {
             this->level1->getPlayer()->attack();
         } else {
-            this->level1->getPlayer()->setCamera(window->getDefaultView());
+
             if(this->level1->getPlayer()->getLives() > 0) {
+                this->level1->getPlayer()->setCamera(window->getDefaultView());
                 this->level1->restart();
             }
         }
@@ -177,11 +178,11 @@ void Game::startGame() {
     for(unsigned int i = 0; i<(sizeof(level1->builders)/sizeof(level1->builders[i])); i++) {
         window->draw(*level1->builders[i]->getSpriteObject());
     }
-    for(unsigned int i = 0; i<(sizeof(level1->soldiers)/sizeof(level1->soldiers[i])); i++) {
-        window->draw(*level1->soldiers[i]->getSpriteObject());
-    }
     //Draw IU
-    if(this->level1->getPlayer()->getLives() <= 0) {
+    if(this->level1->getPlayer()->getLives() <= 0 || this->level1->getPlayer()->getSprite()->getPosition().x >= 9900) {
+            if(this->level1->getPlayer()->getSprite()->getPosition().x >= 9900){
+                this->level1->getPlayer()->moveRight();
+            }
         window->draw(level1->getTextGameOver());
     }
     window->draw(level1->getTextTime());
@@ -189,9 +190,18 @@ void Game::startGame() {
     window->draw(level1->getTextLives());
     window->draw(*level1->getZombiesFace()->getSpriteObject());
     window->draw(level1->getTextZombies());
+
+
+    //Draw the blocks
+    for(unsigned int i = 0; i<(sizeof(level1->blocks)/sizeof(level1->blocks[i])); i++) {
+        window->draw(*level1->blocks[i]->getSpriteObject());
+    }
+    //Draw soldiers friends
+    for(unsigned int i = 0; i<(sizeof(level1->soldiers)/sizeof(level1->soldiers[i])); i++) {
+        window->draw(*level1->soldiers[i]->getSpriteObject());
+    }
     //Draw the player
     window->draw(*level1->getPlayer()->getSprite());
-
     //Draw enemys
     for(unsigned int j = 0; j < (sizeof(level1->zombies)/sizeof(level1->zombies[j])); j++) {
         window->draw(*level1->zombies[j]->getSprite());
@@ -211,7 +221,7 @@ void Game::startGame() {
         window->draw(*(level1->getPlayer()->getShot()->getSpriteObject()));
         //Collisions with the shot
         //Windows
-        if((level1->getPlayer()->getShot()->getPosWindowX() > 1024 || level1->getPlayer()->getShot()->getPosWindowX() < 0)) {
+        if((level1->getPlayer()->getShot()->getPosWindowX() > 2020.f || level1->getPlayer()->getShot()->getPosWindowX() < -1460.f)) {
             level1->getPlayer()->setAttacking(false);
             level1->getPlayer()->getShot()->setShot(true);
             level1->getPlayer()->getShot()->endShot();
@@ -235,12 +245,7 @@ void Game::startGame() {
                 }
             }
         }
-    }
-
-
-    //Draw the blocks
-    for(unsigned int i = 0; i<(sizeof(level1->blocks)/sizeof(level1->blocks[i])); i++) {
-        window->draw(*level1->blocks[i]->getSpriteObject());
+        window->draw(*(level1->getPlayer()->getShot()->getSpriteObject()));
     }
     window->display();
 }

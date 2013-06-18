@@ -35,7 +35,7 @@ public:
     /*!
     * \details Array of the zombies
     */
-    Zombie *zombies[2];
+    Zombie *zombies[50];
     /*!
     * \details Array of the blocks, static because I need use it with collisions
     */
@@ -160,6 +160,18 @@ private:
     * \details Count of the how many zombies go away form window
     */
     int contZombies;
+    /*!
+    * \details Buffer of the audio's effects
+    */
+    sf::SoundBuffer *bufferEffect;
+    /*!
+    * \details Sound of the audio's
+    */
+    sf::Sound *soundEffect;
+    /*!
+    * \details When the game is finished
+    */
+    bool endGame;
 };
 
 #endif // LEVEL_H

@@ -3,6 +3,7 @@
 
 
 Level::Level(char file_music[]) {
+    this->endGame = false;
     if (!this->font.loadFromFile("res/fonts/BrushRunes.otf")) {
         //error
     } else {
@@ -62,41 +63,40 @@ Level::Level(char file_music[]) {
     for(unsigned int i = 0; i< (sizeof(this->soldiers)/sizeof(this->soldiers[i])); i++) {
         this->soldiers[i] = new Object((char*)"res/images/characters/players/player1.png");
         sf::IntRect rect_aux = this->soldiers[i]->getObjectVector();
-        switch(i) {
-        case 0:
+        if(i==0) {
             rect_aux.top = 296;
             rect_aux.left = 951;
             rect_aux.height = 134;
             rect_aux.width = 162;
             this->soldiers[i]->getSpriteObject()->setPosition(160,585);
-            break;
-        case 1:
+        } else if(i==1) {
             rect_aux.top = 713;
             rect_aux.left = 40;
             rect_aux.height = 55;
             rect_aux.width = 58;
             this->soldiers[i]->getSpriteObject()->setPosition(100,665);
-            break;
-        case 2:
+        } else if(i==2) {
             rect_aux.top = 142;
             rect_aux.left = 990;
             rect_aux.height = 54;
             rect_aux.width = 62;
             this->soldiers[i]->getSpriteObject()->setPosition(200,665);
-            break;
-        case 3:
-
-            break;
-        default:
-            break;
-            //instrucción(es);
-        };
+        } else {
+            rect_aux.top = 226;
+            rect_aux.left = 934;
+            rect_aux.height = 36;
+            rect_aux.width = 58;
+            this->soldiers[i]->getSpriteObject()->setPosition(600 * i,700.f);
+        }
         this->soldiers[i]->setObjectVector(rect_aux);
         this->soldiers[i]->getSpriteObject()->setScale(-1.f,1.f);
 
     }
-
-
+    this->bufferEffect = new sf::SoundBuffer();
+    this->soundEffect = new sf::Sound();
+    if(this->bufferEffect->loadFromFile((char*)"res/sounds/effects/level/gameover.ogg")) {
+        this->soundEffect->setBuffer(*this->bufferEffect);
+    }
     this->music = new sf::Music();
     if(!music->openFromFile(file_music)) {
 //        std::cout << "Error music in level" << std::endl;
@@ -118,6 +118,8 @@ Level::~Level() {
     delete livesFace;
     delete zombiesFace;
     delete backgroundBoss;
+    delete bufferEffect;
+    delete soundEffect;
 }
 
 Player* Level::getPlayer() {
@@ -155,6 +157,10 @@ sf::Text Level::getTextLives() {
 }
 
 sf::Text Level::getTextGameOver() {
+    if(!this->endGame){
+        this->soundEffect->play();
+        this->endGame = true;
+    }
     return this->gameOverText;
 }
 
@@ -183,6 +189,9 @@ void Level::restart() {
     this->timeText.setPosition(512.f,55.f);
     this->livesText.setPosition(70.f,55.f);
     this->zombiesText.setPosition(970.f,55.f);
+    this->livesFace->getSpriteObject()->setPosition(33.f,55.f);
+    this->zombiesFace->getSpriteObject()->setPosition(935.f,55.f);
+    this->gameOverText.setPosition(362.f,384.f);
     for(unsigned int i = 0; i < (sizeof(this->zombies)/sizeof(this->zombies[i])); i++) {
         this->zombies[i]->setLife(true);
         this->zombies[i]->getSprite()->setPosition(((i+1)*300),100.f);
