@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['level',['Level',['../class_level.html',1,'Level'],['../class_level.html#a7a696c928ca5d5354db6e50e46d0f67d',1,'Level::Level()'],['../class_level.html#ab9acd3ba908804213e46c94da85af0a3',1,'Level::Level(char file_music[], char file_image[])']]],
+  ['level',['Level',['../class_level.html',1,'Level'],['../class_level.html#a7a696c928ca5d5354db6e50e46d0f67d',1,'Level::Level()'],['../class_level.html#acf6c5ab9df585c82b8981fe51c442eff',1,'Level::Level(char file_music[])']]],
   ['level_2ecpp',['Level.cpp',['../_level_8cpp.html',1,'']]],
   ['level_2eh',['Level.h',['../_level_8h.html',1,'']]],
   ['level1',['level1',['../class_game.html#aced18f5c9a5428840cbe691c3cbb1376',1,'Game']]],

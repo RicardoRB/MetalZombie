@@ -21,22 +21,57 @@ public:
     */
     Player(char file_texture[]);
     virtual ~Player();
+    /*!
+     * \brief Return the camera of the player
+     * \return sf::View camera
+     */
     sf::View getCamera();
+    /*!
+     * \brief Set the camera player from the parameter
+     * \param sf::View _camera
+     */
     void setCamera(sf::View _camera);
+    /*!
+     * \brief Move the player to right
+     */
     void moveRight();
+    /*!
+     * \brief Move the player to left
+     */
     void moveLeft();
+    /*!
+     * \brief The player will attack
+     */
     void attack();
-    float getPosWindowX();
-    void setPosWindowX(float _posWindowX);
+    /*!
+     * \brief Return the shot object of the player
+     * \return Shot *shot
+     */
     Shot* getShot();
+    /*!
+     * \brief Return the number of lives of the player
+     * \return int lives
+     */
     int getLives();
+    /*!
+     * \brief The player will die
+     */
     void die();
 
 protected:
 private:
+    /*!
+    * \details Lives of the player
+    */
     int lives;
+    /*!
+    * \details Object shot of the player
+    */
     Shot *shot;
-    sf::View camera;
+    /*!
+    * \details Camera to move the player and the view window
+    */
+    sf::View camera;;
 };
 
 #endif // PLAYER_H

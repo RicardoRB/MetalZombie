@@ -1,0 +1,15 @@
+digraph "Shot::moveShot"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Shot::moveShot",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Object::getSpriteObject",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_object.html#ae8e20b37d4ea189e187ba7e1762f30ce",tooltip="Return the sprite of the object."];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Shot::getVelX",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_shot.html#a915296cb7ded586656a1afa56d708dab",tooltip="Return velocity in X coordinate."];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Shot::setPosWindowX",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_shot.html#a156c55ed3336d529833dd1b4653cd192",tooltip="Set the window position in X coordinate."];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="Shot::getPosWindowX",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_shot.html#aed9bc48d9b7c29aa6a618ce9432e0b0a",tooltip="Return position in X coordinate on window."];
+}

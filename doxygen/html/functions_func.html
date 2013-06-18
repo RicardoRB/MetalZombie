@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<meta name="generator" content="Doxygen 1.8.4"/>
+<meta name="generator" content="Doxygen 1.8.3.1"/>
 <title>MetalZombie: Miembros de las clases - Funciones</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -37,7 +37,7 @@
 </table>
 </div>
 <!-- end header part -->
-<!-- Generado por Doxygen 1.8.4 -->
+<!-- Generado por Doxygen 1.8.3.1 -->
 <script type="text/javascript">
 var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
 </script>
@@ -95,6 +95,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
       <li><a href="#index_n"><span>n</span></a></li>
       <li><a href="#index_o"><span>o</span></a></li>
       <li><a href="#index_p"><span>p</span></a></li>
+      <li><a href="#index_r"><span>r</span></a></li>
       <li><a href="#index_s"><span>s</span></a></li>
       <li><a href="#index_t"><span>t</span></a></li>
       <li><a href="#index_z"><span>z</span></a></li>
@@ -205,7 +206,7 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 : <a class="el" href="class_level.html#a98b9579253fbf55f7d631853c4cd7e9c">Level</a>
 </li>
 <li>getPosWindowX()
-: <a class="el" href="class_player.html#a419f8ea90ef1164b93db061fb38dd3b4">Player</a>
+: <a class="el" href="class_character.html#a0d5768089ecdad34d59945ccbd6294ba">Character</a>
 , <a class="el" href="class_shot.html#aed9bc48d9b7c29aa6a618ce9432e0b0a">Shot</a>
 </li>
 <li>getShot()
@@ -216,6 +217,9 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 </li>
 <li>getSpriteObject()
 : <a class="el" href="class_object.html#ae8e20b37d4ea189e187ba7e1762f30ce">Object</a>
+</li>
+<li>getTextGameOver()
+: <a class="el" href="class_level.html#a87aac743e8efa705862d75cafa495298">Level</a>
 </li>
 <li>getTextLives()
 : <a class="el" href="class_level.html#ab17b520594ac84d957e41c362f0832d8">Level</a>
@@ -333,6 +337,13 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 </ul>
 
 
+<h3><a class="anchor" id="index_r"></a>- r -</h3><ul>
+<li>restart()
+: <a class="el" href="class_level.html#ab18900b8195c469cc78c906216eb9eb0">Level</a>
+</li>
+</ul>
+
+
 <h3><a class="anchor" id="index_s"></a>- s -</h3><ul>
 <li>setAttacking()
 : <a class="el" href="class_character.html#a9d4f5614ee232c3682c844202583065d">Character</a>
@@ -349,6 +360,9 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 <li>setEndJumping()
 : <a class="el" href="class_character.html#ad0e8f875029bf0fb04a383acd2d41e48">Character</a>
 </li>
+<li>setLife()
+: <a class="el" href="class_character.html#a5a8ea4778880e93be55cb5e403d5f57f">Character</a>
+</li>
 <li>setmovingLeft()
 : <a class="el" href="class_character.html#aef4951b79fe3f6b3e71601bcc59e8a1a">Character</a>
 </li>
@@ -359,7 +373,8 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 : <a class="el" href="class_object.html#a8eb15a49ed638b24dfb44abbdad96727">Object</a>
 </li>
 <li>setPosWindowX()
-: <a class="el" href="class_shot.html#a156c55ed3336d529833dd1b4653cd192">Shot</a>
+: <a class="el" href="class_character.html#a4011acdc4bc3120a9fff3714600bf972">Character</a>
+, <a class="el" href="class_shot.html#a156c55ed3336d529833dd1b4653cd192">Shot</a>
 </li>
 <li>setShot()
 : <a class="el" href="class_shot.html#a733217564c6757e6040a5e1eef75a322">Shot</a>
@@ -368,13 +383,16 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 : <a class="el" href="class_character.html#a49fd467b5096f68807d001a5ddd742a7">Character</a>
 </li>
 <li>Shot()
-: <a class="el" href="class_shot.html#a02dcf32a379eb4e57c0fe7b9fe795481">Shot</a>
+: <a class="el" href="class_shot.html#a9eda79097f616d3c639d15db52494fcf">Shot</a>
 </li>
 <li>Sky()
 : <a class="el" href="class_sky.html#aa9bee1980020ea0d58d1090029b42283">Sky</a>
 </li>
 <li>startGame()
 : <a class="el" href="class_game.html#ae8638ccdb0ef3bf39a6affa30aa1258f">Game</a>
+</li>
+<li>startMenu()
+: <a class="el" href="class_game.html#aee9d460c00d3f3a1f498201b924f6a80">Game</a>
 </li>
 </ul>
 
@@ -436,9 +454,9 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generado el Sábado, 15 de Junio de 2013 19:55:26 para MetalZombie por
+    <li class="footer">Generado el Martes, 18 de Junio de 2013 19:54:50 para MetalZombie por
     <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>
 </div>
 </body>

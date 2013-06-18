@@ -2,7 +2,7 @@
 1371409742 source:c:\users\ricardo\metalzombie\src\character.cpp
 	"../include/Character.h"
 
-1371414770 c:\users\ricardo\metalzombie\include\character.h
+1371581248 c:\users\ricardo\metalzombie\include\character.h
 	<SFML/Graphics.hpp>
 
 1331752015 c:\users\ricardo\downloads\sfml-2.0-rc-64\include\sfml\graphics.hpp
@@ -352,7 +352,7 @@
 	<iostream>
 	<sstream>
 
-1371409226 c:\users\ricardo\metalzombie\include\player.h
+1371581224 c:\users\ricardo\metalzombie\include\player.h
 	"Character.h"
 	"Shot.h"
 
@@ -380,7 +380,7 @@
 	<SFML/Audio.hpp>
 	<SFML/Graphics.hpp>
 
-1371509515 source:c:\users\ricardo\metalzombie\src\game.cpp
+1371510000 source:c:\users\ricardo\metalzombie\src\game.cpp
 	"../include/Game.h"
 	<iostream>
 	<sstream>

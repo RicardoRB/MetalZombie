@@ -56,9 +56,23 @@ public:
      * \details This method is so usefull when you kill a zombie or go out of window
      */
     void setShot(bool _shot);
+    /*!
+     * \brief Return true if the move shot is right and false if going left
+     * \return bool directionRight
+     */
     bool isDirectionRight();
+    /*!
+     * \brief Set the direction of the shot
+     * \param bool _direction
+     */
     void setDirectionRight(bool _direction);
+    /*!
+     * \brief Play the sound of the shot when is called
+     */
     void playShot();
+    /*!
+    * \details Vector to the picture shot
+    */
     sf::IntRect shot_vector;
 protected:
 private:

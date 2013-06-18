@@ -112,14 +112,6 @@ Shot* Player::getShot() {
     return this->shot;
 }
 
-float Player::getPosWindowX() {
-    return this->posWindowX;
-}
-
-void Player::setPosWindowX(float _posWindowX) {
-    this->posWindowX = _posWindowX;
-}
-
 sf::View Player::getCamera() {
     return this->camera;
 }

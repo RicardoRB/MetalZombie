@@ -109,6 +109,16 @@ public:
     */
     sf::Sprite* getSprite();
     /*!
+     * \brief Return the sprite position in window
+     * \return float posWindowX
+    */
+    float getPosWindowX();
+    /*!
+    *\brief Set the posWindowX
+    * \param float _posWindowX
+    */
+    void setPosWindowX(float _posWindowX);
+    /*!
      * \brief Method that character attack
     */
     virtual void attack();

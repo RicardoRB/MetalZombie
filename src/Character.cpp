@@ -74,6 +74,14 @@ sf::Sprite* Character::getSprite() {
     return this->sprite;
 }
 
+float Character::getPosWindowX() {
+    return this->posWindowX;
+}
+
+void Character::setPosWindowX(float _posWindowX) {
+    this->posWindowX = _posWindowX;
+}
+
 bool Character::isLife() {
     return this->life;
 }

@@ -18,15 +18,44 @@
 class Menu {
 public:
     Menu();
-    Menu(char text[]);
     virtual ~Menu();
+    /*!
+     * \brief Return the titleText from menu
+     * \return sf::Text titleText
+     */
     sf::Text getTextTitle();
+    /*!
+     * \brief Return the startText from menu
+     * \return sf::Text startText
+     */
     sf::Text getTextStart();
+    /*!
+     * \brief Return the exitText from menu
+     * \return sf::Text exitText
+     */
     sf::Text getTextExit();
+    /*!
+     * \brief Return the object option to draw it
+     * \return Object *optionIcon
+     */
     Object* getOptionIcon();
+    /*!
+     * \brief Return the number option choosed
+     * \return int option
+     */
     int getOption();
+    /*!
+     * \brief Set the option number
+     * \param int _option
+     */
     void setOption(int _option);
+    /*!
+     * \brief Play the select sound effect
+     */
     void playSelect();
+    /*!
+     * \brief Play the start sound effect
+     */
     void playStart();
 protected:
 private:
@@ -62,7 +91,9 @@ private:
     * \details Sound of the audio's
     */
     sf::Sound *soundEffect;
-
+    /*!
+    * \details Number option to choose it
+    */
     int option;
 
 };

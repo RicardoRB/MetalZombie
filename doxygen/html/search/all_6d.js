@@ -3,6 +3,8 @@ var searchData=
   ['main',['Main',['../class_main.html',1,'Main'],['../class_main.html#a50d4361a1b613205467a441b5c40c199',1,'Main::Main()'],['../_main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;Main.cpp']]],
   ['main_2ecpp',['Main.cpp',['../_main_8cpp.html',1,'']]],
   ['main_2eh',['Main.h',['../_main_8h.html',1,'']]],
+  ['menu',['menu',['../class_game.html#ab700cfc9ab527be152d4a805e0ea20b3',1,'Game']]],
+  ['menutitle',['menuTitle',['../class_game.html#a41fdb4005d1c770c3dbda66094a3b895',1,'Game']]],
   ['moveleft',['moveLeft',['../class_player.html#ae3bbcf1159bdc059bff1c2513f2505f7',1,'Player::moveLeft()'],['../class_character.html#a22e7958fb06b889f6cc27742778b0439',1,'Character::moveLeft()'],['../class_zombie.html#a40f6dc6569aa2e5c25dfd14477c96c3f',1,'Zombie::moveLeft()']]],
   ['moveremain',['moveRemain',['../class_character.html#aa3b9b4525ef97b6d3efe41db9d8ef86a',1,'Character']]],
   ['moveright',['moveRight',['../class_player.html#a6a2b68bc4b21d4c4a79a23b498896ec2',1,'Player::moveRight()'],['../class_character.html#a0a8bf66e3d70c196a0fa8ce183f4aeb4',1,'Character::moveRight()']]],

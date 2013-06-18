@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['background',['background',['../class_level.html#ac0935953a3aacfa9303b8e005c772cb6',1,'Level']]],
-  ['backgroundimage',['backgroundImage',['../class_level.html#aba3d718196313dc1def9170aec3b253c',1,'Level']]],
+  ['backgroundboss',['backgroundBoss',['../class_level.html#a05309b7480c6d9eaa617f505abcc0dfb',1,'Level']]],
   ['block',['Block',['../class_block.html',1,'Block'],['../class_block.html#a37658a946bf5067ad01d68d9ff086adc',1,'Block::Block()'],['../class_block.html#acfcd20485c056e3184625838f458353b',1,'Block::Block(char file_texture[])']]],
   ['block_2ecpp',['Block.cpp',['../_block_8cpp.html',1,'']]],
   ['block_2eh',['Block.h',['../_block_8h.html',1,'']]],
