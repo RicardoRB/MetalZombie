@@ -223,10 +223,9 @@ void Game::startGame() {
                 level1->getPlayer()->getShot()->setShot(false);
             }
         }
-        window->draw(*(level1->getPlayer()->getShot()->getSpriteObject()));
         //Collisions with the shot
         //Windows
-        if((level1->getPlayer()->getShot()->getPosWindowX() > 2020.f || level1->getPlayer()->getShot()->getPosWindowX() < -1460.f)) {
+        if((level1->getPlayer()->getShot()->getPosWindowX() > 1040.f || level1->getPlayer()->getShot()->getPosWindowX() < 0)) {
             level1->getPlayer()->setAttacking(false);
             level1->getPlayer()->getShot()->setShot(true);
             level1->getPlayer()->getShot()->endShot();

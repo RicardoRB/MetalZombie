@@ -13,7 +13,7 @@ Shot::Shot(char file_texture[], char file_sound[]) : Object(file_texture) {
     this->shot_vector.height = 16;
     this->getSpriteObject()->setTextureRect(this->shot_vector);
     this->path_sound = file_sound;
-    this->velX = 30;
+    this->velX = 1.5f;
     this->shot = true;
     this->endShot();
 }
