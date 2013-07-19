@@ -5,17 +5,30 @@ Zombie::Zombie() {
 }
 
 Zombie::Zombie(char file_texture[]) {
-    if(!texture->loadFromFile(file_texture)) {
-//        std::cout << "Error file texture player" << std::endl;
-    } else {
-        this->texture->loadFromFile(file_texture);
-    }
+    sf::Image image;
+	if (!image.loadFromFile(file_texture)){
+		//        std::cout << "Error file texture player" << std::endl;
+    }else{
+        image.createMaskFromColor(sf::Color::Transparent);
+        texture->loadFromImage(image);
+	}
+	//Add walk animation
+	for(int i=214; i<413; i=i+66){
+        walk_frames.addFrame(1.f, sf::IntRect(i, 383, 55, 66));
+	}
+	this->animator.addAnimation("walk", walk_frames, sf::seconds(0.7f));
+
+	//Add dead animation
+	for(int i=0; i<608; i=i+152){
+        die_frames.addFrame(1.f, sf::IntRect(i, 753, 123, 152));
+	}
+
+	for(int i=0; i<609; i=i+729){
+        die_frames.addFrame(1.f, sf::IntRect(i, 383, 55, 65));
+	}
+
+	this->animator.addAnimation("die", die_frames, sf::seconds(0.5f));
     //Player
-    this->image_vector.top = 383;
-    this->image_vector.left = 213;
-    this->image_vector.width = 55;
-    this->image_vector.height = 65;
-    this->sprite->setTextureRect(image_vector);
     this->sprite->setTexture(*texture);
     this->sprite->setOrigin(13.5,13.f);
     this->sprite->setScale(-1.f,1.f);
@@ -24,6 +37,7 @@ Zombie::Zombie(char file_texture[]) {
     this->lookLeft = true;
     this->posWindowX = this->sprite->getPosition().x;
     this->posWindowY = this->sprite->getPosition().y;
+    this->animator.playAnimation("walk", true);
 }
 
 Zombie::~Zombie() {
@@ -31,26 +45,20 @@ Zombie::~Zombie() {
 }
 
 void Zombie::moveLeft() {
+    if(!this->animator.isPlayingAnimation()){
+        this->animator.playAnimation("walk", true);
+    }
     this->lookLeft = true;
     this->lookRight = false;
     this->movingRight = false;
     this->movingLeft = true;
-    this->image_vector.top = 383;
-    this->image_vector.width = 55;
-    this->image_vector.height = 65;
-    if((this->image_vector.left >= 397 || (!this->movingLeft && this->attacking)) || (this->image_vector.left == 0)) {
-        this->image_vector.left = 213;
-    }
-    if(this->image_vector.left >= 213) {
-        this->image_vector.left += image_vector.width + 11;
-    }
-    this->sprite->setTextureRect(image_vector);
-    posWindowX -= velX;
+    this->posWindowX -= velX;
     this->sprite->move(-velX,velY);
     this->attacking = false;
 }
 
 void Zombie::attack(Player *_player) {
+    this->animator.stopAnimation();
     this->image_vector.top = 559;
     this->image_vector.width = 84;
     this->image_vector.height = 77;
@@ -69,12 +77,10 @@ void Zombie::attack(Player *_player) {
 }
 
 void Zombie::die() {
+    this->sprite->setOrigin(34.5,76.f);
+    this->animator.playAnimation("die");
     this->movingLeft = false;
     this->attacking = false;
-    this->image_vector.left = 0;
-    this->sprite->setPosition(this->sprite->getPosition().x,this->sprite->getPosition().y - 61.f);
-    this->image_vector.top = 753;
-    this->image_vector.width = 152;
-    this->image_vector.height = 123;
-    this->sprite->setTextureRect(image_vector);
+    this->life = false;
 }
+

@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <Thor/Animation.hpp>
 #ifndef CHARACTER_H
 #define CHARACTER_H
 /*!
@@ -158,6 +159,7 @@ public:
      * \details Will kill the character. Is pure, because all characters die
     */
     virtual void die() = 0;
+    thor::Animator<sf::Sprite, std::string> animator;
 
 protected:
     /*!
@@ -169,6 +171,10 @@ protected:
     * \details The sprite of the texture
     */
     sf::Sprite *sprite;
+
+    thor::FrameAnimation walk_frames;
+    thor::FrameAnimation die_frames;
+
     /*!
     * \details If the characters is living, then true, else will be false
     */

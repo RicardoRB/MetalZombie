@@ -39,6 +39,7 @@ public:
     void die();
 protected:
 private:
+
 };
 
 #endif // ZOMBIE_H

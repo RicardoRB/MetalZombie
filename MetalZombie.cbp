@@ -32,14 +32,17 @@
 			<Add option="-Wall" />
 			<Add directory="../Downloads/SFML-2.0-rc-64/include" />
 			<Add directory="../Downloads/SFML-2.0-rc/include" />
+			<Add directory="../Downloads/Thor/include" />
 		</Compiler>
 		<Linker>
 			<Add library="sfml-graphics" />
 			<Add library="sfml-window" />
 			<Add library="sfml-audio" />
 			<Add library="sfml-system" />
+			<Add library="thor" />
 			<Add directory="../Downloads/SFML-2.0-rc-64/lib" />
 			<Add directory="../Downloads/SFML-2.0-rc/lib" />
+			<Add directory="../Downloads/Thor/lib" />
 		</Linker>
 		<Unit filename="include/Block.h" />
 		<Unit filename="include/Builder.h" />

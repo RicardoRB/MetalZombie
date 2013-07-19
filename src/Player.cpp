@@ -2,11 +2,13 @@
 #include <iostream>
 
 Player::Player(char file_texture[]) {
-    if(!texture->loadFromFile(file_texture)) {
-//        std::cout << "Error file texture player" << std::endl;
-    } else {
-        this->texture->loadFromFile(file_texture);
-    }
+    sf::Image image;
+	if (!image.loadFromFile(file_texture)){
+		//        std::cout << "Error file texture player" << std::endl;
+    }else{
+        image.createMaskFromColor(sf::Color::Transparent);
+        texture->loadFromImage(image);
+	}
     //Player
     this->lives = 3;
     this->image_vector.top = 350;

@@ -62,6 +62,7 @@ private:
     * \details Bool to know if the menu is on or not
     */
     bool menu;
+    sf::Clock frameClock;
 };
 
 #endif // GAME_H
