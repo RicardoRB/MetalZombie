@@ -29,19 +29,19 @@
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-std=c++11" />
 			<Add option="-Wall" />
-			<Add directory="../Downloads/SFML-2.0-rc-64/include" />
-			<Add directory="../Downloads/SFML-2.0-rc/include" />
+			<Add option="-DSFML_STATIC" />
+			<Add directory="../Downloads/SFML-2.0/include" />
 			<Add directory="../Downloads/Thor/include" />
 		</Compiler>
 		<Linker>
-			<Add library="sfml-graphics" />
-			<Add library="sfml-window" />
-			<Add library="sfml-audio" />
-			<Add library="sfml-system" />
-			<Add library="thor" />
-			<Add directory="../Downloads/SFML-2.0-rc-64/lib" />
-			<Add directory="../Downloads/SFML-2.0-rc/lib" />
+			<Add library="sfml-graphics-s" />
+			<Add library="sfml-window-s" />
+			<Add library="sfml-audio-s" />
+			<Add library="sfml-system-s" />
+			<Add library="thor-s" />
+			<Add directory="../Downloads/SFML-2.0/lib" />
 			<Add directory="../Downloads/Thor/lib" />
 		</Linker>
 		<Unit filename="include/Block.h" />

@@ -27,18 +27,18 @@ Level::Level(char file_music[]) {
     this->player1 = new Player((char*)"res/images/characters/players/player1.png");
     this->livesFace = new Object((char*)"res/images/characters/players/player1.png");
     this->zombiesFace = new Object((char*)"res/images/characters/npc/enemys/zombies/cool_zombie_sprite_by_gvbn10-d39mzxg.png");
-    sf::IntRect cara;
-    cara.height = 26;
-    cara.left = 810;
-    cara.top = 272;
-    cara.width = 24;
-    this->livesFace->setObjectVector(cara);
+    sf::IntRect face;
+    face.height = 26;
+    face.left = 810;
+    face.top = 272;
+    face.width = 24;
+    this->livesFace->setObjectVector(face);
     this->livesFace->getSpriteObject()->setPosition(33.f,55.f);
-    cara.height = 23;
-    cara.left = 219;
-    cara.top = 383;
-    cara.width = 25;
-    this->zombiesFace->setObjectVector(cara);
+    face.height = 23;
+    face.left = 219;
+    face.top = 383;
+    face.width = 25;
+    this->zombiesFace->setObjectVector(face);
     this->zombiesFace->getSpriteObject()->setPosition(935.f,55.f);
 
     for(unsigned int i = 0; i < (sizeof(this->zombies)/sizeof(this->zombies[i])); i++) {

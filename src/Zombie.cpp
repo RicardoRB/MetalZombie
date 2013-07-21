@@ -6,28 +6,28 @@ Zombie::Zombie() {
 
 Zombie::Zombie(char file_texture[]) {
     sf::Image image;
-	if (!image.loadFromFile(file_texture)){
-		//        std::cout << "Error file texture player" << std::endl;
-    }else{
+    if (!image.loadFromFile(file_texture)) {
+        //        std::cout << "Error file texture player" << std::endl;
+    } else {
         image.createMaskFromColor(sf::Color::Transparent);
         texture->loadFromImage(image);
-	}
-	//Add walk animation
-	for(int i=214; i<413; i=i+66){
+    }
+    //Add walk animation
+    for(int i=214; i<413; i=i+66) {
         walk_frames.addFrame(1.f, sf::IntRect(i, 383, 55, 66));
-	}
-	this->animator.addAnimation("walk", walk_frames, sf::seconds(0.7f));
+    }
+    this->animator.addAnimation("walk", walk_frames, sf::seconds(0.7f));
 
-	//Add dead animation
-	for(int i=0; i<608; i=i+152){
+    //Add dead animation
+    for(int i=0; i<608; i=i+152) {
         die_frames.addFrame(1.f, sf::IntRect(i, 753, 123, 152));
-	}
+    }
 
-	for(int i=0; i<609; i=i+729){
+    for(int i=0; i<609; i=i+729) {
         die_frames.addFrame(1.f, sf::IntRect(i, 383, 55, 65));
-	}
+    }
 
-	this->animator.addAnimation("die", die_frames, sf::seconds(0.5f));
+    this->animator.addAnimation("die", die_frames, sf::seconds(0.5f));
     //Player
     this->sprite->setTexture(*texture);
     this->sprite->setOrigin(13.5,13.f);
@@ -45,7 +45,7 @@ Zombie::~Zombie() {
 }
 
 void Zombie::moveLeft() {
-    if(!this->animator.isPlayingAnimation()){
+    if(!this->animator.isPlayingAnimation()) {
         this->animator.playAnimation("walk", true);
     }
     this->lookLeft = true;

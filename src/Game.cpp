@@ -13,6 +13,7 @@ Game::Game() {
     this->level1 = NULL;
     window->create(sf::VideoMode(1024,768), "MetalZombie");
     window->setFramerateLimit(18);
+    window->setVerticalSyncEnabled(true);
     window->setMouseCursorVisible(false);
     while (this->window->isOpen()) {
         startMenu();
@@ -76,6 +77,7 @@ void Game::startMenu() {
 
 void Game::startGame() {
 
+
     //--------------------------------------------------------------------
     //-------------------------Player control-----------------------------
     //--------------------------------------------------------------------
@@ -105,7 +107,9 @@ void Game::startGame() {
             //(level1->blocks[i]->getSpriteObject()->getPosition().y - level1->blocks[i]->getSpriteObject()->getTexture()->getSize().y) + 4)
             //is needed to better collision with the image, I do not need to know the size of the image
             //and the "+4" because the player was floating, same with X position
-            if((level1->getPlayer()->getSprite()->getPosition().y != (level1->blocks[i]->getSpriteObject()->getPosition().y - level1->blocks[i]->getSpriteObject()->getTexture()->getSize().y) + 4) || (level1->getPlayer()->getSprite()->getPosition().x > (level1->blocks[(sizeof(level1->blocks)/sizeof(level1->blocks[i]))-1]->getSpriteObject()->getPosition().x + level1->getPlayer()->getSprite()->getTextureRect().width + 10))) {
+            if((level1->getPlayer()->getSprite()->getPosition().y !=
+                (level1->blocks[i]->getSpriteObject()->getPosition().y - level1->blocks[i]->getSpriteObject()->getTexture()->getSize().y) + 4) ||
+                (level1->getPlayer()->getSprite()->getPosition().x > (level1->blocks[(sizeof(level1->blocks)/sizeof(level1->blocks[i]))-1]->getSpriteObject()->getPosition().x + level1->getPlayer()->getSprite()->getTextureRect().width + 10))) {
                 level1->getPlayer()->falling();
             } else {
                 level1->getPlayer()->setVelY(0);
@@ -152,7 +156,7 @@ void Game::startGame() {
             //is needed to better collision with the image, I do not need to know the size of the image
             //and the "+4" because the player was floating, same with X position
             if((level1->zombies[j]->getSprite()->getPosition().y != (level1->blocks[i]->getSpriteObject()->getPosition().y - level1->blocks[i]->getSpriteObject()->getTexture()->getSize().y)) ||
-               (level1->zombies[j]->getSprite()->getPosition().x > (level1->blocks[(sizeof(level1->blocks)/sizeof(level1->blocks[i]))-1]->getSpriteObject()->getPosition().x + level1->zombies[j]->getSprite()->getTextureRect().width))) {
+                    (level1->zombies[j]->getSprite()->getPosition().x > (level1->blocks[(sizeof(level1->blocks)/sizeof(level1->blocks[i]))-1]->getSpriteObject()->getPosition().x + level1->zombies[j]->getSprite()->getTextureRect().width))) {
                 level1->zombies[j]->falling();
             } else {
                 level1->zombies[j]->setVelY(0);
@@ -180,9 +184,9 @@ void Game::startGame() {
     }
     //Draw IU
     if(this->level1->getPlayer()->getLives() <= 0 || this->level1->getPlayer()->getSprite()->getPosition().x >= 9900) {
-            if(this->level1->getPlayer()->getSprite()->getPosition().x >= 9900){
-                this->level1->getPlayer()->moveRight();
-            }
+        if(this->level1->getPlayer()->getSprite()->getPosition().x >= 9900) {
+            this->level1->getPlayer()->moveRight();
+        }
         window->draw(level1->getTextGameOver());
     }
     window->draw(level1->getTextTime());
@@ -225,7 +229,7 @@ void Game::startGame() {
         }
         //Collisions with the shot
         //Windows
-        if((level1->getPlayer()->getShot()->getPosWindowX() > 1040.f || level1->getPlayer()->getShot()->getPosWindowX() < 0)) {
+        if((level1->getPlayer()->getShot()->getPosWindowX() > window->getSize().x || level1->getPlayer()->getShot()->getPosWindowX() < 0)) {
             level1->getPlayer()->setAttacking(false);
             level1->getPlayer()->getShot()->setShot(true);
             level1->getPlayer()->getShot()->endShot();
@@ -234,16 +238,16 @@ void Game::startGame() {
             for(unsigned int i = 0; i < (sizeof(level1->zombies)/sizeof(level1->zombies[i])); i++) {
                 //Condition to kill the zombie if you are looking left or right and Y position of the shot
                 if((level1->zombies[i]->isLife() &&
-                   level1->getPlayer()->isLookingRight() &&
-                   (level1->getPlayer()->getShot()->getSpriteObject()->getPosition().x >= level1->zombies[i]->getSprite()->getPosition().x &&
-                        level1->getPlayer()->getShot()->getSpriteObject()->getPosition().y >= level1->zombies[i]->getSprite()->getPosition().y &&
-                        level1->getPlayer()->getSprite()->getPosition().x <= level1->zombies[i]->getSprite()->getPosition().x)) ||
-                   (level1->zombies[i]->isLife() &&
-                   level1->getPlayer()->isLookingLeft() &&
-                   (level1->getPlayer()->getShot()->getSpriteObject()->getPosition().x <= level1->zombies[i]->getSprite()->getPosition().x &&
-                        level1->getPlayer()->getShot()->getSpriteObject()->getPosition().y >= level1->zombies[i]->getSprite()->getPosition().y &&
-                        level1->getPlayer()->getSprite()->getPosition().x >= level1->zombies[i]->getSprite()->getPosition().x))) {
-                //End condition
+                        level1->getPlayer()->isLookingRight() &&
+                        (level1->getPlayer()->getShot()->getSpriteObject()->getPosition().x >= level1->zombies[i]->getSprite()->getPosition().x &&
+                         level1->getPlayer()->getShot()->getSpriteObject()->getPosition().y >= level1->zombies[i]->getSprite()->getPosition().y &&
+                         level1->getPlayer()->getSprite()->getPosition().x <= level1->zombies[i]->getSprite()->getPosition().x)) ||
+                        (level1->zombies[i]->isLife() &&
+                         level1->getPlayer()->isLookingLeft() &&
+                         (level1->getPlayer()->getShot()->getSpriteObject()->getPosition().x <= level1->zombies[i]->getSprite()->getPosition().x &&
+                          level1->getPlayer()->getShot()->getSpriteObject()->getPosition().y >= level1->zombies[i]->getSprite()->getPosition().y &&
+                          level1->getPlayer()->getSprite()->getPosition().x >= level1->zombies[i]->getSprite()->getPosition().x))) {
+                    //End condition
                     level1->getPlayer()->setAttacking(false);
                     level1->zombies[i]->die();
                     level1->getPlayer()->getShot()->setShot(true);
