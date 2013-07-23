@@ -32,9 +32,29 @@ public:
      */
     void setCamera(sf::View _camera);
     /*!
+     * \brief Return the sprite position in window
+     * \return float posWindowX
+    */
+    float getPosWindowX();
+    /*!
+    *\brief Set the posWindowX
+    * \param float _posWindowX
+    */
+    void setPosWindowX(float _posWindowX);
+    /*!
      * \brief Move the player to right
      */
     void moveRight();
+    /*!
+     * \brief Method to remain player
+     * \details Will put the sprite on the first frame and set movingLeft and movingRight false
+    */
+    void moveRemain();
+    /*!
+    * \brief Makes the character jump
+    * \details Will move up the character in Y direction and will change the boolean if the character did not end jumping
+    */
+    void jump();
     /*!
      * \brief Move the player to left
      */
@@ -60,6 +80,15 @@ public:
 
 protected:
 private:
+    /*!
+    * \details Player position X on the windows
+    */
+    float posWindowX;
+
+    /*!
+    * \details Player position Y on the windows
+    */
+    float posWindowY;
     /*!
     * \details Lives of the player
     */

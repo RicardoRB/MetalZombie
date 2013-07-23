@@ -25,6 +25,21 @@ public:
      * \details Subtract the position of the variable, flip the sprite to left and move the sprite to left.
     */
     void moveLeft();
+    /*!
+     * \brief Method to move the character to right
+     * \details Add the position of the variable, flip the sprite to right and move the sprite to right
+    */
+    void moveRight();
+    /*!
+     * \brief Method to remain player
+     * \details Will put the sprite on the first frame and set movingLeft and movingRight false
+    */
+    void moveRemain();
+    /*!
+    * \brief Makes the character jump
+    * \details Will move up the character in Y direction and will change the boolean if the character did not end jumping
+    */
+    void jump();
     virtual ~Zombie();
     /*!
      * \brief Attack the player passed

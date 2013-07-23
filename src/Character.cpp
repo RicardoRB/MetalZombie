@@ -18,12 +18,20 @@ Character::~Character() {
     delete sprite;
 }
 
+void Character::setVelX(float _velX) {
+    this->speed.x = _velX;
+}
+
 float Character::getVelX() {
-    return velX;
+    return speed.x;
 }
 
 void Character::setVelY(float _velY) {
-    this->velY = _velY;
+    this->speed.y = _velY;
+}
+
+float Character::getVelY() {
+    return speed.y;
 }
 
 bool Character::ismovingRight() {
@@ -44,6 +52,10 @@ void Character::setmovingLeft(bool moving) {
 
 bool Character::isJumping() {
     return jumping;
+}
+
+void Character::setJumping(bool _Jumping) {
+    this->jumping = _Jumping;
 }
 
 bool Character::isEndJumping() {
@@ -74,66 +86,12 @@ sf::Sprite* Character::getSprite() {
     return this->sprite;
 }
 
-float Character::getPosWindowX() {
-    return this->posWindowX;
-}
-
-void Character::setPosWindowX(float _posWindowX) {
-    this->posWindowX = _posWindowX;
-}
-
 bool Character::isLife() {
     return this->life;
 }
 
 void Character::setLife(bool _life) {
     this->life = _life;
-}
-
-void Character::moveRight() {
-    this->lookLeft = false;
-    this->lookRight = true;
-    this->movingLeft = false;
-    this->movingRight = true;
-    if(this->image_vector.left >= 432) {
-        this->image_vector.left = 112;
-    }
-    if(this->image_vector.left >= 112) {
-        this->image_vector.left += 52 + 12;
-    } else {
-        this->image_vector.left = 112;
-    }
-    this->sprite->setScale(-1.f,1.f);
-    this->sprite->setTextureRect(image_vector);
-}
-
-void Character::moveRemain() {
-    this->movingLeft = false;
-    this->movingRight = false;
-    this->image_vector.left = 40;
-    this->image_vector.top = 350;
-    this->image_vector.width = 52;
-    this->image_vector.height = 58;
-    this->sprite->setTextureRect(image_vector);
-}
-
-void Character::jump() {
-    //The player go the maximum position to jump
-    if(this->sprite->getPosition().y <= 550.f) {
-        this->jumping = true;
-        endJumping = false;
-        this->velY = 0;
-    } else {
-        this->velY = -12.f;
-    }
-    this->sprite->move(0,velY);
-}
-
-void Character::falling() {
-    jumping = false;
-    endJumping = false;
-    this->velY = 1.f;
-    this->sprite->move(0,velY);
 }
 
 void Character::attack() {

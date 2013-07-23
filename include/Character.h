@@ -17,21 +17,24 @@ public:
     virtual ~Character();
 
     /*!
-    * \details Vector to make the animation move
-    */
-    sf::IntRect image_vector;
-
-    /*!
      * \brief Return the velocity of coordinate X
      * \return Method to return velX
     */
     float getVelX();
 
     /*!
+     * \brief Return the velocity of coordinate X
+     * \return Method to return velX
+    */
+    float getVelY();
+
+    /*!
      * \brief Method to set velY value
      * \param _velY float
     */
     void setVelY(float _velY);
+
+    void setVelX(float _velX);
 
     /*!
     * \brief Method to return movingRight
@@ -62,6 +65,8 @@ public:
     */
     bool isJumping();
 
+    void setJumping(bool _Jumping);
+
     /*!
      * \brief Return if the character is end jumping
      * \return Method to return endJumping
@@ -73,6 +78,7 @@ public:
      * \param _endJumping bool
      */
     void setEndJumping(bool _endJumping);
+
 
     /*!
      * \brief Return if the character is end attacking
@@ -110,16 +116,6 @@ public:
     */
     sf::Sprite* getSprite();
     /*!
-     * \brief Return the sprite position in window
-     * \return float posWindowX
-    */
-    float getPosWindowX();
-    /*!
-    *\brief Set the posWindowX
-    * \param float _posWindowX
-    */
-    void setPosWindowX(float _posWindowX);
-    /*!
      * \brief Method that character attack
     */
     virtual void attack();
@@ -128,7 +124,7 @@ public:
      * \brief Method to move the character to right
      * \details Add the position of the variable, flip the sprite to right and move the sprite to right
     */
-    virtual void moveRight();
+    virtual void moveRight() = 0;
 
     /*!
      * \brief Method to move the character to left
@@ -141,18 +137,12 @@ public:
      * \brief Method to remain player
      * \details Will put the sprite on the first frame and set movingLeft and movingRight false
     */
-    void moveRemain();
+    virtual void moveRemain() = 0;
     /*!
     * \brief Makes the character jump
     * \details Will move up the character in Y direction and will change the boolean if the character did not end jumping
     */
-    void jump();
-
-    /*!
-     * \brief Do the character falling
-     * \details Will move down the character in Y direction and will change the boolean if the character did end jumping
-    */
-    virtual void falling();
+    virtual void jump() = 0;
 
     /*!
      * \brief The character die
@@ -174,6 +164,7 @@ protected:
 
     thor::FrameAnimation walk_frames;
     thor::FrameAnimation die_frames;
+    thor::FrameAnimation remain_frames;
 
     /*!
     * \details If the characters is living, then true, else will be false
@@ -201,24 +192,9 @@ protected:
     bool endJumping;
 
     /*!
-    * \details Velocity of the character in X coordinate
+    * \details Velocity of the character
     */
-    float velX;
-
-    /*!
-    * \details Velocity of the character in Y coordinate
-    */
-    float velY;
-
-    /*!
-    * \details Player position X on the windows
-    */
-    float posWindowX;
-
-    /*!
-    * \details Player position Y on the windows
-    */
-    float posWindowY;
+    sf::Vector2f speed;
 
     /*!
     * \details If the player is attacking then will be true, else, will be false

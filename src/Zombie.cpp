@@ -30,13 +30,11 @@ Zombie::Zombie(char file_texture[]) {
     this->animator.addAnimation("die", die_frames, sf::seconds(0.5f));
     //Player
     this->sprite->setTexture(*texture);
-    this->sprite->setOrigin(13.5,13.f);
+    this->sprite->setOrigin(25.f,31.5f);
     this->sprite->setScale(-1.f,1.f);
-    this->velX = 1;
+    this->speed.x = 1;
     this->lookRight = false;
     this->lookLeft = true;
-    this->posWindowX = this->sprite->getPosition().x;
-    this->posWindowY = this->sprite->getPosition().y;
     this->animator.playAnimation("walk", true);
 }
 
@@ -48,18 +46,31 @@ void Zombie::moveLeft() {
     if(!this->animator.isPlayingAnimation()) {
         this->animator.playAnimation("walk", true);
     }
+    this->sprite->setScale(-1.f,1.f);
     this->lookLeft = true;
     this->lookRight = false;
     this->movingRight = false;
     this->movingLeft = true;
-    this->posWindowX -= velX;
-    this->sprite->move(-velX,velY);
+    this->sprite->move(-speed.x,speed.y);
+    this->attacking = false;
+}
+
+void Zombie::moveRight() {
+    if(!this->animator.isPlayingAnimation()) {
+        this->animator.playAnimation("walk", true);
+    }
+    this->sprite->setScale(1.f,1.f);
+    this->lookLeft = true;
+    this->lookRight = false;
+    this->movingRight = false;
+    this->movingLeft = true;
+    this->sprite->move(-speed.x,speed.y);
     this->attacking = false;
 }
 
 void Zombie::attack(Player *_player) {
     this->animator.stopAnimation();
-    this->image_vector.top = 559;
+    /*this->image_vector.top = 559;
     this->image_vector.width = 84;
     this->image_vector.height = 77;
     this->sprite->setPosition(this->sprite->getPosition().x,this->sprite->getPosition().y - 15);
@@ -72,15 +83,27 @@ void Zombie::attack(Player *_player) {
             _player->die();
         }
     }
-    this->sprite->setTextureRect(image_vector);
+    this->sprite->setTextureRect(image_vector);*/
+    _player->die();
     this->attacking = true;
 }
 
 void Zombie::die() {
-    this->sprite->setOrigin(34.5,76.f);
+    this->sprite->setOrigin(77.f,62.f);
     this->animator.playAnimation("die");
     this->movingLeft = false;
     this->attacking = false;
     this->life = false;
+}
+
+void Zombie::moveRemain() {
+    this->movingLeft = false;
+    this->movingRight = false;
+}
+
+void Zombie::jump() {
+    //The player go the maximum position to jump
+    this->jumping = true;
+    this->setVelY(-400.f);
 }
 

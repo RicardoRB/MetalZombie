@@ -12,7 +12,7 @@ Game::Game() {
     this->menu = true;
     this->level1 = NULL;
     window->create(sf::VideoMode(1024,768), "MetalZombie");
-    window->setFramerateLimit(18);
+    //window->setFramerateLimit(60);
     window->setVerticalSyncEnabled(true);
     window->setMouseCursorVisible(false);
     while (this->window->isOpen()) {
@@ -76,11 +76,12 @@ void Game::startMenu() {
 }
 
 void Game::startGame() {
-
-
     //--------------------------------------------------------------------
     //-------------------------Player control-----------------------------
     //--------------------------------------------------------------------
+
+    //Needed to do all animations
+    sf::Time frame_time;
     //If the player is not moving, then the sprite will draw like standing
     if((!level1->getPlayer()->ismovingLeft() && !level1->getPlayer()->ismovingRight()) && level1->getPlayer()->isLife()) {
         level1->getPlayer()->moveRemain();
@@ -97,32 +98,11 @@ void Game::startGame() {
         }
     }
 
-    if((sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Joystick::getAxisPosition(0, sf::Joystick::Y) == -100) && (level1->getPlayer()->isEndJumping() && !level1->getPlayer()->isJumping())) {
-        if(level1->getPlayer()->isLife()) {
-            level1->getPlayer()->jump();
-        }
-    } else {
-        for(unsigned int i = 0; i < (sizeof(level1->blocks)/sizeof(level1->blocks[i])); i++) {
-            //If the player is not on the block, he will fall
-            //(level1->blocks[i]->getSpriteObject()->getPosition().y - level1->blocks[i]->getSpriteObject()->getTexture()->getSize().y) + 4)
-            //is needed to better collision with the image, I do not need to know the size of the image
-            //and the "+4" because the player was floating, same with X position
-            if((level1->getPlayer()->getSprite()->getPosition().y !=
-                (level1->blocks[i]->getSpriteObject()->getPosition().y - level1->blocks[i]->getSpriteObject()->getTexture()->getSize().y) + 4) ||
-                (level1->getPlayer()->getSprite()->getPosition().x > (level1->blocks[(sizeof(level1->blocks)/sizeof(level1->blocks[i]))-1]->getSpriteObject()->getPosition().x + level1->getPlayer()->getSprite()->getTextureRect().width + 10))) {
-                level1->getPlayer()->falling();
-            } else {
-                level1->getPlayer()->setVelY(0);
-                level1->getPlayer()->setEndJumping(true);
-            }
-        }
-    }
 
     if(((sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || sf::Joystick::isButtonPressed(0,0)) && !level1->getPlayer()->isAtacking())) {
         if(this->level1->getPlayer()->isLife()) {
             this->level1->getPlayer()->attack();
         } else {
-
             if(this->level1->getPlayer()->getLives() > 0) {
                 this->level1->getPlayer()->setCamera(window->getDefaultView());
                 this->level1->restart();
@@ -130,37 +110,73 @@ void Game::startGame() {
         }
     }
 
-    if((sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Joystick::getAxisPosition(0, sf::Joystick::X) == 100)) {
-        if(level1->getPlayer()->isLife()) {
-            level1->getPlayer()->moveRight();
-            level1->moveUI();
-        }
+    // Adjust vertical speed
+    if(level1->getPlayer()->isEndJumping()) {
+        level1->getPlayer()->setVelY(this->level1->gravity);
+    } else if(level1->getPlayer()->getVelY() < this->level1->gravity) {
+        level1->getPlayer()->setVelY(level1->getPlayer()->getVelY() + 10.f);
+    } else if(level1->getPlayer()->getVelY() > this->level1->gravity) {
+        level1->getPlayer()->setVelY(this->level1->gravity);
+    }
+
+    // Horizontal movement
+    if(level1->getPlayer()->getVelX() > 6.f) {
+        level1->getPlayer()->setVelX(level1->getPlayer()->getVelX() - 3.f);
+    } else if(level1->getPlayer()->getVelX() < -6.f) {
+        level1->getPlayer()->setVelX(level1->getPlayer()->getVelX() + 3.f);
+    } else {
+        level1->getPlayer()->setVelX(0.f);
+    }
+
+    if((sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Joystick::getAxisPosition(0, sf::Joystick::X) == 100 || sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) && level1->getPlayer()->isLife()) {
+        level1->getPlayer()->moveRight();
+        level1->moveUI();
     } else {
         level1->getPlayer()->setmovingRight(false);
     }
 
-    if((sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Joystick::getAxisPosition(0, sf::Joystick::X) == -100)) {
-        if(level1->getPlayer()->isLife()) {
-            level1->getPlayer()->moveLeft();
-        }
+    if((sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Joystick::getAxisPosition(0, sf::Joystick::X) == -100 || sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) && level1->getPlayer()->isLife()) {
+        level1->getPlayer()->moveLeft();
     } else {
         level1->getPlayer()->setmovingLeft(false);
     }
+
+    if((sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Joystick::getAxisPosition(0, sf::Joystick::Y) == -100 || sf::Keyboard::isKeyPressed(sf::Keyboard::Up))  && level1->getPlayer()->isEndJumping() && level1->getPlayer()->isLife()) {
+        level1->getPlayer()->jump();
+    }
+
+    frame_time = frameClock.restart();
+    level1->getPlayer()->getSprite()->setPosition(level1->getPlayer()->getSprite()->getPosition().x + level1->getPlayer()->getVelX() * frame_time.asSeconds(),
+            level1->getPlayer()->getSprite()->getPosition().y + level1->getPlayer()->getVelY() * frame_time.asSeconds());
+    level1->getPlayer()->setPosWindowX(level1->getPlayer()->getSprite()->getPosition().x);
+
+    //Collisions
+    for(unsigned int i = 0; i < (sizeof(level1->blocks)/sizeof(level1->blocks[i])); i++) {
+        if(level1->blocks[i]->getSpriteObject()->getGlobalBounds().intersects(level1->getPlayer()->getSprite()->getGlobalBounds())) {
+            level1->getPlayer()->getSprite()->setPosition(level1->getPlayer()->getSprite()->getPosition().x,
+                    level1->blocks[i]->getSpriteObject()->getPosition().y - (level1->getPlayer()->getSprite()->getOrigin().y));
+            level1->getPlayer()->setEndJumping(true);
+            level1->getPlayer()->setJumping(false);
+        }
+    }
+    if(level1->getPlayer()->isJumping()) {
+        level1->getPlayer()->setEndJumping(false);
+    }
+
     //--------------------------------------------------------------------
     //-------------------------Enemy IA-----------------------------------
     //--------------------------------------------------------------------
     for(unsigned int j = 0; j < (sizeof(level1->zombies)/sizeof(level1->zombies[j])); j++) {
         for(unsigned int i = 0; i < (sizeof(level1->blocks)/sizeof(level1->blocks[i])); i++) {
-            //If the player is not on the block, he will fall
-            //(level1->blocks[i]->getSpriteObject()->getPosition().y - level1->blocks[i]->getSpriteObject()->getTexture()->getSize().y) + 4)
-            //is needed to better collision with the image, I do not need to know the size of the image
-            //and the "+4" because the player was floating, same with X position
-            if((level1->zombies[j]->getSprite()->getPosition().y != (level1->blocks[i]->getSpriteObject()->getPosition().y - level1->blocks[i]->getSpriteObject()->getTexture()->getSize().y)) ||
-                    (level1->zombies[j]->getSprite()->getPosition().x > (level1->blocks[(sizeof(level1->blocks)/sizeof(level1->blocks[i]))-1]->getSpriteObject()->getPosition().x + level1->zombies[j]->getSprite()->getTextureRect().width))) {
-                level1->zombies[j]->falling();
-            } else {
-                level1->zombies[j]->setVelY(0);
+            if(level1->blocks[i]->getSpriteObject()->getGlobalBounds().intersects(level1->zombies[j]->getSprite()->getGlobalBounds())) {
+                level1->zombies[j]->getSprite()->setPosition(level1->zombies[j]->getSprite()->getPosition().x,
+                        level1->blocks[i]->getSpriteObject()->getPosition().y - (level1->zombies[j]->getSprite()->getOrigin().y));
+                level1->zombies[j]->setEndJumping(true);
+                level1->zombies[j]->setJumping(false);
             }
+        }
+        if(level1->zombies[j]->isJumping()) {
+            level1->zombies[j]->setEndJumping(false);
         }
 
         if(level1->zombies[j]->isLife()) {
@@ -172,49 +188,6 @@ void Game::startGame() {
         }
     }
 
-    window->clear(sf::Color(52,28,27));
-    window->setView(level1->getPlayer()->getCamera());
-    //Draw skies
-    for(unsigned int i = 0; i<(sizeof(level1->skies)/sizeof(level1->skies[i])); i++) {
-        window->draw(*level1->skies[i]->getSpriteObject());
-    }
-    //Draw builders
-    for(unsigned int i = 0; i<(sizeof(level1->builders)/sizeof(level1->builders[i])); i++) {
-        window->draw(*level1->builders[i]->getSpriteObject());
-    }
-    //Draw IU
-    if(this->level1->getPlayer()->getLives() <= 0 || this->level1->getPlayer()->getSprite()->getPosition().x >= 9900) {
-        if(this->level1->getPlayer()->getSprite()->getPosition().x >= 9900) {
-            this->level1->getPlayer()->moveRight();
-        }
-        window->draw(level1->getTextGameOver());
-    }
-    window->draw(level1->getTextTime());
-    window->draw(*level1->getLivesFace()->getSpriteObject());
-    window->draw(level1->getTextLives());
-    window->draw(*level1->getZombiesFace()->getSpriteObject());
-    window->draw(level1->getTextZombies());
-
-
-    //Draw the blocks
-    for(unsigned int i = 0; i<(sizeof(level1->blocks)/sizeof(level1->blocks[i])); i++) {
-        window->draw(*level1->blocks[i]->getSpriteObject());
-    }
-    //Draw soldiers friends
-    for(unsigned int i = 0; i<(sizeof(level1->soldiers)/sizeof(level1->soldiers[i])); i++) {
-        window->draw(*level1->soldiers[i]->getSpriteObject());
-    }
-    //Draw the player
-    window->draw(*level1->getPlayer()->getSprite());
-    //Needed to do all animations
-    sf::Time time;
-    time = frameClock.restart();
-    //Draw enemys
-    for(unsigned int j = 0; j < (sizeof(level1->zombies)/sizeof(level1->zombies[j])); j++) {
-        level1->zombies[j]->animator.update(time);
-        level1->zombies[j]->animator.animate(*level1->zombies[j]->getSprite());
-        window->draw(*level1->zombies[j]->getSprite());
-    }
     if(level1->getPlayer()->isAtacking()) {
         if(level1->getPlayer()->getShot()->isShot()) {
             if(level1->getPlayer()->isLookingRight()) {
@@ -258,10 +231,56 @@ void Game::startGame() {
                 }
             }
         }
-        window->draw(*(level1->getPlayer()->getShot()->getSpriteObject()));
+    }
+
+    window->clear(sf::Color(52,28,27));
+    window->setView(level1->getPlayer()->getCamera());
+
+    //--------------------------------------------------------------------
+    //-------------------------Draw Everything-----------------------------------
+    //--------------------------------------------------------------------
+    //Draw skies
+    for(unsigned int i = 0; i<(sizeof(level1->skies)/sizeof(level1->skies[i])); i++) {
+        window->draw(*level1->skies[i]->getSpriteObject());
+    }
+    //Draw builders
+    for(unsigned int i = 0; i<(sizeof(level1->builders)/sizeof(level1->builders[i])); i++) {
+        window->draw(*level1->builders[i]->getSpriteObject());
+    }
+    //Draw IU
+    if(this->level1->getPlayer()->getLives() <= 0 || this->level1->getPlayer()->getSprite()->getPosition().x >= 9900) {
+        if(this->level1->getPlayer()->getSprite()->getPosition().x >= 9900) {
+            this->level1->getPlayer()->moveRight();
+        }
+        window->draw(level1->getTextGameOver());
+    }
+    window->draw(level1->getTextTime());
+    window->draw(*level1->getLivesFace()->getSpriteObject());
+    window->draw(level1->getTextLives());
+    window->draw(*level1->getZombiesFace()->getSpriteObject());
+    window->draw(level1->getTextZombies());
+    //Draw the blocks
+    for(unsigned int i = 0; i<(sizeof(level1->blocks)/sizeof(level1->blocks[i])); i++) {
+        window->draw(*level1->blocks[i]->getSpriteObject());
+    }
+    //Draw soldiers friends
+    for(unsigned int i = 0; i<(sizeof(level1->soldiers)/sizeof(level1->soldiers[i])); i++) {
+        window->draw(*level1->soldiers[i]->getSpriteObject());
+    }
+    //Draw shot
+    window->draw(*(level1->getPlayer()->getShot()->getSpriteObject()));
+    //Draw the player
+    level1->getPlayer()->animator.update(frame_time);
+    level1->getPlayer()->animator.animate(*level1->getPlayer()->getSprite());
+    window->draw(*level1->getPlayer()->getSprite());
+
+    //Draw enemys
+    for(unsigned int j = 0; j < (sizeof(level1->zombies)/sizeof(level1->zombies[j])); j++) {
+        level1->zombies[j]->animator.update(frame_time);
+        level1->zombies[j]->animator.animate(*level1->zombies[j]->getSprite());
+        window->draw(*level1->zombies[j]->getSprite());
     }
     window->display();
-
 }
 
 void Game::takeScreenshot() {

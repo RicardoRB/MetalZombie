@@ -157,7 +157,7 @@ sf::Text Level::getTextLives() {
 }
 
 sf::Text Level::getTextGameOver() {
-    if(!this->endGame){
+    if(!this->endGame) {
         this->soundEffect->play();
         this->endGame = true;
     }

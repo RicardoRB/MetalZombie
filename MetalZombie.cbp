@@ -36,6 +36,7 @@
 			<Add directory="../Downloads/Thor/include" />
 		</Compiler>
 		<Linker>
+			<Add option="-static-libgcc" />
 			<Add library="sfml-graphics-s" />
 			<Add library="sfml-window-s" />
 			<Add library="sfml-audio-s" />

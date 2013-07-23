@@ -26,6 +26,8 @@ public:
     Level(char file_music[]);
     virtual ~Level();
 
+    const float gravity = 980.f;
+
     /*!
      * \brief Return the player in the level
      * \return Player*
