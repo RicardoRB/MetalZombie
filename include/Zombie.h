@@ -53,8 +53,8 @@ public:
     */
     void die();
 protected:
+    thor::FrameAnimation attack_frames;
 private:
-
 };
 
 #endif // ZOMBIE_H

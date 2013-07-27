@@ -17,7 +17,7 @@ Menu::Menu() {
 
     }
     this->optionIcon = new Object((char*)"res/images/menu/option_icon.png");
-    this->optionIcon->getSpriteObject()->setPosition(320.f,430.f);
+    this->optionIcon->getSprite()->setPosition(320.f,430.f);
 
     this->bufferEffect = new sf::SoundBuffer();
     this->soundEffect = new sf::Sound();

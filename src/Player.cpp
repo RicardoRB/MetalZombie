@@ -11,22 +11,21 @@ Player::Player(char file_texture[]) {
     }
     //Add walk animation
     for(int i=112; i<433; i=i+64) {
-        walk_frames.addFrame(1.f, sf::IntRect(i, 350, 54, 55));
+        walk_frames.addFrame(1.f, sf::IntRect(i, 350.f, 54.f, 55.f));
     }
     this->animator.addAnimation("walk", walk_frames, sf::seconds(1.f));
 
     //Add die animation
-    die_frames.addFrame(1.f, sf::IntRect(1072, 232, 56, 24));
+    die_frames.addFrame(1.f, sf::IntRect(1072.f, 232.f, 56.f, 24.f));
     this->animator.addAnimation("die", die_frames, sf::seconds(1.f));
 
     //Add remain animation
-    remain_frames.addFrame(1.f, sf::IntRect(40, 352, 52, 54));
+    remain_frames.addFrame(1.f, sf::IntRect(40.f, 352.f, 52.f, 54.f));
     this->animator.addAnimation("remain", remain_frames, sf::seconds(1.f));
 
     this->lives = 3;
     this->sprite->setTexture(*texture);
-    this->sprite->setOrigin(26.f,27.f);
-    this->sprite->setPosition(100.f,100.f);
+    this->sprite->setOrigin(27.f,26.f);
     this->sprite->setScale(-1.f,1.f);
     this->attacking = false;
     this->lookRight = true;
@@ -62,14 +61,8 @@ void Player::moveRight() {
         //Will move the player until the end of the picture
         //when the player arrive at the end of the picture, will move normal
         if(this->sprite->getPosition().x <= 9728) {
-            this->sprite->move(2.f,0);
-            this->camera.move(2.f,0);
-        } else {
-            //The player will not can go out the window
-            if(this->posWindowX <= 960) {
-                this->posWindowX += speed.x;
-                this->sprite->move(speed.x,speed.y);
-            }
+            this->sprite->move(3.f,0);
+            this->camera.move(3.f,0);
         }
     }
 }
@@ -85,16 +78,16 @@ void Player::moveLeft() {
     }
     this->sprite->setScale(1.f,1.f);
     //The player will not can go out the window
-    if(this->posWindowX >= 50) {
+    if(this->posWindowX >= 50.f) {
         this->setVelX(-120.f);
     }
+
 }
 
 void Player::attack() {
     this->attacking = true;
     this->shot->playShot();
-    this->shot->getSpriteObject()->setPosition(this->sprite->getPosition().x,this->sprite->getPosition().y);
-    this->shot->setPosWindowX(this->shot->getSpriteObject()->getPosition().x);
+    this->shot->getSprite()->setPosition(this->sprite->getPosition().x,this->sprite->getPosition().y);
 }
 
 void Player::die() {
@@ -133,12 +126,8 @@ int Player::getLives() {
     return this->lives;
 }
 
-float Player::getPosWindowX() {
+float Player::getPosWindowX(sf::RenderWindow *_window) {
+    sf::Vector2i worldPos = _window->mapCoordsToPixel(this->getSprite()->getPosition());
+    this->posWindowX = worldPos.x;
     return this->posWindowX;
 }
-
-void Player::setPosWindowX(float _posWindowX) {
-    this->posWindowX = _posWindowX;
-}
-
-

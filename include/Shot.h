@@ -25,7 +25,7 @@ public:
      * \brief Return position in X coordinate on window
      * \return float posWindowX
      */
-    float getPosWindowX();
+    float getPosWindowX(sf::RenderWindow *_window);
     /*!
      * \brief Return velocity in X coordinate
      * \return float velX

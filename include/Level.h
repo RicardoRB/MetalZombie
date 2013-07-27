@@ -41,7 +41,7 @@ public:
     /*!
     * \details Array of the blocks, static because I need use it with collisions
     */
-    Block *blocks[320];
+    Block *blocks[340];
     /*!
     * \details Array of the builders
     */
@@ -106,8 +106,10 @@ public:
      * \brief Move the UI on the window
      * \details This method will move all the UI when the player move the camera
      */
-    void moveUI();
+    void moveUI(sf::RenderWindow *_window);
     void restart();
+    void verticalSpeed(Character *_character, float speedY);
+    void horizontalSpeed(Character *_character, float MaxSpeedX, float decreaseX);
 protected:
 private:
     /*!

@@ -63,6 +63,7 @@ private:
     */
     bool menu;
     sf::Clock frameClock;
+    float lastTimeFPS = 0;
 };
 
 #endif // GAME_H

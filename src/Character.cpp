@@ -93,7 +93,3 @@ bool Character::isLife() {
 void Character::setLife(bool _life) {
     this->life = _life;
 }
-
-void Character::attack() {
-
-}

@@ -35,12 +35,7 @@ public:
      * \brief Return the sprite position in window
      * \return float posWindowX
     */
-    float getPosWindowX();
-    /*!
-    *\brief Set the posWindowX
-    * \param float _posWindowX
-    */
-    void setPosWindowX(float _posWindowX);
+    float getPosWindowX(sf::RenderWindow *_window);
     /*!
      * \brief Move the player to right
      */
@@ -100,7 +95,7 @@ private:
     /*!
     * \details Camera to move the player and the view window
     */
-    sf::View camera;;
+    sf::View camera;
 };
 
 #endif // PLAYER_H

@@ -79,7 +79,6 @@ public:
      */
     void setEndJumping(bool _endJumping);
 
-
     /*!
      * \brief Return if the character is end attacking
      * \return bool attacking
@@ -115,10 +114,6 @@ public:
      * \return sf::Sprite* sprite
     */
     sf::Sprite* getSprite();
-    /*!
-     * \brief Method that character attack
-    */
-    virtual void attack();
 
     /*!
      * \brief Method to move the character to right

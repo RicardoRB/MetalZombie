@@ -11,9 +11,9 @@ Shot::Shot(char file_texture[], char file_sound[]) : Object(file_texture) {
     this->shot_vector.left = 1266;
     this->shot_vector.width = 16;
     this->shot_vector.height = 16;
-    this->getSpriteObject()->setTextureRect(this->shot_vector);
+    this->getSprite()->setTextureRect(this->shot_vector);
     this->path_sound = file_sound;
-    this->velX = 1.5f;
+    this->velX = 10.f;
     this->shot = true;
     this->endShot();
 }
@@ -24,23 +24,20 @@ Shot::~Shot() {
 
 void Shot::moveShot(bool _right) {
     if(_right) {
-        this->getSpriteObject()->move(this->getVelX(),0);
-        this->setPosWindowX((this->getPosWindowX()+this->getVelX()));
+        this->velX = 10.f;
     } else {
-        this->getSpriteObject()->move(-this->getVelX(),0);
-        this->setPosWindowX((this->getPosWindowX()-this->getVelX()));
+        this->velX = -10.f;
     }
 }
 
 void Shot::endShot() {
-    this->getSpriteObject()->setPosition(-50,-50);
+    this->setShot(true);
+    this->getSprite()->setPosition(-50.f,-50.f);
 }
 
-void Shot::setPosWindowX(float _posWindowX) {
-    posWindowX = _posWindowX;
-}
-
-float Shot::getPosWindowX() {
+float Shot::getPosWindowX(sf::RenderWindow *_window) {
+    sf::Vector2i worldPos = _window->mapCoordsToPixel(this->getSprite()->getPosition());
+    this->posWindowX = worldPos.x;
     return this->posWindowX;
 }
 

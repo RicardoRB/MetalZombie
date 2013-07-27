@@ -25,7 +25,7 @@ Object::~Object() {
     delete objectImage;
 }
 
-sf::Sprite* Object::getSpriteObject() {
+sf::Sprite* Object::getSprite() {
     return this->object;
 }
 

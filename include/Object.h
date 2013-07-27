@@ -24,7 +24,7 @@ public:
     * \brief Return the sprite of the object
     * \return sf::Sprite*
     */
-    sf::Sprite* getSpriteObject();
+    sf::Sprite* getSprite();
     /*!
     * \brief Return tIntRect to the picture position
     * \return sf::IntRect
