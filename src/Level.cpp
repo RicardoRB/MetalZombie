@@ -21,6 +21,9 @@ Level::Level(char file_music[]) {
         this->gameOverText.setPosition(362.f,384.f);
         this->gameOverText.setCharacterSize(150U);
         this->gameOverText.setString("Game Over");
+        this->FPSText.setFont(this->font);
+        this->FPSText.setColor(sf::Color::Red);
+        this->FPSText.setPosition(730.f,55.f);
     }
     this->contZombies = 0;
     //I create the player and music in the level
@@ -139,6 +142,7 @@ void Level::moveUI(sf::RenderWindow *_window) {
         this->zombiesText.setPosition(this->getPlayer()->getSprite()->getPosition().x + 450.f,55.f);
         this->zombiesFace->getSprite()->setPosition(this->getPlayer()->getSprite()->getPosition().x + 415.f,55.f);
         this->gameOverText.setPosition(this->getPlayer()->getSprite()->getPosition().x - 158.f ,384.f);
+        this->FPSText.setPosition(this->getPlayer()->getSprite()->getPosition().x + 210.f,55.f);
     }
 }
 sf::Text Level::getTextTime() {
@@ -179,6 +183,13 @@ sf::Text Level::getTextZombies() {
     zombiesString << "x " << this->getContZombies();
     this->zombiesText.setString(zombiesString.str());
     return this->zombiesText;
+}
+
+sf::Text Level::getTextFPS() {
+    std::stringstream FPSString;
+    FPSString << "FPS: " << (int)this->fps;
+    this->FPSText.setString(FPSString.str());
+    return this->FPSText;
 }
 
 int Level::getContZombies() {
@@ -242,5 +253,12 @@ void Level::horizontalSpeed(Character *_character, float MaxSpeedX, float decrea
     } else {
         _character->setVelX(0.f);
     }
+}
 
+float Level::getFPS(){
+    return this->fps;
+}
+
+void Level::setFPS(float _fps){
+    this->fps = _fps;
 }

@@ -80,6 +80,11 @@ public:
      */
     sf::Text getTextGameOver();
     /*!
+     * \brief Return the text of FPS
+     * \return sf::Text TextFPS
+     */
+    sf::Text getTextFPS();
+    /*!
      * \brief Return the Object livesFace to the IU
      * \details Face picture on UI to lives
      * \return Object* livesFace
@@ -110,6 +115,8 @@ public:
     void restart();
     void verticalSpeed(Character *_character, float speedY);
     void horizontalSpeed(Character *_character, float MaxSpeedX, float decreaseX);
+    float getFPS();
+    void setFPS(float _fps);
 protected:
 private:
     /*!
@@ -153,6 +160,10 @@ private:
     */
     sf::Text gameOverText;
     /*!
+    * \details Text of FPS
+    */
+    sf::Text FPSText;
+    /*!
     * \details Clock delay when the level start
     */
     sf::Clock clockTime;
@@ -176,6 +187,7 @@ private:
     * \details When the game is finished
     */
     bool endGame;
+    float fps;
 };
 
 #endif // LEVEL_H

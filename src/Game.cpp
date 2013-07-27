@@ -220,8 +220,7 @@ void Game::startGame() {
     this->window->setView(this->level1->getPlayer()->getCamera());
 
     //Taking fps
-    float fps = 1.f / frame_time.asSeconds();
-    lastTimeFPS = frame_time.asSeconds();
+    this->level1->setFPS(1.f / frame_time.asSeconds());
 
     //--------------------------------------------------------------------
     //-------------------------Draw Everything-----------------------------------
@@ -234,18 +233,6 @@ void Game::startGame() {
     for(unsigned int i = 0; i<(sizeof(this->level1->builders)/sizeof(this->level1->builders[i])); i++) {
         this->window->draw(*this->level1->builders[i]->getSprite());
     }
-    //Draw IU
-    if(this->level1->getPlayer()->getLives() <= 0 || this->level1->getPlayer()->getSprite()->getPosition().x >= 9900) {
-        if(this->level1->getPlayer()->getSprite()->getPosition().x >= 9900) {
-            this->level1->getPlayer()->moveRight();
-        }
-        this->window->draw(this->level1->getTextGameOver());
-    }
-    this->window->draw(this->level1->getTextTime());
-    this->window->draw(*this->level1->getLivesFace()->getSprite());
-    this->window->draw(this->level1->getTextLives());
-    this->window->draw(*this->level1->getZombiesFace()->getSprite());
-    this->window->draw(this->level1->getTextZombies());
     //Draw the blocks
     for(unsigned int i = 0; i<(sizeof(this->level1->blocks)/sizeof(this->level1->blocks[i])); i++) {
         this->window->draw(*this->level1->blocks[i]->getSprite());
@@ -266,6 +253,20 @@ void Game::startGame() {
         this->level1->zombies[j]->animator.update(frame_time);
         this->level1->zombies[j]->animator.animate(*this->level1->zombies[j]->getSprite());
         this->window->draw(*this->level1->zombies[j]->getSprite());
+    }
+
+    //Draw IU
+    this->window->draw(this->level1->getTextTime());
+    this->window->draw(*this->level1->getLivesFace()->getSprite());
+    this->window->draw(this->level1->getTextLives());
+    this->window->draw(*this->level1->getZombiesFace()->getSprite());
+    this->window->draw(this->level1->getTextZombies());
+    this->window->draw(this->level1->getTextFPS());
+    if(this->level1->getPlayer()->getLives() <= 0 || this->level1->getPlayer()->getSprite()->getPosition().x >= 9900) {
+        if(this->level1->getPlayer()->getSprite()->getPosition().x >= 9900) {
+            this->level1->getPlayer()->moveRight();
+        }
+        this->window->draw(this->level1->getTextGameOver());
     }
     this->window->display();
 }
