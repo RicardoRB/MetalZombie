@@ -9,14 +9,7 @@ Object::Object() {
 Object::Object(char file_texture[]) {
     objectImage = new sf::Texture();
     object = new sf::Sprite();
-    if(!this->objectImage->loadFromFile(file_texture)) {
-//        std::cout << "Error file texture player" << std::endl;
-    } else {
-        this->objectImage->loadFromFile(file_texture);
-    }
-    //this->objectImage->setRepeated(true);
-    this->object->setTexture(*objectImage);
-
+    this->changeTexture(file_texture);
 }
 
 Object::~Object() {
@@ -36,4 +29,13 @@ sf::IntRect Object::getObjectVector() {
 void Object::setObjectVector(sf::IntRect _rect) {
     this->objectVector = _rect;
     this->object->setTextureRect(_rect);
+}
+
+void Object::changeTexture(char file_texture[]) {
+    if(!this->objectImage->loadFromFile(file_texture)) {
+//        std::cout << "Error file texture player" << std::endl;
+    } else {
+        this->objectImage->loadFromFile(file_texture);
+    }
+    this->object->setTexture(*objectImage);
 }

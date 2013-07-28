@@ -44,6 +44,8 @@ Level::Level(char file_music[]) {
     face.width = 25;
     this->zombiesFace->setObjectVector(face);
     this->zombiesFace->getSprite()->setPosition(935.f,55.f);
+    this->joystickImage = new Object((char*)"res/images/IU/no_joystick.png");
+    this->joystickImage->getSprite()->setPosition(235.f,40.f);
 
     for(unsigned int i = 0; i < (sizeof(this->zombies)/sizeof(this->zombies[i])); i++) {
         this->zombies[i] = new Zombie((char*)"res/images/characters/npc/enemys/zombies/cool_zombie_sprite_by_gvbn10-d39mzxg.png");
@@ -62,9 +64,9 @@ Level::Level(char file_music[]) {
 
     for(unsigned int i = 0; i < (sizeof(this->blocks)/sizeof(this->blocks[i])); i++) {
         this->blocks[i] = new Block((char*)"res/images/backgrounds/level1/block1.png");
-        if(i > 320){
+        if(i > 320) {
             this->blocks[i]->getSprite()->setPosition((360-i) * this->blocks[i]->getSprite()->getTexture()->getSize().x,500);
-        }else{
+        } else {
             this->blocks[i]->getSprite()->setPosition(i * this->blocks[i]->getSprite()->getTexture()->getSize().x,720);
         }
     }
@@ -125,6 +127,7 @@ Level::~Level() {
     delete music;
     delete livesFace;
     delete zombiesFace;
+    delete joystickImage;
     delete backgroundBoss;
     delete bufferEffect;
     delete soundEffect;
@@ -176,6 +179,10 @@ sf::Text Level::getTextGameOver() {
 
 Object* Level::getZombiesFace() {
     return this->zombiesFace;
+}
+
+Object* Level::getJoystickImage() {
+    return this->joystickImage;
 }
 
 sf::Text Level::getTextZombies() {
@@ -255,10 +262,10 @@ void Level::horizontalSpeed(Character *_character, float MaxSpeedX, float decrea
     }
 }
 
-float Level::getFPS(){
+float Level::getFPS() {
     return this->fps;
 }
 
-void Level::setFPS(float _fps){
+void Level::setFPS(float _fps) {
     this->fps = _fps;
 }

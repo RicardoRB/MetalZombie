@@ -35,6 +35,7 @@ public:
     * \param sf::IntRect _rect
     */
     void setObjectVector(sf::IntRect _rect);
+    void changeTexture(char file_texture[]);
 protected:
 private:
     /*!

@@ -96,6 +96,12 @@ void Game::startGame() {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::F1)) {
             this->takeScreenshot();
         }
+        //sf::Event::joystickConnect
+    }
+    if(sf::Joystick::isConnected(0)) {
+        this->level1->getJoystickImage()->changeTexture((char*)"res/images/IU/joystick.png");
+    } else {
+        this->level1->getJoystickImage()->changeTexture((char*)"res/images/IU/no_joystick.png");
     }
 
 
@@ -262,6 +268,7 @@ void Game::startGame() {
     this->window->draw(*this->level1->getZombiesFace()->getSprite());
     this->window->draw(this->level1->getTextZombies());
     this->window->draw(this->level1->getTextFPS());
+    this->window->draw(*this->level1->getJoystickImage()->getSprite());
     if(this->level1->getPlayer()->getLives() <= 0 || this->level1->getPlayer()->getSprite()->getPosition().x >= 9900) {
         if(this->level1->getPlayer()->getSprite()->getPosition().x >= 9900) {
             this->level1->getPlayer()->moveRight();

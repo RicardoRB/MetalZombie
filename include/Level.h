@@ -97,6 +97,12 @@ public:
      */
     Object* getZombiesFace();
     /*!
+     * \brief Return the Object joystickImage to the IU
+     * \details Joystick picture on UI
+     * \return Object* joystickImage
+     */
+    Object* getJoystickImage();
+    /*!
      * \brief Return the number of zombies that pass the window
      * \details The numbers of the killed zombies
      * \return int contZombies
@@ -139,6 +145,10 @@ private:
     * \details Zombies face picture to the UI
     */
     Object *zombiesFace;
+    /*!
+    * \details Zombies face picture to the UI
+    */
+    Object *joystickImage;
     /*!
     * \details Default font file used in the game
     */
