@@ -1,23 +1,24 @@
 #include "../include/Menu.h"
+#include <iostream>
 
-Menu::Menu() {
+Menu::Menu(float windowWidth, float windowHeight) {
     this->option = 0;
     if (!this->font.loadFromFile("res/fonts/BrushRunes.otf")) {
         //error
     } else {
-        this->titleText = sf::Text("MetalZombie",font,100U);
+        this->titleText = sf::Text("MetalZombie",font, 100U);
         this->titleText.setColor(sf::Color::Red);
-        this->titleText.setPosition(376.f,55.f);
+        this->titleText.setPosition((windowWidth/2)-136.f,(((windowHeight/2)/2)/2)-48.f);
         this->startText = sf::Text("Start Game",font, 80U);
         this->startText.setColor(sf::Color::Red);
-        this->startText.setPosition(376.f,400.f);
+        this->startText.setPosition((windowWidth/2)-106.5f,(windowHeight/2));
         this->exitText = sf::Text("Exit",font, 80U);
         this->exitText.setColor(sf::Color::Red);
-        this->exitText.setPosition(376.f,500.f);
+        this->exitText.setPosition((windowWidth/2)-35.5f,(windowHeight/2)+85.f);
 
     }
     this->optionIcon = new Object((char*)"res/images/menu/option_icon.png");
-    this->optionIcon->getSprite()->setPosition(320.f,430.f);
+    this->optionIcon->getSprite()->setPosition((windowWidth/2)-200.f,(windowHeight/2)+27.f);
 
     this->bufferEffect = new sf::SoundBuffer();
     this->soundEffect = new sf::Sound();

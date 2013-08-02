@@ -17,7 +17,7 @@
 
 class Menu {
 public:
-    Menu();
+    Menu(float windowWidth, float windowHeight);
     virtual ~Menu();
     /*!
      * \brief Return the titleText from menu

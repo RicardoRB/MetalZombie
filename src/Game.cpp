@@ -8,10 +8,10 @@ Game::Game() {
     window = new sf::RenderWindow();
     this->bufferCameraShot.loadFromFile((char*)"res/sounds/effects/shots/CameraShutterClick-SoundBible-228518582.wav");
     this->soundCameraShot.setBuffer(this->bufferCameraShot);
-    this->menuTitle = new Menu();
     this->menu = true;
     level1 = NULL;
     this->window->create(sf::VideoMode(1024,768), "MetalZombie");
+    this->menuTitle = new Menu(this->window->getSize().x, this->window->getSize().y);
     //this->window->setFramerateLimit(60);
     this->window->setVerticalSyncEnabled(true);
     this->window->setMouseCursorVisible(false);
@@ -36,14 +36,14 @@ void Game::startMenu() {
             if(menuTitle->getOption() > 0) {
                 menuTitle->playSelect();
                 menuTitle->setOption(menuTitle->getOption()-1);
-                menuTitle->getOptionIcon()->getSprite()->setPosition(menuTitle->getOptionIcon()->getSprite()->getPosition().x, menuTitle->getOptionIcon()->getSprite()->getPosition().y - 100.f);
+                menuTitle->getOptionIcon()->getSprite()->setPosition(menuTitle->getOptionIcon()->getSprite()->getPosition().x, menuTitle->getOptionIcon()->getSprite()->getPosition().y - 80.f);
             }
         }
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Joystick::getAxisPosition(0, sf::Joystick::Y) == 100) {
             if(menuTitle->getOption() < 1) {
                 menuTitle->playSelect();
                 menuTitle->setOption(menuTitle->getOption()+1);
-                menuTitle->getOptionIcon()->getSprite()->setPosition(menuTitle->getOptionIcon()->getSprite()->getPosition().x, menuTitle->getOptionIcon()->getSprite()->getPosition().y + 100.f);
+                menuTitle->getOptionIcon()->getSprite()->setPosition(menuTitle->getOptionIcon()->getSprite()->getPosition().x, menuTitle->getOptionIcon()->getSprite()->getPosition().y + 80.f);
             }
         }
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || sf::Joystick::isButtonPressed(0,0)) {

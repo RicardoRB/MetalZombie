@@ -381,7 +381,7 @@
 	<SFML/Audio.hpp>
 	<SFML/Graphics.hpp>
 
-1375291403 source:c:\users\ricardo\metalzombie\src\game.cpp
+1375487409 source:c:\users\ricardo\metalzombie\src\game.cpp
 	"../include/Game.h"
 	<Thor/Animation.hpp>
 	<iostream>
@@ -1846,14 +1846,15 @@
 	<SFML/System/Thread.hpp>
 	<vector>
 
-1371595723 c:\users\ricardo\metalzombie\include\menu.h
+1375486914 c:\users\ricardo\metalzombie\include\menu.h
 	"Object.h"
 	<SFML/Audio.hpp>
 	<SFML/Graphics.hpp>
 	<sstream>
 
-1374940580 source:c:\users\ricardo\metalzombie\src\menu.cpp
+1375488304 source:c:\users\ricardo\metalzombie\src\menu.cpp
 	"../include/Menu.h"
+	<iostream>
 
 1371580227 /home/richy/MetalZombie/include/Menu.h
 	"Object.h"
