@@ -34,14 +34,14 @@ Zombie::Zombie(char file_texture[]) {
     }
     this->animator.addAnimation("attack", attack_frames, sf::seconds(1.f));
 
-    //Player
+    //Zombie
     this->sprite->setTexture(*texture);
     this->sprite->setOrigin(27.5f,32.f);
     this->sprite->setScale(-1.f,1.f);
     this->lookRight = false;
     this->lookLeft = true;
     this->endJumping = false;
-    //this->animator.playAnimation("attack", true);
+    this->falling = true;
 }
 
 Zombie::~Zombie() {
@@ -101,6 +101,7 @@ void Zombie::moveRemain() {
 void Zombie::jump() {
     //The player go the maximum position to jump
     this->jumping = true;
+    this->falling = false;
     this->setVelY(-400.f);
 }
 

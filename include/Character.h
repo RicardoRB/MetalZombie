@@ -74,10 +74,22 @@ public:
     bool isEndJumping();
 
     /*!
-     *\brief Method to set movingLeft true or false
+     *\brief Method to set endJumping true or false
      * \param _endJumping bool
      */
     void setEndJumping(bool _endJumping);
+
+    /*!
+     * \brief Return if the character is falling
+     * \return Method to return falling
+    */
+    bool isFalling();
+
+    /*!
+     *\brief Method to set falling true or false
+     * \param _falling bool
+     */
+    void setFalling(bool _falling);
 
     /*!
      * \brief Return if the character is end attacking
@@ -185,6 +197,11 @@ protected:
     * \details If the characters end jumping, then true, else will be false
     */
     bool endJumping;
+
+    /*!
+    * \details If the characters is in the top of jumping, then true, else will be false
+    */
+    bool falling;
 
     /*!
     * \details Velocity of the character

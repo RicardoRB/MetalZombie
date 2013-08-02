@@ -31,6 +31,7 @@ Player::Player(char file_texture[]) {
     this->lookRight = true;
     this->lookLeft = false;
     this->endJumping = false;
+    this->falling = true;
     this->posWindowX = this->sprite->getPosition().x;
     this->posWindowY = this->sprite->getPosition().y;
 
@@ -107,6 +108,7 @@ void Player::moveRemain() {
 void Player::jump() {
     //The player go the maximum position to jump
     this->jumping = true;
+    this->falling = false;
     this->setVelY(-400.f);
 }
 

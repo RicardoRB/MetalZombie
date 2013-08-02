@@ -47,11 +47,6 @@ Level::Level(char file_music[]) {
     this->joystickImage = new Object((char*)"res/images/IU/no_joystick.png");
     this->joystickImage->getSprite()->setPosition(235.f,40.f);
 
-    for(unsigned int i = 0; i < (sizeof(this->zombies)/sizeof(this->zombies[i])); i++) {
-        this->zombies[i] = new Zombie((char*)"res/images/characters/npc/enemys/zombies/cool_zombie_sprite_by_gvbn10-d39mzxg.png");
-        this->zombies[i]->getSprite()->setPosition(((i+1)*300),100.f);
-    }
-
     for(unsigned int i = 0; i< (sizeof(this->builders)/sizeof(this->builders[i])); i++) {
         this->builders[i] = new Builder((char*)"res/images/backgrounds/level1/builders.png");
         this->builders[i]->getSprite()->setPosition(i * this->builders[i]->getSprite()->getTexture()->getSize().x,804 - this->builders[i]->getSprite()->getTexture()->getSize().x );
@@ -65,12 +60,12 @@ Level::Level(char file_music[]) {
     for(unsigned int i = 0; i < (sizeof(this->blocks)/sizeof(this->blocks[i])); i++) {
         this->blocks[i] = new Block((char*)"res/images/backgrounds/level1/block1.png");
         if(i > 320) {
-            this->blocks[i]->getSprite()->setPosition((360-i) * this->blocks[i]->getSprite()->getTexture()->getSize().x,500);
+            this->blocks[i]->getSprite()->setPosition((360-i) * this->blocks[i]->getSprite()->getTexture()->getSize().x,600);
         } else {
             this->blocks[i]->getSprite()->setPosition(i * this->blocks[i]->getSprite()->getTexture()->getSize().x,720);
         }
     }
-    for(unsigned int i = 0; i< (sizeof(this->soldiers)/sizeof(this->soldiers[i])); i++) {
+    for(unsigned int i = 0; i < (sizeof(this->soldiers)/sizeof(this->soldiers[i])); i++) {
         this->soldiers[i] = new Object((char*)"res/images/characters/players/player1.png");
         sf::IntRect rect_aux = this->soldiers[i]->getObjectVector();
         if(i==0) {
@@ -102,6 +97,12 @@ Level::Level(char file_music[]) {
         this->soldiers[i]->getSprite()->setScale(-1.f,1.f);
 
     }
+
+    for(unsigned int i = 0; i < (sizeof(this->zombies)/sizeof(this->zombies[i])); i++) {
+        this->zombies[i] = new Zombie((char*)"res/images/characters/npc/enemys/zombies/cool_zombie_sprite_by_gvbn10-d39mzxg.png");
+        this->zombies[i]->getSprite()->setPosition(((i+1)*300),100.f);
+    }
+
     this->bufferEffect = new sf::SoundBuffer();
     this->soundEffect = new sf::Sound();
     if(this->bufferEffect->loadFromFile((char*)"res/sounds/effects/level/gameover.ogg")) {
@@ -146,6 +147,7 @@ void Level::moveUI(sf::RenderWindow *_window) {
         this->zombiesFace->getSprite()->setPosition(this->getPlayer()->getSprite()->getPosition().x + 415.f,55.f);
         this->gameOverText.setPosition(this->getPlayer()->getSprite()->getPosition().x - 158.f ,384.f);
         this->FPSText.setPosition(this->getPlayer()->getSprite()->getPosition().x + 210.f,55.f);
+        this->joystickImage->getSprite()->setPosition(this->getPlayer()->getSprite()->getPosition().x - 278.f, 40.f);
     }
 }
 sf::Text Level::getTextTime() {

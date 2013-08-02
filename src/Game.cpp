@@ -82,10 +82,7 @@ void Game::startGame() {
 
     //Needed to do all animations
     sf::Time frame_time;
-    //If the player is not moving, then the sprite will draw like standing
-    if((!this->level1->getPlayer()->ismovingLeft() && !this->level1->getPlayer()->ismovingRight()) && this->level1->getPlayer()->isLife()) {
-        this->level1->getPlayer()->moveRemain();
-    }
+
 
     sf::Event event;
     while (this->window->pollEvent(event)) {
@@ -104,6 +101,10 @@ void Game::startGame() {
         this->level1->getJoystickImage()->changeTexture((char*)"res/images/IU/no_joystick.png");
     }
 
+    //If the player is not moving, then the sprite will draw like standing
+    if((!this->level1->getPlayer()->ismovingLeft() && !this->level1->getPlayer()->ismovingRight()) && this->level1->getPlayer()->isLife()) {
+        this->level1->getPlayer()->moveRemain();
+    }
 
     if(((sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || sf::Joystick::isButtonPressed(0,0)) && !this->level1->getPlayer()->isAtacking())) {
         if(this->level1->getPlayer()->isLife()) {
@@ -121,6 +122,9 @@ void Game::startGame() {
 
     // ResetVelX
     this->level1->getPlayer()->setVelX(0.f);
+    if(this->level1->getPlayer()->getVelY() >= 0){
+        this->level1->getPlayer()->setFalling(true);
+    }
 
     if((sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Joystick::getAxisPosition(0, sf::Joystick::X) == 100 || sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) && this->level1->getPlayer()->isLife()) {
         this->level1->getPlayer()->moveRight();
@@ -148,11 +152,11 @@ void Game::startGame() {
 
     //Collisions
     for(unsigned int i = 0; i < (sizeof(this->level1->blocks)/sizeof(this->level1->blocks[i])); i++) {
-        if(this->level1->blocks[i]->getSprite()->getGlobalBounds().intersects(this->level1->getPlayer()->getSprite()->getGlobalBounds())) {
-            this->level1->getPlayer()->getSprite()->setPosition(this->level1->getPlayer()->getSprite()->getPosition().x,
-                    this->level1->blocks[i]->getSprite()->getPosition().y - (this->level1->getPlayer()->getSprite()->getOrigin().y));
+        if(this->level1->blocks[i]->getSprite()->getGlobalBounds().intersects(this->level1->getPlayer()->getSprite()->getGlobalBounds()) && this->level1->getPlayer()->isFalling()) {
             this->level1->getPlayer()->setEndJumping(true);
             this->level1->getPlayer()->setJumping(false);
+            this->level1->getPlayer()->getSprite()->setPosition(this->level1->getPlayer()->getSprite()->getPosition().x,
+                    this->level1->blocks[i]->getSprite()->getPosition().y - (this->level1->getPlayer()->getSprite()->getOrigin().y));
         }
     }
     if(this->level1->getPlayer()->isJumping()) {
@@ -190,6 +194,9 @@ void Game::startGame() {
         }
     }
 
+    //--------------------------------------------------------------------
+    //-------------------------Shot-----------------------------------
+    //--------------------------------------------------------------------
     if(this->level1->getPlayer()->isAtacking()) {
         if(this->level1->getPlayer()->getShot()->isShot()) {
             if(this->level1->getPlayer()->isLookingRight()) {
