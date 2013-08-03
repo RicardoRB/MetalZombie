@@ -66,11 +66,11 @@ void Character::setEndJumping(bool _endJumping) {
     this->endJumping = _endJumping;
 }
 
-bool Character::isFalling(){
+bool Character::isFalling() {
     return this->falling;
 }
 
-void Character::setFalling(bool _falling){
+void Character::setFalling(bool _falling) {
     this->falling = _falling;
 }
 

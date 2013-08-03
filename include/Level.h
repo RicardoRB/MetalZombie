@@ -37,7 +37,7 @@ public:
     /*!
     * \details Array of the zombies
     */
-    Zombie *zombies[34];
+    Zombie *zombies[35];
     /*!
     * \details Array of the blocks, static because I need use it with collisions
     */

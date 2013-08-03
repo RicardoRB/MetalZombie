@@ -63,7 +63,6 @@ void Game::startMenu() {
                 break;
             }
         }
-
     }
     if(this->menu) {
         this->window->draw(menuTitle->getTextTitle());
@@ -122,7 +121,7 @@ void Game::startGame() {
 
     // ResetVelX
     this->level1->getPlayer()->setVelX(0.f);
-    if(this->level1->getPlayer()->getVelY() >= 0){
+    if(this->level1->getPlayer()->getVelY() >= 0) {
         this->level1->getPlayer()->setFalling(true);
     }
 
@@ -161,6 +160,13 @@ void Game::startGame() {
     }
     if(this->level1->getPlayer()->isJumping()) {
         this->level1->getPlayer()->setEndJumping(false);
+        for(unsigned int i = 0; i < (sizeof(this->level1->zombies)/sizeof(this->level1->zombies[i])); i++) {
+            if(this->level1->zombies[i]->getSprite()->getGlobalBounds().intersects(this->level1->getPlayer()->getSprite()->getGlobalBounds()) && this->level1->getPlayer()->isFalling() && this->level1->zombies[i]->isLife()) {
+                this->level1->getPlayer()->jump();
+                this->level1->zombies[i]->die();
+                this->level1->setContZombies(this->level1->getContZombies() + 1);
+            }
+        }
     }
 
     //--------------------------------------------------------------------
