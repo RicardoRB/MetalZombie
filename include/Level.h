@@ -23,7 +23,7 @@ public:
     *  \brief     Constructor overloaded to which you pass the file of music and file of background
     *  \details   Constructor overloaded to which you pass the file of music and file of background, to create a new player and music, playing it and looping it
     */
-    Level(char file_music[]);
+    Level(char file_music[],float windowWidth, float windowHeight);
     virtual ~Level();
 
     const float gravity = 980.f;
@@ -123,6 +123,7 @@ public:
     void horizontalSpeed(Character *_character, float MaxSpeedX, float decreaseX);
     float getFPS();
     void setFPS(float _fps);
+    void blockCollision(Character *_character);
 protected:
 private:
     /*!

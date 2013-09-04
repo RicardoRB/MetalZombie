@@ -1,4 +1,5 @@
 #include "Object.h"
+#include "Character.h"
 #include <SFML/Audio.hpp>
 #ifndef SHOT_H
 #define SHOT_H
@@ -74,6 +75,7 @@ public:
     * \details Vector to the picture shot
     */
     sf::IntRect shot_vector;
+    bool collisionCharacter(Character *_character);
 protected:
 private:
     /*!

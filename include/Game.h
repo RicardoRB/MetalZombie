@@ -62,7 +62,9 @@ private:
     * \details Bool to know if the menu is on or not
     */
     bool menu;
+    bool playedSoundIntro;
     sf::Clock frameClock;
+    sf::Event event;
 };
 
 #endif // GAME_H

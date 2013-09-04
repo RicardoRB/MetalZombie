@@ -67,3 +67,14 @@ void Shot::playShot() {
         this->soundShot.play();
     }
 }
+
+bool Shot::collisionCharacter(Character *_character) {
+    if(_character->isLife() && _character->getSprite()->getGlobalBounds().intersects(this->getSprite()->getGlobalBounds())) {
+        _character->die();
+        this->endShot();
+        return true;
+    } else {
+        this->moveShot(this->isDirectionRight());
+        return false;
+    }
+}

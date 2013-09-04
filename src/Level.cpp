@@ -2,14 +2,14 @@
 #include "../include/Level.h"
 
 
-Level::Level(char file_music[]) {
+Level::Level(char file_music[],float windowWidth, float windowHeight) {
     this->endGame = false;
     if (!this->font.loadFromFile("res/fonts/BrushRunes.otf")) {
         //error
     } else {
         this->timeText.setFont(this->font);
         this->timeText.setColor(sf::Color::Red);
-        this->timeText.setPosition(512.f,55.f);
+        this->timeText.setPosition(windowWidth/2,55.f);
         this->livesText.setFont(this->font);
         this->livesText.setColor(sf::Color::Red);
         this->livesText.setPosition(70.f,55.f);
@@ -270,4 +270,15 @@ float Level::getFPS() {
 
 void Level::setFPS(float _fps) {
     this->fps = _fps;
+}
+
+void Level::blockCollision(Character *_character) {
+    for(unsigned int i = 0; i < (sizeof(this->blocks)/sizeof(this->blocks[i])); i++) {
+        if(this->blocks[i]->getSprite()->getGlobalBounds().intersects(_character->getSprite()->getGlobalBounds()) && _character->isFalling()) {
+            _character->setEndJumping(true);
+            _character->setJumping(false);
+            _character->getSprite()->setPosition(_character->getSprite()->getPosition().x,
+                                                 this->blocks[i]->getSprite()->getPosition().y - (_character->getSprite()->getOrigin().y));
+        }
+    }
 }

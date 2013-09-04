@@ -9,12 +9,14 @@ Game::Game() {
     this->bufferCameraShot.loadFromFile((char*)"res/sounds/effects/shots/CameraShutterClick-SoundBible-228518582.wav");
     this->soundCameraShot.setBuffer(this->bufferCameraShot);
     this->menu = true;
+    this->playedSoundIntro = false;
     level1 = NULL;
     this->window->create(sf::VideoMode(1024,768), "MetalZombie");
     this->menuTitle = new Menu(this->window->getSize().x, this->window->getSize().y);
     //this->window->setFramerateLimit(60);
     this->window->setVerticalSyncEnabled(true);
     this->window->setMouseCursorVisible(false);
+    this->frameClock.restart();
     while (this->window->isOpen()) {
         startMenu();
     }
@@ -30,62 +32,69 @@ Game::~Game() {
 }
 
 void Game::startMenu() {
-    sf::Event event;
-    while (this->window->pollEvent(event)) {
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Joystick::getAxisPosition(0, sf::Joystick::Y) == -100) {
-            if(menuTitle->getOption() > 0) {
-                menuTitle->playSelect();
-                menuTitle->setOption(menuTitle->getOption()-1);
-                menuTitle->getOptionIcon()->getSprite()->setPosition(menuTitle->getOptionIcon()->getSprite()->getPosition().x, menuTitle->getOptionIcon()->getSprite()->getPosition().y - 80.f);
-            }
-        }
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Joystick::getAxisPosition(0, sf::Joystick::Y) == 100) {
-            if(menuTitle->getOption() < 1) {
-                menuTitle->playSelect();
-                menuTitle->setOption(menuTitle->getOption()+1);
-                menuTitle->getOptionIcon()->getSprite()->setPosition(menuTitle->getOptionIcon()->getSprite()->getPosition().x, menuTitle->getOptionIcon()->getSprite()->getPosition().y + 80.f);
-            }
-        }
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || sf::Joystick::isButtonPressed(0,0)) {
-            switch(menuTitle->getOption()) {
-            case 0:
-                this->menuTitle->playStart();
-                level1 = new Level((char*)"res/sounds/music/level1.ogg");
-                this->level1->getPlayer()->setCamera(this->window->getDefaultView());
-                this->menu = false;
-                delete menuTitle;
-                while (this->window->isOpen()) {
-                    startGame();
+    while (this->window->pollEvent(this->event)) {
+        if(this->frameClock.getElapsedTime().asSeconds() >= 6.f) {
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Joystick::getAxisPosition(0, sf::Joystick::Y) == -100) {
+                if(menuTitle->getOption() > 0) {
+                    menuTitle->playSelect();
+                    menuTitle->setOption(menuTitle->getOption()-1);
+                    menuTitle->getOptionIcon()->getSprite()->setPosition(menuTitle->getOptionIcon()->getSprite()->getPosition().x, menuTitle->getOptionIcon()->getSprite()->getPosition().y - 80.f);
                 }
-                break;
-            default:
-                this->window->close();
-                break;
+            }
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Joystick::getAxisPosition(0, sf::Joystick::Y) == 100) {
+                if(menuTitle->getOption() < 1) {
+                    menuTitle->playSelect();
+                    menuTitle->setOption(menuTitle->getOption()+1);
+                    menuTitle->getOptionIcon()->getSprite()->setPosition(menuTitle->getOptionIcon()->getSprite()->getPosition().x, menuTitle->getOptionIcon()->getSprite()->getPosition().y + 80.f);
+                }
+            }
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || sf::Joystick::isButtonPressed(0,0)) {
+                switch(menuTitle->getOption()) {
+                case 0:
+                    this->menuTitle->playStart();
+                    level1 = new Level((char*)"res/sounds/music/level1.ogg",this->window->getSize().x, this->window->getSize().y);
+                    this->level1->getPlayer()->setCamera(this->window->getDefaultView());
+                    this->menu = false;
+                    delete menuTitle;
+                    while (this->window->isOpen()) {
+                        startGame();
+                    }
+                    break;
+                default:
+                    this->window->close();
+                    break;
+                }
             }
         }
     }
     if(this->menu) {
-        this->window->draw(menuTitle->getTextTitle());
-        this->window->draw(menuTitle->getTextStart());
-        this->window->draw(menuTitle->getTextExit());
-        this->window->draw(*menuTitle->getOptionIcon()->getSprite());
+        if(this->frameClock.getElapsedTime().asSeconds() <= 3.f) {
+            this->window->draw(*menuTitle->getIntroLogo()->getSprite());
+        } else if(this->frameClock.getElapsedTime().asSeconds() <= 6.f) {
+            this->window->draw(*menuTitle->getIntroLogoCC()->getSprite());
+        } else {
+            if(!playedSoundIntro) {
+                this->menuTitle->playIntroMenu();
+                this->playedSoundIntro = true;
+            }
+            this->window->draw(menuTitle->getTextTitle());
+            this->window->draw(menuTitle->getTextStart());
+            this->window->draw(menuTitle->getTextExit());
+            this->window->draw(*menuTitle->getOptionIcon()->getSprite());
+        }
         this->window->display();
         this->window->clear();
     }
 }
 
 void Game::startGame() {
+    //Needed to do all animations
+    sf::Time frame_time;
     //--------------------------------------------------------------------
     //-------------------------Player control-----------------------------
     //--------------------------------------------------------------------
-
-    //Needed to do all animations
-    sf::Time frame_time;
-
-
-    sf::Event event;
-    while (this->window->pollEvent(event)) {
-        if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+    while (this->window->pollEvent(this->event)) {
+        if (this->event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
             this->window->close();
         }
         //Take a screenshot
@@ -150,14 +159,8 @@ void Game::startGame() {
             this->level1->getPlayer()->getSprite()->getPosition().y + this->level1->getPlayer()->getVelY() * frame_time.asSeconds());
 
     //Collisions
-    for(unsigned int i = 0; i < (sizeof(this->level1->blocks)/sizeof(this->level1->blocks[i])); i++) {
-        if(this->level1->blocks[i]->getSprite()->getGlobalBounds().intersects(this->level1->getPlayer()->getSprite()->getGlobalBounds()) && this->level1->getPlayer()->isFalling()) {
-            this->level1->getPlayer()->setEndJumping(true);
-            this->level1->getPlayer()->setJumping(false);
-            this->level1->getPlayer()->getSprite()->setPosition(this->level1->getPlayer()->getSprite()->getPosition().x,
-                    this->level1->blocks[i]->getSprite()->getPosition().y - (this->level1->getPlayer()->getSprite()->getOrigin().y));
-        }
-    }
+    this->level1->blockCollision(this->level1->getPlayer());
+
     if(this->level1->getPlayer()->isJumping()) {
         this->level1->getPlayer()->setEndJumping(false);
         for(unsigned int i = 0; i < (sizeof(this->level1->zombies)/sizeof(this->level1->zombies[i])); i++) {
@@ -167,6 +170,11 @@ void Game::startGame() {
                 this->level1->setContZombies(this->level1->getContZombies() + 1);
             }
         }
+    }
+
+    //Player fall
+    if(this->level1->getPlayer()->getSprite()->getPosition().y <= 0) {
+        this->level1->getPlayer()->die();
     }
 
     //--------------------------------------------------------------------
@@ -186,14 +194,7 @@ void Game::startGame() {
         this->level1->zombies[j]->getSprite()->setPosition(this->level1->zombies[j]->getSprite()->getPosition().x + this->level1->zombies[j]->getVelX() * frame_time.asSeconds(),
                 this->level1->zombies[j]->getSprite()->getPosition().y + this->level1->zombies[j]->getVelY() * frame_time.asSeconds());
         //Collisions
-        for(unsigned int i = 0; i < (sizeof(this->level1->blocks)/sizeof(this->level1->blocks[i])); i++) {
-            if(this->level1->blocks[i]->getSprite()->getGlobalBounds().intersects(this->level1->zombies[j]->getSprite()->getGlobalBounds())) {
-                this->level1->zombies[j]->getSprite()->setPosition(this->level1->zombies[j]->getSprite()->getPosition().x,
-                        this->level1->blocks[i]->getSprite()->getPosition().y - (this->level1->zombies[j]->getSprite()->getOrigin().y));
-                this->level1->zombies[j]->setEndJumping(true);
-                this->level1->zombies[j]->setJumping(false);
-            }
-        }
+        this->level1->blockCollision(this->level1->zombies[j]);
 
         if(this->level1->zombies[j]->isJumping()) {
             this->level1->zombies[j]->setEndJumping(false);
@@ -220,14 +221,10 @@ void Game::startGame() {
             //Zombies
         } else {
             for(unsigned int i = 0; i < (sizeof(this->level1->zombies)/sizeof(this->level1->zombies[i])); i++) {
-                //Condition to kill the zombie if you are looking left or right and Y position of the shot
-                if(this->level1->zombies[i]->isLife() && this->level1->zombies[i]->getSprite()->getGlobalBounds().intersects(this->level1->getPlayer()->getShot()->getSprite()->getGlobalBounds())) {
+                if(this->level1->getPlayer()->getShot()->collisionCharacter(this->level1->zombies[i])) {
                     this->level1->getPlayer()->setAttacking(false);
-                    this->level1->zombies[i]->die();
-                    this->level1->getPlayer()->getShot()->endShot();
                     this->level1->setContZombies(this->level1->getContZombies() + 1);
                 } else {
-                    this->level1->getPlayer()->getShot()->moveShot(this->level1->getPlayer()->getShot()->isDirectionRight());
                     this->level1->getPlayer()->getShot()->getSprite()->setPosition(this->level1->getPlayer()->getShot()->getSprite()->getPosition().x + this->level1->getPlayer()->getShot()->getVelX() * frame_time.asSeconds(),
                             this->level1->getPlayer()->getShot()->getSprite()->getPosition().y);
                 }

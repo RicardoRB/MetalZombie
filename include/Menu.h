@@ -57,6 +57,9 @@ public:
      * \brief Play the start sound effect
      */
     void playStart();
+    Object* getIntroLogo();
+    Object* getIntroLogoCC();
+    void playIntroMenu();
 protected:
 private:
     /*!
@@ -95,6 +98,8 @@ private:
     * \details Number option to choose it
     */
     int option;
+    Object *introLogo;
+    Object *introLogoCC;
 
 };
 

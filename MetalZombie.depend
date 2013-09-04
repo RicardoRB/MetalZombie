@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1375287290 source:c:\users\ricardo\metalzombie\src\character.cpp
+1375542750 source:c:\users\ricardo\metalzombie\src\character.cpp
 	"../include/Character.h"
 
 1375286543 c:\users\ricardo\metalzombie\include\character.h
@@ -340,11 +340,11 @@
 	<string>
 	<vector>
 
-1375542333 source:c:\users\ricardo\metalzombie\src\level.cpp
+1378258474 source:c:\users\ricardo\metalzombie\src\level.cpp
 	<iostream>
 	"../include/Level.h"
 
-1375542333 c:\users\ricardo\metalzombie\include\level.h
+1378257581 c:\users\ricardo\metalzombie\include\level.h
 	"Player.h"
 	"Block.h"
 	"Builder.h"
@@ -375,13 +375,13 @@
 	"Player.h"
 	<iostream>
 
-1375530102 c:\users\ricardo\metalzombie\include\game.h
+1378257419 c:\users\ricardo\metalzombie\include\game.h
 	"Level.h"
 	"Menu.h"
 	<SFML/Audio.hpp>
 	<SFML/Graphics.hpp>
 
-1375530091 source:c:\users\ricardo\metalzombie\src\game.cpp
+1378299377 source:c:\users\ricardo\metalzombie\src\game.cpp
 	"../include/Game.h"
 	<Thor/Animation.hpp>
 	<iostream>
@@ -1341,11 +1341,12 @@
 	"../include/Shot.h"
 	<iostream>
 
-1374938595 c:\users\ricardo\metalzombie\include\shot.h
+1377612943 c:\users\ricardo\metalzombie\include\shot.h
 	"Object.h"
+	"Character.h"
 	<SFML/Audio.hpp>
 
-1374940616 source:c:\users\ricardo\metalzombie\src\shot.cpp
+1377613162 source:c:\users\ricardo\metalzombie\src\shot.cpp
 	"../include/Shot.h"
 	<iostream>
 
@@ -1846,13 +1847,13 @@
 	<SFML/System/Thread.hpp>
 	<vector>
 
-1375486914 c:\users\ricardo\metalzombie\include\menu.h
+1378299377 c:\users\ricardo\metalzombie\include\menu.h
 	"Object.h"
 	<SFML/Audio.hpp>
 	<SFML/Graphics.hpp>
 	<sstream>
 
-1375488304 source:c:\users\ricardo\metalzombie\src\menu.cpp
+1378299306 source:c:\users\ricardo\metalzombie\src\menu.cpp
 	"../include/Menu.h"
 	<iostream>
 

@@ -15,8 +15,11 @@ Menu::Menu(float windowWidth, float windowHeight) {
         this->exitText = sf::Text("Exit",font, 80U);
         this->exitText.setColor(sf::Color::Red);
         this->exitText.setPosition((windowWidth/2)-35.5f,(windowHeight/2)+85.f);
-
     }
+    this->introLogo = new Object((char*)"res/images/menu/logo.png");
+    this->introLogo->getSprite()->setPosition((windowWidth/2)-(this->introLogo->getSprite()->getGlobalBounds().width/2),(windowHeight/2)-(this->introLogo->getSprite()->getGlobalBounds().height/2));
+    this->introLogoCC = new Object((char*)"res/images/menu/logoCC.png");
+    this->introLogoCC->getSprite()->setPosition((windowWidth/2)-(this->introLogoCC->getSprite()->getGlobalBounds().width/2),(windowHeight/2)-(this->introLogoCC->getSprite()->getGlobalBounds().height/2));
     this->optionIcon = new Object((char*)"res/images/menu/option_icon.png");
     this->optionIcon->getSprite()->setPosition((windowWidth/2)-200.f,(windowHeight/2)+27.f);
 
@@ -24,7 +27,6 @@ Menu::Menu(float windowWidth, float windowHeight) {
     this->soundEffect = new sf::Sound();
     if(this->bufferEffect->loadFromFile((char*)"res/sounds/effects/menu/intro.ogg")) {
         this->soundEffect->setBuffer(*this->bufferEffect);
-        this->soundEffect->play();
     }
     this->music = new sf::Music();
     if(!music->openFromFile((char*)"res/sounds/music/menu.ogg")) {
@@ -38,10 +40,11 @@ Menu::Menu(float windowWidth, float windowHeight) {
 
 Menu::~Menu() {
     //dtor
-    delete music;
-    delete optionIcon;
-    delete bufferEffect;
-    delete soundEffect;
+    delete this->music;
+    delete this->optionIcon;
+    delete this->bufferEffect;
+    delete this->soundEffect;
+    delete this->introLogo;
 }
 
 sf::Text Menu::getTextTitle() {
@@ -58,6 +61,14 @@ sf::Text Menu::getTextExit() {
 
 Object* Menu::getOptionIcon() {
     return this->optionIcon;
+}
+
+Object* Menu::getIntroLogo() {
+    return this->introLogo;
+}
+
+Object* Menu::getIntroLogoCC() {
+    return this->introLogoCC;
 }
 
 int Menu::getOption() {
@@ -88,4 +99,8 @@ void Menu::playStart() {
         this->soundEffect->setBuffer(*this->bufferEffect);
         this->soundEffect->play();
     }
+}
+
+void Menu::playIntroMenu(){
+    this->soundEffect->play();
 }
