@@ -34,12 +34,22 @@ Zombie::Zombie(char file_texture[]) {
     }
     this->animator.addAnimation("attack", attack_frames, sf::seconds(1.f));
 
+    //Add remain animation
+    for(int i=214 ; i<520; i=i+84) {
+        remain_frames.addFrame(1.f, sf::IntRect(i, 209.f, 52.f, 63.f));
+    }
+    this->animator.addAnimation("remain", remain_frames, sf::seconds(1.f));
+
     //Zombie
+    this->getSprite()->setScale(-1.f,1.f);
+    this->randomMove = 1;
+    this->setVelX(0.f);
+    this->setVelY(0.f);
     this->sprite->setTexture(*texture);
-    this->sprite->setOrigin(27.5f,32.f);
-    this->sprite->setScale(-1.f,1.f);
+    this->sprite->setTextureRect(sf::IntRect(0, 0, 0, 0));
     this->lookRight = false;
     this->lookLeft = true;
+    this->life = true;
     this->endJumping = false;
     this->falling = true;
 }
@@ -78,7 +88,7 @@ void Zombie::moveRight() {
 
 void Zombie::attack(Player *_player) {
     this->sprite->setOrigin(42.f,38.5f);
-    if(this->animator.getPlayingAnimation() == "walk") {
+    if(this->animator.getPlayingAnimation() == "walk" || this->animator.getPlayingAnimation() == "remain") {
         this->animator.playAnimation("attack");
     }
     _player->die();
@@ -94,6 +104,11 @@ void Zombie::die() {
 }
 
 void Zombie::moveRemain() {
+    this->setVelX(0);
+    this->sprite->setOrigin(27.5f,32.f);
+    if(!this->animator.isPlayingAnimation()) {
+        this->animator.playAnimation("remain");
+    }
     this->movingLeft = false;
     this->movingRight = false;
 }
@@ -105,3 +120,17 @@ void Zombie::jump() {
     this->setVelY(-400.f);
 }
 
+sf::Clock Zombie::getMoveTime() {
+    return this->moveTime;
+}
+
+void Zombie::resetMoveTime() {
+    this->moveTime.restart();
+}
+
+int Zombie::getRandomMove() {
+    return this->randomMove;
+}
+void Zombie::setRandomeMove(int _randomMove) {
+    this->randomMove = _randomMove;
+}

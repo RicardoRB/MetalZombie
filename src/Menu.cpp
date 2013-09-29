@@ -101,6 +101,6 @@ void Menu::playStart() {
     }
 }
 
-void Menu::playIntroMenu(){
+void Menu::playIntroMenu() {
     this->soundEffect->play();
 }

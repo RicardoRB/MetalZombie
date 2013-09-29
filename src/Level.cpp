@@ -26,9 +26,7 @@ Level::Level(char file_music[],float windowWidth, float windowHeight) {
         this->FPSText.setPosition(730.f,55.f);
     }
     this->contZombies = 0;
-    //I create the player and music in the level
-    this->player1 = new Player((char*)"res/images/characters/players/player1.png");
-    this->player1->getSprite()->setPosition(100.f,100.f);
+
     this->livesFace = new Object((char*)"res/images/characters/players/player1.png");
     this->zombiesFace = new Object((char*)"res/images/characters/npc/enemys/zombies/cool_zombie_sprite_by_gvbn10-d39mzxg.png");
     sf::IntRect face;
@@ -98,16 +96,20 @@ Level::Level(char file_music[],float windowWidth, float windowHeight) {
 
     }
 
-    for(unsigned int i = 0; i < (sizeof(this->zombies)/sizeof(this->zombies[i])); i++) {
-        this->zombies[i] = new Zombie((char*)"res/images/characters/npc/enemys/zombies/cool_zombie_sprite_by_gvbn10-d39mzxg.png");
-        this->zombies[i]->getSprite()->setPosition(((i+1)*300),100.f);
-    }
-
     this->bufferEffect = new sf::SoundBuffer();
     this->soundEffect = new sf::Sound();
     if(this->bufferEffect->loadFromFile((char*)"res/sounds/effects/level/gameover.ogg")) {
         this->soundEffect->setBuffer(*this->bufferEffect);
     }
+
+    this->player1 = new Player((char*)"res/images/characters/players/player1.png");
+    this->player1->getSprite()->setPosition(100.f,100.f);
+
+    for(unsigned int i = 0; i < (sizeof(this->zombies)/sizeof(this->zombies[i])); i++) {
+        this->zombies[i] = new Zombie((char*)"res/images/characters/npc/enemys/zombies/cool_zombie_sprite_by_gvbn10-d39mzxg.png");
+        this->zombies[i]->getSprite()->setPosition(((i+1.f)*500.f),100.f);
+    }
+
     this->music = new sf::Music();
     if(!music->openFromFile(file_music)) {
 //        std::cout << "Error music in level" << std::endl;
@@ -218,6 +220,7 @@ void Level::restart() {
     this->livesFace->getSprite()->setPosition(33.f,55.f);
     this->zombiesFace->getSprite()->setPosition(935.f,55.f);
     this->gameOverText.setPosition(362.f,384.f);
+    this->joystickImage->getSprite()->setPosition(235.f,40.f);
 
     //Enemys
     for(unsigned int i = 0; i < (sizeof(this->zombies)/sizeof(this->zombies[i])); i++) {
@@ -227,7 +230,7 @@ void Level::restart() {
         this->zombies[i]->setmovingLeft(true);
         this->zombies[i]->setEndJumping(false);
         this->zombies[i]->setLife(true);
-        this->zombies[i]->getSprite()->setPosition(((i+1)*300),100.f);
+        this->zombies[i]->getSprite()->setPosition(((i+1)*500),100.f);
     }
     //Player
     this->getPlayer()->getSprite()->setOrigin(27.f,26.f);

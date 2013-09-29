@@ -1,10 +1,8 @@
 #include "../include/Game.h"
-#include <Thor/Animation.hpp>
-#include <iostream>
-#include <sstream>
-#include <ctime>
+
 
 Game::Game() {
+    srand(time(NULL));
     window = new sf::RenderWindow();
     this->bufferCameraShot.loadFromFile((char*)"res/sounds/effects/shots/CameraShutterClick-SoundBible-228518582.wav");
     this->soundCameraShot.setBuffer(this->bufferCameraShot);
@@ -56,6 +54,7 @@ void Game::startMenu() {
                     this->level1->getPlayer()->setCamera(this->window->getDefaultView());
                     this->menu = false;
                     delete menuTitle;
+                    this->frameClock.restart();
                     while (this->window->isOpen()) {
                         startGame();
                     }
@@ -151,8 +150,7 @@ void Game::startGame() {
     if((sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Joystick::getAxisPosition(0, sf::Joystick::Y) == -100 || sf::Keyboard::isKeyPressed(sf::Keyboard::Up))  && this->level1->getPlayer()->isEndJumping() && this->level1->getPlayer()->isLife()) {
         this->level1->getPlayer()->jump();
     }
-
-    frame_time = frameClock.restart();
+    frame_time = this->frameClock.restart();
 
     //Move the player
     this->level1->getPlayer()->getSprite()->setPosition(this->level1->getPlayer()->getSprite()->getPosition().x + this->level1->getPlayer()->getVelX() * frame_time.asSeconds(),
@@ -161,7 +159,7 @@ void Game::startGame() {
     //Collisions
     this->level1->blockCollision(this->level1->getPlayer());
 
-    if(this->level1->getPlayer()->isJumping()) {
+    if(this->level1->getPlayer()->isJumping() && this->level1->getPlayer()->isLife()) {
         this->level1->getPlayer()->setEndJumping(false);
         for(unsigned int i = 0; i < (sizeof(this->level1->zombies)/sizeof(this->level1->zombies[i])); i++) {
             if(this->level1->zombies[i]->getSprite()->getGlobalBounds().intersects(this->level1->getPlayer()->getSprite()->getGlobalBounds()) && this->level1->getPlayer()->isFalling() && this->level1->zombies[i]->isLife()) {
@@ -183,12 +181,29 @@ void Game::startGame() {
     for(unsigned int j = 0; j < (sizeof(this->level1->zombies)/sizeof(this->level1->zombies[j])); j++) {
         // Adjust vertical speed
         this->level1->verticalSpeed(this->level1->zombies[j], 10.f);
-
         if(this->level1->zombies[j]->isLife()) {
-            if(this->level1->getPlayer()->isLife() && (this->level1->zombies[j]->getSprite()->getPosition().x - 40 <= this->level1->getPlayer()->getSprite()->getPosition().x && this->level1->zombies[j]->getSprite()->getPosition().x > this->level1->getPlayer()->getSprite()->getPosition().x) && (this->level1->zombies[j]->getSprite()->getPosition().y <= this->level1->getPlayer()->getSprite()->getPosition().y)) {
+            if(this->level1->getPlayer()->isLife() && this->level1->zombies[j]->getSprite()->getGlobalBounds().intersects(this->level1->getPlayer()->getSprite()->getGlobalBounds())) {
                 this->level1->zombies[j]->attack(this->level1->getPlayer());
             } else {
-                this->level1->zombies[j]->moveLeft();
+                if((this->level1->getPlayer()->getSprite()->getPosition().x - this->level1->zombies[j]->getSprite()->getPosition().x >= -150.f) &&
+                        (this->level1->getPlayer()->getSprite()->getPosition().x - this->level1->zombies[j]->getSprite()->getPosition().x <= -5.f)) {
+                    this->level1->zombies[j]->moveLeft();
+                } else if((this->level1->getPlayer()->getSprite()->getPosition().x - this->level1->zombies[j]->getSprite()->getPosition().x <= 150.f)&&
+                          (this->level1->getPlayer()->getSprite()->getPosition().x - this->level1->zombies[j]->getSprite()->getPosition().x >= 5.f)) {
+                    this->level1->zombies[j]->moveRight();
+                } else {
+                    if(this->level1->zombies[j]->getRandomMove() >= 2) {
+                        this->level1->zombies[j]->moveLeft();
+                    } else if(this->level1->zombies[j]->getRandomMove() == 1) {
+                        this->level1->zombies[j]->moveRight();
+                    } else {
+                        this->level1->zombies[j]->moveRemain();
+                    }
+                    if(this->level1->zombies[j]->getMoveTime().getElapsedTime().asSeconds() >= 3) {
+                        this->level1->zombies[j]->setRandomeMove(rand()%3);
+                        this->level1->zombies[j]->resetMoveTime();
+                    }
+                }
             }
         }
         this->level1->zombies[j]->getSprite()->setPosition(this->level1->zombies[j]->getSprite()->getPosition().x + this->level1->zombies[j]->getVelX() * frame_time.asSeconds(),

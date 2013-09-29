@@ -52,7 +52,13 @@ public:
      * \details Will kill the zombie
     */
     void die();
+    sf::Clock getMoveTime();
+    void resetMoveTime();
+    int randomMove;
+    int getRandomMove();
+    void setRandomeMove(int _randomMove);
 protected:
+    sf::Clock moveTime;
     thor::FrameAnimation attack_frames;
 private:
 };

@@ -25,15 +25,17 @@ Player::Player(char file_texture[]) {
 
     this->lives = 3;
     this->sprite->setTexture(*texture);
+    this->sprite->setTextureRect(sf::IntRect(0, 0, 0, 0));
     this->sprite->setOrigin(27.f,26.f);
     this->sprite->setScale(-1.f,1.f);
     this->attacking = false;
     this->lookRight = true;
     this->lookLeft = false;
+    this->movingLeft = false;
+    this->movingRight = false;
     this->endJumping = false;
     this->falling = true;
-    this->posWindowX = this->sprite->getPosition().x;
-    this->posWindowY = this->sprite->getPosition().y;
+    this->life = true;
 
     //Shot
     this->shot = new Shot((char*)"res/images/characters/players/player1.png",(char*)"res/sounds/effects/shots/shot.ogg");

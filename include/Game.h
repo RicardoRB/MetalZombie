@@ -2,6 +2,11 @@
 #include "Menu.h"
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
+#include <stdlib.h>
+#include<time.h>
+#include <iostream>
+#include <sstream>
+#include <ctime>
 #ifndef GAME_H
 #define GAME_H
 /*!
