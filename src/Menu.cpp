@@ -1,6 +1,13 @@
 #include "../include/Menu.h"
 #include <iostream>
 
+Menu::Menu() {
+    this->optionIcon = new Object((char*)"res/images/menu/option_icon.png");
+    this->option = 0;
+    this->bufferEffect = new sf::SoundBuffer();
+    this->soundEffect = new sf::Sound();
+}
+
 Menu::Menu(float windowWidth, float windowHeight) {
     this->option = 0;
     if (!this->font.loadFromFile("res/fonts/BrushRunes.otf")) {
@@ -51,12 +58,30 @@ sf::Text Menu::getTextTitle() {
     return this->titleText;
 }
 
+void Menu::setTextTitle(sf::Text text,sf::Color color,sf::Vector2f position) {
+    this->titleText = text;
+    this->titleText.setColor(color);
+    this->titleText.setPosition(position);
+}
+
 sf::Text Menu::getTextStart() {
     return this->startText;
 }
 
+void Menu::setTextStart(sf::Text text,sf::Color color,sf::Vector2f position) {
+    this->startText = text;
+    this->startText.setColor(color);
+    this->startText.setPosition(position);
+}
+
 sf::Text Menu::getTextExit() {
     return this->exitText;
+}
+
+void Menu::setTextExit(sf::Text text,sf::Color color,sf::Vector2f position) {
+    this->exitText = text;
+    this->exitText.setColor(color);
+    this->exitText.setPosition(position);
 }
 
 Object* Menu::getOptionIcon() {

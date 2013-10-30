@@ -35,6 +35,16 @@ Camera Sound
 
 http://soundbible.com/563-Camera-Shutter-Click.html
 
+--------------
+Zombie Sound
+
+http://opengameart.org/content/zombies-sound-pack
+
+--------------
+Player Sound
+
+http://opengameart.org/content/11-male-human-paindeath-sounds
+
 
 Attention - Advice
 ===========

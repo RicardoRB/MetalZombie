@@ -3,6 +3,8 @@
 #include "Builder.h"
 #include "Sky.h"
 #include "Zombie.h"
+#include "Menu.h"
+#include <Thor/Time.hpp>
 #include <iostream>
 #include <sstream>
 #ifndef LEVEL_H
@@ -85,6 +87,16 @@ public:
      */
     sf::Text getTextFPS();
     /*!
+     * \brief Return the text of Resume
+     * \return sf::Text TextResume
+     */
+    sf::Text getTextResume();
+    /*!
+     * \brief Return the text of Quit
+     * \return sf::Text TextQuit
+     */
+    sf::Text getTextExit();
+    /*!
      * \brief Return the Object livesFace to the IU
      * \details Face picture on UI to lives
      * \return Object* livesFace
@@ -118,12 +130,16 @@ public:
      * \details This method will move all the UI when the player move the camera
      */
     void moveUI(sf::RenderWindow *_window);
-    void restart();
+    void restart(float windowWidth, float windowHeight);
     void verticalSpeed(Character *_character, float speedY);
     void horizontalSpeed(Character *_character, float MaxSpeedX, float decreaseX);
     float getFPS();
     void setFPS(float _fps);
     void blockCollision(Character *_character);
+    bool isLevelPause();
+    void pauseLevel();
+    void resumeLevel();
+    Menu* getPauseMenu();
 protected:
 private:
     /*!
@@ -175,13 +191,17 @@ private:
     */
     sf::Text FPSText;
     /*!
+    * \details Text of Resume
+    */
+    sf::Text ResumeText;
+    /*!
+    * \details Text of Exit
+    */
+    sf::Text ExitText;
+    /*!
     * \details Clock delay when the level start
     */
-    sf::Clock clockTime;
-    /*!
-    * \details Time to take the seconds of the clock delay when the level start
-    */
-    sf::Time time;
+    thor::StopWatch clockTime;
     /*!
     * \details Count of the how many zombies go away form window
     */
@@ -199,6 +219,7 @@ private:
     */
     bool endGame;
     float fps;
+    Menu *pauseMenu;
 };
 
 #endif // LEVEL_H

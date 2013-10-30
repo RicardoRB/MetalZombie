@@ -19,7 +19,7 @@ public:
     *  \details   Constructor overloaded to which you pass the file of sprite, to take the player on the picture,
     *  \details   to send it on a position on the game window and set the origin of the picture on half-size
     */
-    Player(char file_texture[]);
+    Player(char file_texture[], float _windowWidth);
     virtual ~Player();
     /*!
      * \brief Return the camera of the player
@@ -96,6 +96,15 @@ private:
     * \details Camera to move the player and the view window
     */
     sf::View camera;
+    /*!
+    * \details Buffer of the die audio effect
+    */
+    sf::SoundBuffer bufferDie;
+    /*!
+    * \details Sound of the file die audio
+    */
+    sf::Sound soundDie;
+    float windowWidth;
 };
 
 #endif // PLAYER_H

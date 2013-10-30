@@ -96,6 +96,10 @@ void Zombie::attack(Player *_player) {
 }
 
 void Zombie::die() {
+    if(this->bufferDie.loadFromFile((char*)"res/sounds/effects/characters/npc/enemy/zombies/die.wav")) {
+        this->soundDie.setBuffer(this->bufferDie);
+        this->soundDie.play();
+    }
     this->sprite->setOrigin(77.f,62.f);
     this->animator.playAnimation("die");
     this->movingLeft = false;

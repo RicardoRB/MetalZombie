@@ -60,6 +60,14 @@ public:
 protected:
     sf::Clock moveTime;
     thor::FrameAnimation attack_frames;
+    /*!
+    * \details Buffer of the die audio effect
+    */
+    sf::SoundBuffer bufferDie;
+    /*!
+    * \details Sound of the file die audio
+    */
+    sf::Sound soundDie;
 private:
 };
 

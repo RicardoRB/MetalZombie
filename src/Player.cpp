@@ -1,7 +1,7 @@
 #include "../include/Player.h"
 #include <iostream>
 
-Player::Player(char file_texture[]) {
+Player::Player(char file_texture[], float _windowWidth) {
     sf::Image image;
     if (!image.loadFromFile(file_texture)) {
         //        std::cout << "Error file texture player" << std::endl;
@@ -36,6 +36,7 @@ Player::Player(char file_texture[]) {
     this->endJumping = false;
     this->falling = true;
     this->life = true;
+    this->windowWidth = _windowWidth;
 
     //Shot
     this->shot = new Shot((char*)"res/images/characters/players/player1.png",(char*)"res/sounds/effects/shots/shot.ogg");
@@ -58,7 +59,7 @@ void Player::moveRight() {
     this->sprite->setScale(-1.f,1.f);
     //The background start move when the player will go
     //middle of the window
-    if(this->posWindowX <= 512.f) {
+    if(this->posWindowX <= (this->windowWidth/2)) {
         this->setVelX(120.f);
     } else {
         //Will move the player until the end of the picture
@@ -94,6 +95,10 @@ void Player::attack() {
 }
 
 void Player::die() {
+    if(this->bufferDie.loadFromFile((char*)"res/sounds/effects/characters/players/death.wav")) {
+        this->soundDie.setBuffer(this->bufferDie);
+        this->soundDie.play();
+    }
     this->animator.playAnimation("die");
     this->sprite->setOrigin(28.f,12.f);
     this->life = false;

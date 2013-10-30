@@ -68,6 +68,7 @@ private:
     */
     bool menu;
     bool playedSoundIntro;
+    bool level;
     sf::Clock frameClock;
     sf::Event event;
 };

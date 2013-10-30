@@ -17,6 +17,7 @@
 
 class Menu {
 public:
+    Menu();
     Menu(float windowWidth, float windowHeight);
     virtual ~Menu();
     /*!
@@ -24,16 +25,19 @@ public:
      * \return sf::Text titleText
      */
     sf::Text getTextTitle();
+    void setTextTitle(sf::Text text,sf::Color color,sf::Vector2f position);
     /*!
      * \brief Return the startText from menu
      * \return sf::Text startText
      */
     sf::Text getTextStart();
+    void setTextStart(sf::Text text,sf::Color color,sf::Vector2f position);
     /*!
      * \brief Return the exitText from menu
      * \return sf::Text exitText
      */
     sf::Text getTextExit();
+    void setTextExit(sf::Text text,sf::Color color,sf::Vector2f position);
     /*!
      * \brief Return the object option to draw it
      * \return Object *optionIcon
