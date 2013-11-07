@@ -34,6 +34,8 @@
 			<Add option="-DSFML_STATIC" />
 			<Add directory="../Downloads/SFML-2.1/include" />
 			<Add directory="../Downloads/Thor/include" />
+			<Add directory="../Descargas/SFML-2.1/include" />
+			<Add directory="../Descargas/Thor/include" />
 		</Compiler>
 		<Linker>
 			<Add option="-static-libgcc" />
@@ -44,6 +46,8 @@
 			<Add library="thor-s" />
 			<Add directory="../Downloads/SFML-2.1/lib" />
 			<Add directory="../Downloads/Thor/lib" />
+			<Add directory="../Descargas/SFML-2.1/lib" />
+			<Add directory="../Descargas/Thor/lib" />
 		</Linker>
 		<Unit filename="include/Block.h" />
 		<Unit filename="include/Builder.h" />

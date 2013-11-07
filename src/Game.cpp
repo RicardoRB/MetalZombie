@@ -101,13 +101,13 @@ void Game::startGame() {
             if (this->event.type == sf::Event::Closed) {
                 this->window->close();
             }
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) || sf::Joystick::isButtonPressed(0,2)) {
                 if(!this->level1->isLevelPause()) {
                     this->level1->pauseLevel();
                 }
             }
             //Take a screenshot
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::F1)) {
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::F1) ||sf::Joystick::isButtonPressed(0,1)) {
                 this->takeScreenshot();
             }
             //sf::Event::joystickConnect
@@ -208,7 +208,7 @@ void Game::startGame() {
             }
 
             //Player fall
-            if(this->level1->getPlayer()->getSprite()->getPosition().y <= 0) {
+            if(this->level1->getPlayer()->getSprite()->getPosition().y >= window->getSize().y && this->level1->getPlayer()->isLife()) {
                 this->level1->getPlayer()->die();
             }
 
@@ -255,7 +255,6 @@ void Game::startGame() {
                 if(this->level1->zombies[j]->getSprite()->getPosition().y <= 0) {
                     this->level1->zombies[j]->die();
                 }
-                //std::cout << "Posicion y de " << j << " " << this->level1->zombies[j]->getSprite()->getPosition().y << std::endl;
             }
 
             //--------------------------------------------------------------------

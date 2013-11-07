@@ -50,12 +50,22 @@ Level::Level(char file_music[],float windowWidth, float windowHeight) {
     this->zombiesFace->getSprite()->setPosition((windowWidth/2)+423.f,(windowHeight + 55.f) - windowHeight);
     this->joystickImage = new Object((char*)"res/images/IU/no_joystick.png");
     this->joystickImage->getSprite()->setPosition((windowWidth/2)-277.f,(windowHeight + 55.f) - windowHeight);
-
+    int j=0;
     for(unsigned int i = 0; i < (sizeof(this->blocks)/sizeof(this->blocks[i])); i++) {
         this->blocks[i] = new Block((char*)"res/images/backgrounds/level1/block1.png");
         if(i > 320) {
-            this->blocks[i]->getSprite()->setPosition((360-i) * this->blocks[i]->getSprite()->getTexture()->getSize().x,windowHeight - 180.f);
-        } else {
+            this->blocks[i]->getSprite()->setPosition((360-i) * this->blocks[i]->getSprite()->getTexture()->getSize().x,windowHeight - 180);
+        }else if(i >= 100 && i <= 110){
+            this->blocks[i]->getSprite()->setPosition(i * this->blocks[i]->getSprite()->getTexture()->getSize().x,windowHeight - 180);
+        }else if (i >= 111 && i <= 115){
+            this->blocks[i]->getSprite()->setPosition(i * this->blocks[i]->getSprite()->getTexture()->getSize().x,windowHeight - 300);
+        }else if(i >= 200 && i <= 220){
+            this->blocks[i]->getSprite()->setPosition(i * this->blocks[i]->getSprite()->getTexture()->getSize().x,windowHeight - this->blocks[i]->getSprite()->getTexture()->getSize().y);
+        }else if (i >=230 && i <= 260){
+            j += 4;
+            this->blocks[i]->getSprite()->setPosition(i * this->blocks[i]->getSprite()->getTexture()->getSize().x,windowHeight - 180+j);
+        }
+        else{
             this->blocks[i]->getSprite()->setPosition(i * this->blocks[i]->getSprite()->getTexture()->getSize().x,windowHeight - this->blocks[i]->getSprite()->getTexture()->getSize().y);
         }
     }
