@@ -9,7 +9,7 @@ Game::Game() {
     this->menu = true;
     this->level = false;
     this->playedSoundIntro = false;
-    this->window->create(sf::VideoMode(1024,768), "MetalZombie", sf::Style::Default);
+    this->window->create(sf::VideoMode::getDesktopMode(), "MetalZombie", sf::Style::Fullscreen);
     this->menuTitle = new Menu(this->window->getSize().x, this->window->getSize().y);
     this->window->setVerticalSyncEnabled(true);
     this->window->setMouseCursorVisible(false);
