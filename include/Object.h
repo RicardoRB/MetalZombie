@@ -19,6 +19,7 @@ public:
      * \param file_texture[] char
      */
     Object(char file_texture[]);
+    Object(sf::Texture* _texture);
     virtual ~Object();
     /*!
     * \brief Return the sprite of the object
@@ -36,20 +37,22 @@ public:
     */
     void setObjectVector(sf::IntRect _rect);
     void changeTexture(char file_texture[]);
+    sf::Texture* getTexture();
 protected:
-private:
     /*!
     * \details Texture of the object
     */
-    sf::Texture *objectImage;
+    sf::Texture *texture;
     /*!
     * \details Sprite of the object
     */
-    sf::Sprite *object;
+    sf::Sprite *sprite;
     /*!
     * \details Vector of the object
     */
     sf::IntRect objectVector;
+private:
+
 };
 
 #endif // OBJECT_H

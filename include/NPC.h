@@ -14,6 +14,8 @@
 class NPC : public Character {
 public:
     NPC();
+    NPC(char file_texture[]);
+    NPC(sf::Texture* _texture);
     virtual ~NPC();
 protected:
 private:

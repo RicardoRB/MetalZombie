@@ -1,4 +1,6 @@
-#include "Level.h"
+#ifndef GAME_H
+#define GAME_H
+#include "LevelBoss.h"
 #include "Menu.h"
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
@@ -7,8 +9,6 @@
 #include <iostream>
 #include <sstream>
 #include <ctime>
-#ifndef GAME_H
-#define GAME_H
 /*!
  *  \brief     Class of the game
  *  \details   This class will control and execute the game, like windows and events
@@ -22,7 +22,7 @@ class Game {
 public:
     /*!
      * \brief Constructor of class Game
-     * \details It will create a new level and call the startGame function
+     * \details It will create a new level and call the startLevel function
     */
     Game();
     virtual ~Game();
@@ -35,13 +35,14 @@ public:
     * \brief Do the game begins
     * \details This functions is called to start the game
     */
-    void startGame();
+    void startLevel(Level* _level);
+    void startLevelBoss(LevelBoss* _levelBoss);
 protected:
 private:
     /*!
     * \details The game will have levels
     */
-    Level *level1;
+    //Level *level1;
     /*!
      * \brief When you call the method, this will take a screenshot of the game windows
      * \details Will take a screenshot of the game with the date and hour in the name

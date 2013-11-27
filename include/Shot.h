@@ -1,8 +1,8 @@
+#ifndef SHOT_H
+#define SHOT_H
 #include "Object.h"
 #include "Character.h"
 #include <SFML/Audio.hpp>
-#ifndef SHOT_H
-#define SHOT_H
 
 /*!
  *  \brief     Class of the shot
@@ -21,6 +21,7 @@ public:
     * \param file_texture[] char
     */
     Shot(char file_texture[],char file_sound[]);
+    Shot(sf::Texture* _texture,char file_sound[]);
     virtual ~Shot();
     /*!
      * \brief Return position in X coordinate on window

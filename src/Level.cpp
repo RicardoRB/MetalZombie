@@ -1,8 +1,10 @@
-#include <iostream>
 #include "../include/Level.h"
 
+Level::Level() {
 
-Level::Level(char file_music[],float windowWidth, float windowHeight) {
+}
+
+Level::Level(char file_music[],float windowWidth, float windowHeight,const unsigned int numZombies,const unsigned int numBlocks,const unsigned int numBuilders,const unsigned int numSkies,const unsigned int numSoldiers) {
     this->clockTime.start();
     this->endGame = false;
     this->pauseMenu = new Menu();
@@ -51,66 +53,80 @@ Level::Level(char file_music[],float windowWidth, float windowHeight) {
     this->joystickImage = new Object((char*)"res/images/IU/no_joystick.png");
     this->joystickImage->getSprite()->setPosition((windowWidth/2)-277.f,(windowHeight + 55.f) - windowHeight);
     int j=0;
-    for(unsigned int i = 0; i < (sizeof(this->blocks)/sizeof(this->blocks[i])); i++) {
-        this->blocks[i] = new Block((char*)"res/images/backgrounds/level1/block1.png");
-        if(i > 320) {
-            this->blocks[i]->getSprite()->setPosition((360-i) * this->blocks[i]->getSprite()->getTexture()->getSize().x,windowHeight - 180);
-        }else if(i >= 100 && i <= 110){
-            this->blocks[i]->getSprite()->setPosition(i * this->blocks[i]->getSprite()->getTexture()->getSize().x,windowHeight - 180);
-        }else if (i >= 111 && i <= 115){
-            this->blocks[i]->getSprite()->setPosition(i * this->blocks[i]->getSprite()->getTexture()->getSize().x,windowHeight - 300);
-        }else if(i >= 200 && i <= 220){
-            this->blocks[i]->getSprite()->setPosition(i * this->blocks[i]->getSprite()->getTexture()->getSize().x,windowHeight - this->blocks[i]->getSprite()->getTexture()->getSize().y);
-        }else if (i >=230 && i <= 260){
+    for(unsigned int i = 0; i < numBlocks; i++) {
+        if(i==0) {
+            this->blocks.push_back(new Object((char*)"res/images/backgrounds/level1/block1.png"));
+        } else {
+            this->blocks.push_back(new Object((this->blocks.at(0)->getTexture())));
+        }
+        if(i >= 100 && i <= 110) {
+            this->blocks.at(i)->getSprite()->setPosition(i * this->blocks.at(i)->getSprite()->getTexture()->getSize().x,windowHeight - 180);
+        } else if (i >= 111 && i <= 115) {
+            this->blocks.at(i)->getSprite()->setPosition(i * this->blocks.at(i)->getSprite()->getTexture()->getSize().x,windowHeight - 300);
+        } else if(i >= 200 && i <= 220) {
+            this->blocks.at(i)->getSprite()->setPosition(i * this->blocks.at(i)->getSprite()->getTexture()->getSize().x,windowHeight - this->blocks.at(i)->getSprite()->getTexture()->getSize().y);
+        } else if (i >= 230 && i <= 260) {
             j += 4;
-            this->blocks[i]->getSprite()->setPosition(i * this->blocks[i]->getSprite()->getTexture()->getSize().x,windowHeight - 180+j);
+            this->blocks.at(i)->getSprite()->setPosition(i * this->blocks.at(i)->getSprite()->getTexture()->getSize().x,windowHeight - 180+j);
+        } else {
+            this->blocks.at(i)->getSprite()->setPosition(i * this->blocks.at(i)->getSprite()->getTexture()->getSize().x,windowHeight - this->blocks.at(i)->getSprite()->getTexture()->getSize().y);
         }
-        else{
-            this->blocks[i]->getSprite()->setPosition(i * this->blocks[i]->getSprite()->getTexture()->getSize().x,windowHeight - this->blocks[i]->getSprite()->getTexture()->getSize().y);
+    }
+
+    for(unsigned int i = 0; i< numBuilders; i++) {
+        if(i==0) {
+            this->builders.push_back(new Object((char*)"res/images/backgrounds/level1/builders.png"));
+        } else {
+            this->builders.push_back(new Object(this->builders.at(0)->getTexture()));
         }
+        this->builders.at(i)->getSprite()->setPosition(i * this->builders.at(i)->getSprite()->getTexture()->getSize().x,windowHeight - this->builders.at(i)->getSprite()->getTexture()->getSize().y - this->blocks.at(i)->getSprite()->getTexture()->getSize().y);
     }
 
-    for(unsigned int i = 0; i< (sizeof(this->builders)/sizeof(this->builders[i])); i++) {
-        this->builders[i] = new Builder((char*)"res/images/backgrounds/level1/builders.png");
-        this->builders[i]->getSprite()->setPosition(i * this->builders[i]->getSprite()->getTexture()->getSize().x,windowHeight - this->builders[i]->getSprite()->getTexture()->getSize().y - this->blocks[i]->getSprite()->getTexture()->getSize().y);
+    for(unsigned int i = 0; i< numSkies; i++) {
+        if(i==0) {
+            this->skies.push_back(new Object((char*)"res/images/backgrounds/level1/sky.png"));
+        } else {
+            this->skies.push_back(new Object(this->skies.at(0)->getTexture()));
+        }
+        this->skies.at(i)->getSprite()->setPosition(i * this->skies.at(i)->getSprite()->getTexture()->getSize().x,windowHeight - this->blocks.at(i)->getSprite()->getTexture()->getSize().y - 246.f - this->skies.at(i)->getSprite()->getTexture()->getSize().y);
     }
 
-    for(unsigned int i = 0; i< (sizeof(this->skies)/sizeof(this->skies[i])); i++) {
-        this->skies[i] = new Sky((char*)"res/images/backgrounds/level1/sky.png");
-        this->skies[i]->getSprite()->setPosition(i * this->skies[i]->getSprite()->getTexture()->getSize().x,windowHeight - this->blocks[i]->getSprite()->getTexture()->getSize().y - 246.f - this->skies[i]->getSprite()->getTexture()->getSize().y);
-    }
+    for(unsigned int i = 0; i < numSoldiers; i++) {
+        if(i==0) {
+            this->soldiers.push_back(new Object((char*)"res/images/characters/players/player1.png"));
+        } else {
+            this->soldiers.push_back(new Object(this->soldiers.at(0)->getTexture()));
+        }
 
-    for(unsigned int i = 0; i < (sizeof(this->soldiers)/sizeof(this->soldiers[i])); i++) {
-        this->soldiers[i] = new Object((char*)"res/images/characters/players/player1.png");
-        sf::IntRect rect_aux = this->soldiers[i]->getObjectVector();
+        sf::IntRect rect_aux = this->soldiers.at(i)->getObjectVector();
         if(i==0) {
             rect_aux.top = 296;
             rect_aux.left = 951;
             rect_aux.height = 134;
             rect_aux.width = 162;
-            this->soldiers[i]->getSprite()->setPosition(160,windowHeight - (this->blocks[0]->getSprite()->getTexture()->getSize().y + rect_aux.height));
+            this->soldiers.at(i)->getSprite()->setPosition(160,windowHeight - (this->blocks.at(0)->getSprite()->getTexture()->getSize().y + rect_aux.height));
         } else if(i==1) {
             rect_aux.top = 713;
             rect_aux.left = 40;
             rect_aux.height = 55;
             rect_aux.width = 58;
-            this->soldiers[i]->getSprite()->setPosition(100,windowHeight - (this->blocks[0]->getSprite()->getTexture()->getSize().y + rect_aux.height));
+            this->soldiers.at(i)->getSprite()->setPosition(100,windowHeight - (this->blocks.at(0)->getSprite()->getTexture()->getSize().y + rect_aux.height));
         } else if(i==2) {
             rect_aux.top = 142;
             rect_aux.left = 990;
             rect_aux.height = 54;
             rect_aux.width = 62;
-            this->soldiers[i]->getSprite()->setPosition(200,windowHeight - (this->blocks[0]->getSprite()->getTexture()->getSize().y + rect_aux.height));
+            this->soldiers.at(i)->getSprite()->setPosition(200,windowHeight - (this->blocks.at(0)->getSprite()->getTexture()->getSize().y + rect_aux.height));
         } else {
             rect_aux.top = 226;
             rect_aux.left = 934;
             rect_aux.height = 36;
             rect_aux.width = 58;
             //I put -15.f because if I don't put it, the soldier will be float, because the arm is more longer than the body
-            this->soldiers[i]->getSprite()->setPosition(600 * i,windowHeight - (this->blocks[0]->getSprite()->getTexture()->getSize().y + rect_aux.height - 15.f));
+            this->soldiers.at(i)->getSprite()->setPosition(600 * i,windowHeight - (this->blocks.at(0)->getSprite()->getTexture()->getSize().y + rect_aux.height - 15.f));
         }
-        this->soldiers[i]->setObjectVector(rect_aux);
-        this->soldiers[i]->getSprite()->setScale(-1.f,1.f);
+        this->soldiers.at(i)->setObjectVector(rect_aux);
+        this->soldiers.at(i)->getSprite()->setScale(-1.f,1.f);
 
     }
 
@@ -120,12 +136,25 @@ Level::Level(char file_music[],float windowWidth, float windowHeight) {
         this->soundEffect->setBuffer(*this->bufferEffect);
     }
 
-    this->player1 = new Player((char*)"res/images/characters/players/player1.png", windowWidth);
-    this->player1->getSprite()->setPosition(100.f,100.f);
 
-    for(unsigned int i = 0; i < (sizeof(this->zombies)/sizeof(this->zombies[i])); i++) {
-        this->zombies[i] = new Zombie((char*)"res/images/characters/npc/enemy/zombies/cool_zombie_sprite_by_gvbn10-d39mzxg.png");
-        this->zombies[i]->getSprite()->setPosition(((i+1.f)*300.f),100.f);
+    this->player1 = new Player((char*)"res/images/characters/players/player1.png", windowWidth);
+    this->player1->getSprite()->setPosition(1.f,100.f);
+
+    for(unsigned int i = 0; i < numZombies; i++) {
+        if(i==0) {
+            this->zombies.push_back(new Zombie((char*)"res/images/characters/npc/enemy/zombies/cool_zombie_sprite_by_gvbn10-d39mzxg.png",60.f,400.f,0));
+        } else if(i < 10) {
+            this->zombies.push_back(new Zombie(this->zombies.at(0)->getTexture(),60.f,400.f,0));
+        } else if(i == 10) {
+            this->zombies.push_back(new Zombie((char*)"res/images/characters/npc/enemy/zombies/fastZombie.png",200.f,400.f,0));
+        } else if(i < 20) {
+            this->zombies.push_back(new Zombie(this->zombies.at(10)->getTexture(),200.f,400.f,0));
+        } else if(i == 20) {
+            this->zombies.push_back(new Zombie((char*)"res/images/characters/npc/enemy/zombies/bigZombie.png",40.f,400.f,2));
+        } else {
+            this->zombies.push_back(new Zombie(this->zombies.at(20)->getTexture(),40.f,400.f,2));
+        }
+        this->zombies.at(i)->getSprite()->setPosition(((i+1.f)*200.f),100.f);
     }
 
     this->music = new sf::Music();
@@ -138,17 +167,29 @@ Level::Level(char file_music[],float windowWidth, float windowHeight) {
 }
 
 Level::~Level() {
-    delete zombies;
-    delete blocks;
-    delete builders;
-    delete skies;
-    delete soldiers;
+    for(unsigned int i = 0; i < zombies.size(); i++) {
+        delete zombies.at(i);
+    }
+    for(unsigned int i = 0; i < blocks.size(); i++) {
+        delete blocks.at(i);
+    }
+    for(unsigned int i = 0; i < platforms.size(); i++) {
+        delete platforms.at(i);
+    }
+    for(unsigned int i = 0; i < builders.size(); i++) {
+        delete builders.at(i);
+    }
+    for(unsigned int i = 0; i < skies.size(); i++) {
+        delete skies.at(i);
+    }
+    for(unsigned int i = 0; i < soldiers.size(); i++) {
+        delete soldiers.at(i);
+    }
     delete player1;
     delete music;
     delete livesFace;
     delete zombiesFace;
     delete joystickImage;
-    delete backgroundBoss;
     delete bufferEffect;
     delete soundEffect;
     delete pauseMenu;
@@ -159,7 +200,7 @@ Player* Level::getPlayer() {
 }
 
 void Level::moveUI(sf::RenderWindow *_window) {
-    if(this->getPlayer()->getPosWindowX(_window) >= (_window->getSize().x/2) && this->getPlayer()->getSprite()->getPosition().x <= 9728) {
+    if(this->getPlayer()->getPosWindowX(_window) >= (_window->getSize().x/2) && this->getPlayer()->getSprite()->getPosition().x <= (blocks.size() * blocks.at(0)->getSprite()->getTexture()->getSize().x) - (_window->getSize().x/2)) {
         this->timeText.setPosition(this->getPlayer()->getSprite()->getPosition().x - 8.f,(_window->getSize().y + 55.f) - _window->getSize().y);
         this->livesText.setPosition(this->getPlayer()->getSprite()->getPosition().x - 450.f,(_window->getSize().y + 55.f) - _window->getSize().y);
         this->livesFace->getSprite()->setPosition(this->getPlayer()->getSprite()->getPosition().x - 487.f,(_window->getSize().y + 55.f) - _window->getSize().y);
@@ -255,14 +296,14 @@ void Level::restart(float windowWidth, float windowHeight) {
     this->pauseMenu->setTextExit(sf::Text("Exit",this->font, 80U),sf::Color::Red,sf::Vector2f((windowWidth/2)-35.5f,(windowHeight/2)+65.f));
 
     //Enemys
-    for(unsigned int i = 0; i < (sizeof(this->zombies)/sizeof(this->zombies[i])); i++) {
-        this->zombies[i]->getSprite()->setOrigin(27.5f,32.f);
-        this->zombies[i]->getSprite()->setScale(-1.f,1.f);
-        this->zombies[i]->setmovingRight(false);
-        this->zombies[i]->setmovingLeft(true);
-        this->zombies[i]->setEndJumping(false);
-        this->zombies[i]->setLife(true);
-        this->zombies[i]->getSprite()->setPosition(((i+1)*500),100.f);
+    for(unsigned int i = 0; i < zombies.size(); i++) {
+        this->zombies.at(i)->getSprite()->setOrigin(27.5f,32.f);
+        this->zombies.at(i)->getSprite()->setScale(-1.f,1.f);
+        this->zombies.at(i)->setmovingRight(false);
+        this->zombies.at(i)->setmovingLeft(false);
+        this->zombies.at(i)->setEndJumping(false);
+        this->zombies.at(i)->setLife(true);
+        this->zombies.at(i)->getSprite()->setPosition(((i+1)*200),100.f);
     }
     //Player
     this->getPlayer()->getSprite()->setOrigin(27.f,26.f);
@@ -277,6 +318,8 @@ void Level::restart(float windowWidth, float windowHeight) {
     this->contZombies = 0;
     this->music->play();
     this->music->setLoop(true);
+    this->clockTime.reset();
+    this->clockTime.start();
 }
 
 void Level::verticalSpeed(Character *_character, float speedY) {
@@ -307,13 +350,13 @@ void Level::setFPS(float _fps) {
     this->fps = _fps;
 }
 
-void Level::blockCollision(Character *_character) {
-    for(unsigned int i = 0; i < (sizeof(this->blocks)/sizeof(this->blocks[i])); i++) {
-        if(this->blocks[i]->getSprite()->getGlobalBounds().intersects(_character->getSprite()->getGlobalBounds()) && _character->isFalling()) {
+void Level::blockCollision(Character *_character, std::vector<Object*> _blocks) {
+    for(unsigned int i = 0; i < _blocks.size(); i++) {
+        if(_blocks.at(i)->getSprite()->getGlobalBounds().intersects(_character->getSprite()->getGlobalBounds()) && _character->isFalling()) {
             _character->setEndJumping(true);
             _character->setJumping(false);
             _character->getSprite()->setPosition(_character->getSprite()->getPosition().x,
-                                                 this->blocks[i]->getSprite()->getPosition().y - (_character->getSprite()->getOrigin().y));
+                                                 _blocks.at(i)->getSprite()->getPosition().y - (_character->getSprite()->getOrigin().y));
         }
     }
 }
@@ -332,4 +375,8 @@ bool Level::isLevelPause() {
 
 Menu* Level::getPauseMenu() {
     return this->pauseMenu;
+}
+
+float Level::getClockSeconds() {
+    return this->clockTime.getElapsedTime().asSeconds();
 }

@@ -1,8 +1,7 @@
-#include "NPC.h"
-#include "Player.h"
-#include <iostream>
 #ifndef ZOMBIE_H
 #define ZOMBIE_H
+#include "NPC.h"
+#include "Player.h"
 /*!
  *  \brief     Class of the main enemy's, Zombies
  *  \details   This class will be the enemy's of the game, a parent class of all zombies
@@ -20,6 +19,8 @@ public:
     * \param file_texture[] char
     */
     Zombie(char file_texture[]);
+    Zombie(char file_texture[],float _velocityX, float _velocityY, int _lives);
+    Zombie(sf::Texture* _texture,float _velocityX, float _velocityY, int _lives);
     /*!
      * \brief Method to move the zombie to left
      * \details Subtract the position of the variable, flip the sprite to left and move the sprite to left.
@@ -54,9 +55,10 @@ public:
     void die();
     sf::Clock getMoveTime();
     void resetMoveTime();
-    int randomMove;
     int getRandomMove();
-    void setRandomeMove(int _randomMove);
+    void setRandomMove(int _randomMove);
+    int getLives();
+    void setLives(int _lives);
 protected:
     sf::Clock moveTime;
     thor::FrameAnimation attack_frames;
@@ -68,6 +70,8 @@ protected:
     * \details Sound of the file die audio
     */
     sf::Sound soundDie;
+    int randomMove;
+    int lives;
 private:
 };
 

@@ -1,7 +1,7 @@
-#include "Character.h"
-#include "Shot.h"
 #ifndef PLAYER_H
 #define PLAYER_H
+#include "Character.h"
+#include "Shot.h"
 /*!
  *  \brief     Class of the players
  *  \details   This class will be the players that the user will control
@@ -14,12 +14,14 @@
 
 class Player : public Character {
 public:
+    Player();
     /*!
     *  \brief     Constructor overloaded to which you pass the file of sprite
     *  \details   Constructor overloaded to which you pass the file of sprite, to take the player on the picture,
     *  \details   to send it on a position on the game window and set the origin of the picture on half-size
     */
     Player(char file_texture[], float _windowWidth);
+    Player(sf::Texture* _texture, float _windowWidth);
     virtual ~Player();
     /*!
      * \brief Return the camera of the player
@@ -72,6 +74,8 @@ public:
      * \brief The player will die
      */
     void die();
+    bool isEndLevel();
+    void setEndLevel(bool _endLevel);
 
 protected:
 private:
@@ -105,6 +109,7 @@ private:
     */
     sf::Sound soundDie;
     float windowWidth;
+    bool endLevel;
 };
 
 #endif // PLAYER_H

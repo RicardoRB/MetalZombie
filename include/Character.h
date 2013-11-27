@@ -1,7 +1,8 @@
-#include <SFML/Graphics.hpp>
-#include <Thor/Animation.hpp>
 #ifndef CHARACTER_H
 #define CHARACTER_H
+#include "Object.h"
+#include <SFML/Graphics.hpp>
+#include <Thor/Animation.hpp>
 /*!
  *  \brief     Class of characters
  *  \details   This class is the parent class of the all characters in the game
@@ -11,9 +12,11 @@
  *  \copyright GNU Public License.
  */
 
-class Character {
+class Character : public Object {
 public:
     Character();
+    Character(char file_texture[]);
+    Character(sf::Texture* _texture);
     virtual ~Character();
 
     /*!
@@ -121,11 +124,6 @@ public:
      * \param _life bool
      */
     void setLife(bool _life);
-    /*!
-     * \brief Return the sprite pointer of the character
-     * \return sf::Sprite* sprite
-    */
-    sf::Sprite* getSprite();
 
     /*!
      * \brief Method to move the character to right
@@ -159,19 +157,10 @@ public:
     thor::Animator<sf::Sprite, std::string> animator;
 
 protected:
-    /*!
-    * \details All characters will have texture (picture)
-    */
-    sf::Texture *texture;
-
-    /*!
-    * \details The sprite of the texture
-    */
-    sf::Sprite *sprite;
-
     thor::FrameAnimation walk_frames;
     thor::FrameAnimation die_frames;
     thor::FrameAnimation remain_frames;
+    thor::FrameAnimation jump_frames;
 
     /*!
     * \details If the characters is living, then true, else will be false
@@ -221,6 +210,7 @@ protected:
     * \details If the player is looking left then will be true, else, will be false
     */
     bool lookLeft;
+    sf::Vector2f velocity;
 private:
 };
 

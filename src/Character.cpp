@@ -1,6 +1,6 @@
 #include "../include/Character.h"
 
-Character::Character() {
+Character::Character() : Object() {
     //ctor
     this->texture = new sf::Texture();
     this->sprite = new sf::Sprite();
@@ -12,10 +12,18 @@ Character::Character() {
     this->attacking = false;
 }
 
+Character::Character(char file_texture[]) : Object(file_texture) {
+
+}
+
+Character::Character(sf::Texture* _texture) : Object(_texture) {
+
+}
+
 Character::~Character() {
     //dtor
-    delete texture;
     delete sprite;
+    delete texture;
 }
 
 void Character::setVelX(float _velX) {
@@ -88,10 +96,6 @@ bool Character::isLookingRight() {
 
 bool Character::isLookingLeft() {
     return this->lookLeft;
-}
-
-sf::Sprite* Character::getSprite() {
-    return this->sprite;
 }
 
 bool Character::isLife() {

@@ -1,8 +1,9 @@
 # depslib dependency file v1.0
-1375539150 source:c:\users\ricardo\metalzombie\src\character.cpp
+1384541731 source:c:\users\ricardo\metalzombie\src\character.cpp
 	"../include/Character.h"
 
-1375282943 c:\users\ricardo\metalzombie\include\character.h
+1384712453 c:\users\ricardo\metalzombie\include\character.h
+	"Object.h"
 	<SFML/Graphics.hpp>
 	<Thor/Animation.hpp>
 
@@ -340,22 +341,19 @@
 	<string>
 	<vector>
 
-1383858465 source:c:\users\ricardo\metalzombie\src\level.cpp
-	<iostream>
+1385560797 source:c:\users\ricardo\metalzombie\src\level.cpp
 	"../include/Level.h"
 
-1382978016 c:\users\ricardo\metalzombie\include\level.h
+1385560761 c:\users\ricardo\metalzombie\include\level.h
 	"Player.h"
-	"Block.h"
-	"Builder.h"
-	"Sky.h"
 	"Zombie.h"
 	"Menu.h"
 	<Thor/Time.hpp>
-	<iostream>
 	<sstream>
+	<vector>
+	<ctime>
 
-1383064829 c:\users\ricardo\metalzombie\include\player.h
+1384472928 c:\users\ricardo\metalzombie\include\player.h
 	"Character.h"
 	"Shot.h"
 
@@ -365,20 +363,18 @@
 1371403978 c:\users\ricardo\metalzombie\include\main.h
 	"Game.h"
 
-1383064851 source:c:\users\ricardo\metalzombie\src\player.cpp
+1384711442 source:c:\users\ricardo\metalzombie\src\player.cpp
 	"../include/Player.h"
-	<iostream>
 
-1383738126 source:c:\users\ricardo\metalzombie\src\zombie.cpp
+1384711447 source:c:\users\ricardo\metalzombie\src\zombie.cpp
 	"../include/Zombie.h"
 
-1383738126 c:\users\ricardo\metalzombie\include\zombie.h
+1384557877 c:\users\ricardo\metalzombie\include\zombie.h
 	"NPC.h"
 	"Player.h"
-	<iostream>
 
-1382524573 c:\users\ricardo\metalzombie\include\game.h
-	"Level.h"
+1384540812 c:\users\ricardo\metalzombie\include\game.h
+	"LevelBoss.h"
 	"Menu.h"
 	<SFML/Audio.hpp>
 	<SFML/Graphics.hpp>
@@ -388,7 +384,7 @@
 	<sstream>
 	<ctime>
 
-1383740379 source:c:\users\ricardo\metalzombie\src\game.cpp
+1385563659 source:c:\users\ricardo\metalzombie\src\game.cpp
 	"../include/Game.h"
 
 1331752015 c:\users\ricardo\downloads\sfml-2.0-rc-64\include\sfml\audio.hpp
@@ -1293,10 +1289,10 @@
 1374447178 c:\users\ricardo\metalzombie\include\block.h
 	"Object.h"
 
-1375030023 c:\users\ricardo\metalzombie\include\object.h
+1384019754 c:\users\ricardo\metalzombie\include\object.h
 	<SFML/Graphics.hpp>
 
-1375030283 source:c:\users\ricardo\metalzombie\src\object.cpp
+1384019760 source:c:\users\ricardo\metalzombie\src\object.cpp
 	"../include/Object.h"
 
 1371403978 source:c:\users\ricardo\metalzombie\src\builder.cpp
@@ -1344,14 +1340,13 @@
 	"../include/Shot.h"
 	<iostream>
 
-1377609343 c:\users\ricardo\metalzombie\include\shot.h
+1384431719 c:\users\ricardo\metalzombie\include\shot.h
 	"Object.h"
 	"Character.h"
 	<SFML/Audio.hpp>
 
-1377609562 source:c:\users\ricardo\metalzombie\src\shot.cpp
+1384541758 source:c:\users\ricardo\metalzombie\src\shot.cpp
 	"../include/Shot.h"
-	<iostream>
 
 1369999365 source:c:\users\2ºdai\metalzombie\src\npc.cpp
 	"../include/NPC.h"
@@ -1359,10 +1354,10 @@
 1369999365 c:\users\2ºdai\metalzombie\include\npc.h
 	"Character.h"
 
-1371403978 c:\users\ricardo\metalzombie\include\npc.h
+1384019871 c:\users\ricardo\metalzombie\include\npc.h
 	"Character.h"
 
-1371403978 source:c:\users\ricardo\metalzombie\src\npc.cpp
+1384541748 source:c:\users\ricardo\metalzombie\src\npc.cpp
 	"../include/NPC.h"
 
 1371323608 source:/home/richy/MetalZombie/src/Block.cpp
@@ -1856,9 +1851,8 @@
 	<SFML/Graphics.hpp>
 	<sstream>
 
-1382524902 source:c:\users\ricardo\metalzombie\src\menu.cpp
+1384431800 source:c:\users\ricardo\metalzombie\src\menu.cpp
 	"../include/Menu.h"
-	<iostream>
 
 1371580227 /home/richy/MetalZombie/include/Menu.h
 	"Object.h"
@@ -2754,4 +2748,18 @@
 	<memory>
 
 1373550284 c:\users\ricardo\downloads\thor\include\thor\input\detail\connectionimpl.hpp
+
+1385502380 source:c:\users\ricardo\metalzombie\src\zombieboss.cpp
+	"../include/ZombieBoss.h"
+
+1385071557 c:\users\ricardo\metalzombie\include\zombieboss.h
+	"Zombie.h"
+
+1385506193 c:\users\ricardo\metalzombie\include\levelboss.h
+	"Level.h"
+	"ZombieBoss.h"
+
+1385559976 source:c:\users\ricardo\metalzombie\src\levelboss.cpp
+	"../include/LevelBoss.h"
+	<iostream>
 

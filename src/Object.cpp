@@ -2,24 +2,34 @@
 
 Object::Object() {
     //ctor
-    objectImage = new sf::Texture();
-    object = new sf::Sprite();
+    texture = new sf::Texture();
+    sprite = new sf::Sprite();
 }
 
 Object::Object(char file_texture[]) {
-    objectImage = new sf::Texture();
-    object = new sf::Sprite();
+    texture = new sf::Texture();
+    sprite = new sf::Sprite();
     this->changeTexture(file_texture);
+}
+
+Object::Object(sf::Texture* _texture) {
+    texture = _texture;
+    sprite = new sf::Sprite();
+    this->sprite->setTexture(*texture);
 }
 
 Object::~Object() {
     //dtor
-    delete object;
-    delete objectImage;
+    delete sprite;
+    delete texture;
 }
 
 sf::Sprite* Object::getSprite() {
-    return this->object;
+    return this->sprite;
+}
+
+sf::Texture* Object::getTexture() {
+    return this->texture;
 }
 
 sf::IntRect Object::getObjectVector() {
@@ -28,14 +38,14 @@ sf::IntRect Object::getObjectVector() {
 
 void Object::setObjectVector(sf::IntRect _rect) {
     this->objectVector = _rect;
-    this->object->setTextureRect(_rect);
+    this->sprite->setTextureRect(_rect);
 }
 
 void Object::changeTexture(char file_texture[]) {
-    if(!this->objectImage->loadFromFile(file_texture)) {
+    if(!this->texture->loadFromFile(file_texture)) {
 //        std::cout << "Error file texture player" << std::endl;
     } else {
-        this->objectImage->loadFromFile(file_texture);
+        this->texture->loadFromFile(file_texture);
     }
-    this->object->setTexture(*objectImage);
+    this->sprite->setTexture(*texture);
 }

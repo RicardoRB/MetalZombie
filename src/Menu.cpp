@@ -1,5 +1,4 @@
 #include "../include/Menu.h"
-#include <iostream>
 
 Menu::Menu() {
     this->optionIcon = new Object((char*)"res/images/menu/option_icon.png");

@@ -1,14 +1,12 @@
+#ifndef LEVEL_H
+#define LEVEL_H
 #include "Player.h"
-#include "Block.h"
-#include "Builder.h"
-#include "Sky.h"
 #include "Zombie.h"
 #include "Menu.h"
 #include <Thor/Time.hpp>
-#include <iostream>
 #include <sstream>
-#ifndef LEVEL_H
-#define LEVEL_H
+#include <vector>
+#include <ctime>
 /*!
  *  \brief     Class of the levels
  *  \details   This class will control the objects of the levels; characters, pictures, sounds, music...
@@ -25,7 +23,7 @@ public:
     *  \brief     Constructor overloaded to which you pass the file of music and file of background
     *  \details   Constructor overloaded to which you pass the file of music and file of background, to create a new player and music, playing it and looping it
     */
-    Level(char file_music[],float windowWidth, float windowHeight);
+    Level(char file_music[],float windowWidth, float windowHeight,const unsigned int numZombies,const unsigned int numBlocks,const unsigned int numBuilders,const unsigned int numSkies,const unsigned int numSoldiers);
     virtual ~Level();
 
     const float gravity = 980.f;
@@ -39,24 +37,28 @@ public:
     /*!
     * \details Array of the zombies
     */
-    Zombie *zombies[35];
+    std::vector<Zombie*> zombies;
     /*!
-    * \details Array of the blocks, static because I need use it with collisions
+    * \details Array of the blocks
     */
-    Block *blocks[340];
+    std::vector<Object*> blocks;
+    /*!
+    * \details Array of the platforms
+    */
+    std::vector<Object*> platforms;
     /*!
     * \details Array of the builders
     */
-    Builder *builders[20];
+    std::vector<Object*> builders;
     /*!
     * \details Array of the skies
     */
-    Sky *skies[40];
+    std::vector<Object*> skies;
 
     /*!
     * \details Array of the soldiers friends
     */
-    Object *soldiers[10];
+    std::vector<Object*> soldiers;
     /*!
      * \brief Return the text time
      * \details Text of the time since start level
@@ -135,13 +137,13 @@ public:
     void horizontalSpeed(Character *_character, float MaxSpeedX, float decreaseX);
     float getFPS();
     void setFPS(float _fps);
-    void blockCollision(Character *_character);
+    void blockCollision(Character *_character,std::vector<Object*> _blocks);
     bool isLevelPause();
     void pauseLevel();
     void resumeLevel();
     Menu* getPauseMenu();
+    float getClockSeconds();
 protected:
-private:
     /*!
     * \details Player in the level
     */
@@ -150,10 +152,6 @@ private:
     * \details Music in the level
     */
     sf::Music *music;
-    /*!
-    * \details Background boss, this is not always used
-    */
-    Object *backgroundBoss;
     /*!
     * \details Lives face picture to the UI
     */
@@ -220,6 +218,7 @@ private:
     bool endGame;
     float fps;
     Menu *pauseMenu;
+private:
 };
 
 #endif // LEVEL_H
