@@ -143,6 +143,7 @@ public:
     void resumeLevel();
     Menu* getPauseMenu();
     float getClockSeconds();
+    sf::Music* getMusic();
 protected:
     /*!
     * \details Player in the level

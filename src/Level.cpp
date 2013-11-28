@@ -380,3 +380,7 @@ Menu* Level::getPauseMenu() {
 float Level::getClockSeconds() {
     return this->clockTime.getElapsedTime().asSeconds();
 }
+
+sf::Music* Level::getMusic(){
+    return this->music;
+}

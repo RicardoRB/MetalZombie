@@ -128,3 +128,7 @@ void Menu::playStart() {
 void Menu::playIntroMenu() {
     this->soundEffect->play();
 }
+
+sf::Music* Menu::getMusic(){
+    return this->music;
+}

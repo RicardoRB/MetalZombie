@@ -13,17 +13,24 @@ Game::Game() {
     this->menuTitle = new Menu(this->window->getSize().x, this->window->getSize().y);
     this->window->setVerticalSyncEnabled(true);
     this->window->setMouseCursorVisible(false);
+    this->gameLevel = NULL;
+    this->levelBoss = NULL;
     this->frameClock.restart();
     startMenu();
 }
 
 Game::~Game() {
-    delete window;
+    delete this->window;
     delete this->menuTitle;
+    delete this->gameLevel;
+    delete this->levelBoss;
 }
 
 void Game::startMenu() {
     while (this->window->isOpen() && this->menu) {
+            if(this->menuTitle->getMusic()->getStatus() == sf::Music::Stopped){
+                this->menuTitle->getMusic()->play();
+            }
         while (this->window->pollEvent(this->event)) {
             if (this->event.type == sf::Event::Closed) {
                 this->window->close();
@@ -47,14 +54,15 @@ void Game::startMenu() {
                     switch(this->menuTitle->getOption()) {
                     case 0: {
                         this->menuTitle->playStart();
-                        //Level *level1 = new Level((char*)"res/sounds/music/level1.ogg",this->window->getSize().x, this->window->getSize().y,35,320,20,40,10);
-                        LevelBoss *level1 = new LevelBoss((char*)"res/images/backgrounds/level1/boss.png",(char*)"res/sounds/music/level1.ogg",this->window->getSize().x, this->window->getSize().y,18,32);
+                        this->gameLevel = new Level((char*)"res/sounds/music/level1.ogg",this->window->getSize().x, this->window->getSize().y,35,320,20,40,10);
+                        //LevelBoss *levelBoss = new LevelBoss((char*)"res/images/backgrounds/level1/boss.png",(char*)"res/sounds/music/level1.ogg",this->window->getSize().x, this->window->getSize().y,18,32);
                         this->level = true;
-                        level1->getPlayer()->setCamera(this->window->getDefaultView());
+                        this->gameLevel->getPlayer()->setCamera(this->window->getDefaultView());
                         this->menu = false;
                         this->frameClock.restart();
-                        startLevelBoss(level1);
-                        //startLevel(level1);
+                        this->menuTitle->getMusic()->stop();
+                        //startLevelBoss(levelBoss);
+                        startLevel(this->gameLevel);
                         break;
                     }
                     default:
@@ -86,6 +94,9 @@ void Game::startMenu() {
 }
 
 void Game::startLevel(Level* _level) {
+    if(_level->getMusic()->getStatus() == sf::Music::Stopped){
+        _level->getMusic()->play();
+    }
     while (this->window->isOpen() && this->level) {
         //Needed to do all animations
         sf::Time frame_time;
@@ -129,14 +140,14 @@ void Game::startLevel(Level* _level) {
         }
         frame_time = this->frameClock.restart();
         if(_level->isLevelPause()) {
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Joystick::getAxisPosition(0, sf::Joystick::Y) == -100|| sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Joystick::getAxisPosition(0, sf::Joystick::Y) <= -100|| sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
                 if(_level->getPauseMenu()->getOption() > 0) {
                     _level->getPauseMenu()->playSelect();
                     _level->getPauseMenu()->setOption(_level->getPauseMenu()->getOption()-1);
                     _level->getPauseMenu()->getOptionIcon()->getSprite()->setPosition(_level->getPauseMenu()->getOptionIcon()->getSprite()->getPosition().x, _level->getPauseMenu()->getOptionIcon()->getSprite()->getPosition().y - 80.f);
                 }
             }
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Joystick::getAxisPosition(0, sf::Joystick::Y) == 100|| sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Joystick::getAxisPosition(0, sf::Joystick::Y) >= 100|| sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
                 if(_level->getPauseMenu()->getOption() < 1) {
                     _level->getPauseMenu()->playSelect();
                     _level->getPauseMenu()->setOption(_level->getPauseMenu()->getOption()+1);
@@ -152,6 +163,7 @@ void Game::startLevel(Level* _level) {
                     this->level = false;
                     this->menu = true;
                     this->window->setView(this->window->getDefaultView());
+                    _level->getMusic()->stop();
                     this->startMenu();
                     break;
                 }
@@ -211,6 +223,12 @@ void Game::startLevel(Level* _level) {
             //Player fall
             if(_level->getPlayer()->getSprite()->getPosition().y >= window->getSize().y && _level->getPlayer()->isLife()) {
                 _level->getPlayer()->die();
+            }
+            if(_level->getPlayer()->getSprite()->getPosition().x >= _level->blocks.at(_level->blocks.size()-5)->getSprite()->getPosition().x){
+                this->gameLevel->getMusic()->stop();
+                this->levelBoss = new LevelBoss((char*)"res/images/backgrounds/level1/boss.png",(char*)"res/sounds/music/level1.ogg",this->window->getSize().x, this->window->getSize().y,18,32);
+                this->levelBoss->getPlayer()->setCamera(this->window->getDefaultView());
+                startLevelBoss(this->levelBoss);
             }
 
             //--------------------------------------------------------------------
@@ -388,6 +406,9 @@ void Game::startLevel(Level* _level) {
 }
 
 void Game::startLevelBoss(LevelBoss* _levelBoss) {
+    if(_levelBoss->getMusic()->getStatus() == sf::Music::Stopped){
+        _levelBoss->getMusic()->play();
+    }
     while (this->window->isOpen() && this->level) {
         //Needed to do all animations
         sf::Time frame_time;
@@ -453,6 +474,7 @@ void Game::startLevelBoss(LevelBoss* _levelBoss) {
                 default:
                     this->level = false;
                     this->menu = true;
+                    _levelBoss->getMusic()->stop();
                     this->window->setView(this->window->getDefaultView());
                     this->startMenu();
                     break;

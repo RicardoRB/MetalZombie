@@ -37,6 +37,7 @@ public:
     */
     void startLevel(Level* _level);
     void startLevelBoss(LevelBoss* _levelBoss);
+
 protected:
 private:
     /*!
@@ -72,6 +73,8 @@ private:
     bool level;
     sf::Clock frameClock;
     sf::Event event;
+    Level *gameLevel;
+    LevelBoss *levelBoss;
 };
 
 #endif // GAME_H

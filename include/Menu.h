@@ -64,6 +64,7 @@ public:
     Object* getIntroLogo();
     Object* getIntroLogoCC();
     void playIntroMenu();
+    sf::Music* getMusic();
 protected:
 private:
     /*!
