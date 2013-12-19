@@ -125,7 +125,7 @@ void Game::startMenu() {
 void Game::startOptions() {
     this->optionMenu = new Menu();
     this->optionMenu->setOption(0);
-    this->optionMenu->getIntroLogo()->getSprite()->setPosition((this->window->getSize().x - this->optionMenu->getIntroLogo()->getTexture()->getSize().x)/2, 0.f);
+    this->optionMenu->getIntroLogo()->getSprite()->setPosition((this->window->getSize().x - this->optionMenu->getIntroLogo()->getTexture()->getSize().x)/2, (this->window->getSize().y - this->optionMenu->getIntroLogo()->getTexture()->getSize().y)/2);
     this->optionMenu->getOptionIcon()->getSprite()->setPosition((this->window->getSize().x/2) - 500.f,(this->window->getSize().y/2)-240.f);
     INIReader file("config.ini");
     sf::Font font;
