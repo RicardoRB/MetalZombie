@@ -87,10 +87,8 @@ LevelBoss::LevelBoss(char background_texture[],char file_music[],float windowWid
         }
     }
 
-    this->bufferEffect = new sf::SoundBuffer();
-    this->soundEffect = new sf::Sound();
-    if(this->bufferEffect->loadFromFile((char*)"res/sounds/effects/level/gameover.ogg")) {
-        this->soundEffect->setBuffer(*this->bufferEffect);
+    if(this->bufferEffect.loadFromFile((char*)"res/sounds/effects/level/gameover.ogg")) {
+        this->soundEffect.setBuffer(this->bufferEffect);
     }
 
     this->player1 = new Player((char*)"res/images/characters/players/player1.png", windowWidth);
@@ -105,19 +103,19 @@ LevelBoss::LevelBoss(char background_texture[],char file_music[],float windowWid
         } else if(i < 6) {
             this->zombies.push_back(new Zombie(this->zombies.at(0)->getTexture(),60.f,400.f,0));
         } else if(i == 6) {
-            this->zombies.push_back(new Zombie((char*)"res/images/characters/npc/enemy/zombies/fastZombie.png",200.f,400.f,0));
+            this->zombies.push_back(new Zombie((char*)"res/images/characters/npc/enemy/zombies/fastZombie.png",120.f,400.f,0));
         } else if(i < 12) {
-            this->zombies.push_back(new Zombie(this->zombies.at(6)->getTexture(),200.f,400.f,0));
+            this->zombies.push_back(new Zombie(this->zombies.at(6)->getTexture(),120.f,400.f,0));
         } else if(i == 12) {
             this->zombies.push_back(new Zombie((char*)"res/images/characters/npc/enemy/zombies/bigZombie.png",40.f,400.f,2));
         } else {
             this->zombies.push_back(new Zombie(this->zombies.at(12)->getTexture(),40.f,400.f,2));
         }
         if(i % 2 == 0) {
-            this->zombies.at(i)->getSprite()->setPosition(this->blocks.at(blockPosition1)->getSprite()->getPosition().x + 35.f,200.f);
+            this->zombies.at(i)->getSprite()->setPosition(this->blocks.at(blockPosition1)->getSprite()->getPosition().x + 35.f,600.f);
             blockPosition1++;
         } else {
-            this->zombies.at(i)->getSprite()->setPosition(this->blocks.at(blockPosition2)->getSprite()->getPosition().x,200.f);
+            this->zombies.at(i)->getSprite()->setPosition(this->blocks.at(blockPosition2)->getSprite()->getPosition().x,600.f);
             blockPosition2--;
         }
     }
@@ -146,32 +144,6 @@ LevelBoss::LevelBoss(char background_texture[],char file_music[],float windowWid
 
 LevelBoss::~LevelBoss() {
     //dtor
-    for(unsigned int i = 0; i < zombies.size(); i++) {
-        delete zombies.at(i);
-    }
-    for(unsigned int i = 0; i < blocks.size(); i++) {
-        delete blocks.at(i);
-    }
-    for(unsigned int i = 0; i < platforms.size(); i++) {
-        delete platforms.at(i);
-    }
-    for(unsigned int i = 0; i < builders.size(); i++) {
-        delete builders.at(i);
-    }
-    for(unsigned int i = 0; i < skies.size(); i++) {
-        delete skies.at(i);
-    }
-    for(unsigned int i = 0; i < soldiers.size(); i++) {
-        delete soldiers.at(i);
-    }
-    delete player1;
-    delete music;
-    delete livesFace;
-    delete zombiesFace;
-    delete joystickImage;
-    delete bufferEffect;
-    delete soundEffect;
-    delete pauseMenu;
     delete backgroundBoss;
     delete boss;
     delete bossLife;

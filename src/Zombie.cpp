@@ -148,8 +148,14 @@ void Zombie::attack(Player *_player) {
 
 void Zombie::die() {
     this->setVelX(0);
+    INIReader file("config.ini");
     if(this->bufferDie.loadFromFile((char*)"res/sounds/effects/characters/npc/enemy/zombies/die.wav")) {
         this->soundDie.setBuffer(this->bufferDie);
+        if (file.ParseError() < 0) {
+            this->soundDie.setVolume(100.f);
+        }else{
+            this->soundDie.setVolume(file.GetReal("volume", "effects", 100.f));
+        }
         this->soundDie.play();
     }
     this->sprite->setOrigin(77.f,62.f);

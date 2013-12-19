@@ -8,14 +8,30 @@ Game::Game() {
     this->soundCameraShot.setBuffer(this->bufferCameraShot);
     this->menu = true;
     this->level = false;
+    this->credits = false;
     this->playedSoundIntro = false;
-    this->window->create(sf::VideoMode::getDesktopMode(), "MetalZombie", sf::Style::Fullscreen);
+    this->options = false;
+    INIReader file("config.ini");
+    if (file.ParseError() < 0) {
+        std::cout << "Error loading config.ini" << std::endl;
+        this->window->create(sf::VideoMode::getDesktopMode(), "MetalZombie", sf::Style::Fullscreen);
+    } else {
+        if(file.GetBoolean("window","fullscreen",true)) {
+            this->window->create(sf::VideoMode(file.GetInteger("window", "width", 1024),file.GetInteger("window", "height", 768)), "MetalZombie", sf::Style::Fullscreen);
+        } else {
+            this->window->create(sf::VideoMode(file.GetInteger("window", "width", 1024),file.GetInteger("window", "height", 768)), "MetalZombie", sf::Style::Default);
+        }
+    }
+    window->setKeyRepeatEnabled(false);
     this->menuTitle = new Menu(this->window->getSize().x, this->window->getSize().y);
+    this->menuTitle->setOption(0);
     this->window->setVerticalSyncEnabled(true);
     this->window->setMouseCursorVisible(false);
+    this->frameClock.restart();
     this->gameLevel = NULL;
     this->levelBoss = NULL;
-    this->frameClock.restart();
+    this->creditsPicture = NULL;
+    this->optionMenu = NULL;
     startMenu();
 }
 
@@ -24,50 +40,62 @@ Game::~Game() {
     delete this->menuTitle;
     delete this->gameLevel;
     delete this->levelBoss;
+    delete this->creditsPicture;
+    delete this->optionMenu;
 }
 
 void Game::startMenu() {
+    INIReader file("config.ini");
+    this->menuTitle->getMusic()->setVolume(file.GetReal("volume", "music", 100.f));
     while (this->window->isOpen() && this->menu) {
-            if(this->menuTitle->getMusic()->getStatus() == sf::Music::Stopped){
-                this->menuTitle->getMusic()->play();
-            }
+        if(this->menuTitle->getMusic()->getStatus() == sf::Music::Stopped) {
+            this->menuTitle->getMusic()->play();
+        }
         while (this->window->pollEvent(this->event)) {
             if (this->event.type == sf::Event::Closed) {
                 this->window->close();
             }
             if(this->frameClock.getElapsedTime().asSeconds() >= 6.f) {
-                if(sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Joystick::getAxisPosition(0, sf::Joystick::Y) == -100|| sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Joystick::getAxisPosition(0, sf::Joystick::Y) == -100|| sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
                     if(this->menuTitle->getOption() > 0) {
                         this->menuTitle->playSelect();
                         this->menuTitle->setOption(this->menuTitle->getOption()-1);
-                        this->menuTitle->getOptionIcon()->getSprite()->setPosition(this->menuTitle->getOptionIcon()->getSprite()->getPosition().x, this->menuTitle->getOptionIcon()->getSprite()->getPosition().y - 80.f);
+                        this->menuTitle->getOptionIcon()->getSprite()->setPosition(this->menuTitle->getOptionIcon()->getSprite()->getPosition().x, this->menuTitle->getOptionIcon()->getSprite()->getPosition().y - 40.f);
                     }
                 }
-                if(sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Joystick::getAxisPosition(0, sf::Joystick::Y) == 100|| sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-                    if(this->menuTitle->getOption() < 1) {
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Joystick::getAxisPosition(0, sf::Joystick::Y) == 100|| sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+                    if(this->menuTitle->getOption() < 4) {
                         this->menuTitle->playSelect();
                         this->menuTitle->setOption(this->menuTitle->getOption()+1);
-                        this->menuTitle->getOptionIcon()->getSprite()->setPosition(this->menuTitle->getOptionIcon()->getSprite()->getPosition().x, this->menuTitle->getOptionIcon()->getSprite()->getPosition().y + 80.f);
+                        this->menuTitle->getOptionIcon()->getSprite()->setPosition(this->menuTitle->getOptionIcon()->getSprite()->getPosition().x, this->menuTitle->getOptionIcon()->getSprite()->getPosition().y + 40.f);
                     }
                 }
                 if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || sf::Joystick::isButtonPressed(0,0)) {
-                    switch(this->menuTitle->getOption()) {
-                    case 0: {
-                        this->menuTitle->playStart();
-                        this->gameLevel = new Level((char*)"res/sounds/music/level1.ogg",this->window->getSize().x, this->window->getSize().y,35,320,20,40,10);
-                        //LevelBoss *levelBoss = new LevelBoss((char*)"res/images/backgrounds/level1/boss.png",(char*)"res/sounds/music/level1.ogg",this->window->getSize().x, this->window->getSize().y,18,32);
-                        this->level = true;
-                        this->gameLevel->getPlayer()->setCamera(this->window->getDefaultView());
-                        this->menu = false;
-                        this->frameClock.restart();
-                        this->menuTitle->getMusic()->stop();
-                        //startLevelBoss(levelBoss);
-                        startLevel(this->gameLevel);
-                        break;
-                    }
-                    default:
-                        this->window->close();
-                        break;
+                    if(this->menuTitle->getOption() < 0) {
+                        this->menuTitle->setOption(2);
+                    } else {
+                        switch(this->menuTitle->getOption()) {
+                        case 0: {
+                            this->menuTitle->playStart();
+                            this->gameLevel = new Level((char*)"res/sounds/music/level1.ogg",this->window->getSize().x, this->window->getSize().y,35,320,20,40,10);
+                            this->level = true;
+                            this->gameLevel->getPlayer()->setCamera(this->window->getDefaultView());
+                            this->menu = false;
+                            this->frameClock.restart();
+                            this->menuTitle->getMusic()->stop();
+                            startLevel(this->gameLevel);
+                            break;
+                        }
+                        case 2: {
+                            this->menu = false;
+                            this->options = true;
+                            startOptions();
+                            break;
+                        }
+                        default:
+                            this->window->close();
+                            break;
+                        }
                     }
                 }
             }
@@ -85,6 +113,7 @@ void Game::startMenu() {
                 this->window->draw(this->menuTitle->getTextTitle());
                 this->window->draw(this->menuTitle->getTextStart());
                 this->window->draw(this->menuTitle->getTextExit());
+                this->window->draw(this->menuTitle->getTextOptions());
                 this->window->draw(*this->menuTitle->getOptionIcon()->getSprite());
             }
             this->window->display();
@@ -93,8 +122,110 @@ void Game::startMenu() {
     }
 }
 
+void Game::startOptions() {
+    this->optionMenu = new Menu();
+    this->optionMenu->setOption(0);
+    this->optionMenu->getIntroLogo()->getSprite()->setPosition((this->window->getSize().x - this->optionMenu->getIntroLogo()->getTexture()->getSize().x)/2, 0.f);
+    this->optionMenu->getOptionIcon()->getSprite()->setPosition((this->window->getSize().x/2) - 500.f,(this->window->getSize().y/2)-240.f);
+    INIReader file("config.ini");
+    sf::Font font;
+    font.loadFromFile("res/fonts/BrushRunes.otf");
+    if (file.ParseError() < 0) {
+        std::cout << "Error loading config.ini" << std::endl;
+        this->optionMenu->setTextOptions(sf::Text("1024x768",font, 80U),sf::Color::Red,sf::Vector2f((this->window->getSize().x/2)+250.f,(this->window->getSize().y/2)-270.f));
+        this->optionMenu->setTextExit(sf::Text("100",font, 80U),sf::Color::Red,sf::Vector2f((this->window->getSize().x/2)+250.f,(this->window->getSize().y/2)-100.f));
+        this->optionMenu->setTextStart(sf::Text("100",font, 80U),sf::Color::Red,sf::Vector2f((this->window->getSize().x/2)+250.f,(this->window->getSize().y/2)-70.f));
+    } else {
+        this->optionMenu->setTextOptions(sf::Text(file.Get("window", "width", "1024")+ "x" +file.Get("window", "height", "1024"),font, 80U),sf::Color::Red,sf::Vector2f((this->window->getSize().x/2)+250.f,(this->window->getSize().y/2)-270.f));
+        this->optionMenu->setTextExit(sf::Text(file.Get("volume", "effects", "100"),font, 80U),sf::Color::Red,sf::Vector2f((this->window->getSize().x/2)+250.f,(this->window->getSize().y/2)-100.f));
+        this->optionMenu->setTextStart(sf::Text(file.Get("volume", "music", "100"),font, 80U),sf::Color::Red,sf::Vector2f((this->window->getSize().x/2)+250.f,(this->window->getSize().y/2)+80.f));
+    }
+
+    while (this->window->isOpen() && this->options) {
+        while (this->window->pollEvent(this->event)) {
+            if (this->event.type == sf::Event::Closed) {
+                this->window->close();
+            }
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Joystick::getAxisPosition(0, sf::Joystick::Y) == -100|| sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+                if(this->optionMenu->getOption() > 0) {
+                    this->optionMenu->playSelect();
+                    this->optionMenu->setOption(this->optionMenu->getOption()-1);
+                    this->optionMenu->getOptionIcon()->getSprite()->setPosition(this->optionMenu->getOptionIcon()->getSprite()->getPosition().x, this->optionMenu->getOptionIcon()->getSprite()->getPosition().y - 90.f);
+                }
+            }
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Joystick::getAxisPosition(0, sf::Joystick::Y) == 100|| sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+                if(this->optionMenu->getOption() < 6) {
+                    this->optionMenu->playSelect();
+                    this->optionMenu->setOption(this->optionMenu->getOption()+1);
+                    this->optionMenu->getOptionIcon()->getSprite()->setPosition(this->optionMenu->getOptionIcon()->getSprite()->getPosition().x, this->optionMenu->getOptionIcon()->getSprite()->getPosition().y + 90.f);
+                }
+            }
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || sf::Joystick::isButtonPressed(0,0)) {
+                switch(this->optionMenu->getOption()) {
+                case 0: {
+                    break;
+                }
+                case 2: {
+                    std::stringstream ss(this->optionMenu->getTextExit().getString());
+                    std::stringstream ss2;
+                    int number;
+                    ss >> number;
+                    if(number < 105) {
+                        number += 5;
+                    } else {
+                        number = 0;
+                    }
+                    ss2 << number;
+                    this->optionMenu->setTextExit(sf::Text(ss2.str(),font, 80U),sf::Color::Red,sf::Vector2f((this->window->getSize().x/2)+250.f,(this->window->getSize().y/2)-100.f));
+                    break;
+                }
+                case 4: {
+                    std::stringstream ss(this->optionMenu->getTextStart().getString());
+                    std::stringstream ss2;
+                    int number;
+                    ss >> number;
+                    if(number < 105) {
+                        number += 5;
+                    } else {
+                        number = 0;
+                    }
+                    ss2 << number;
+                    this->optionMenu->setTextStart(sf::Text(ss2.str(),font, 80U),sf::Color::Red,sf::Vector2f((this->window->getSize().x/2)+250.f,(this->window->getSize().y/2)+80.f));
+                    break;
+                }
+                default: {
+                    std::string fs = file.Get("window", "fullscreen", "1");
+                    std::string s = this->optionMenu->getTextOptions().getString();
+                    INIWriter w;
+                    w.Open("config.ini");
+                    w.PutSection("window");
+                    w.PutValue("width",s.substr(0,s.find("x")));
+                    w.PutValue("height",s.substr(s.find("x")+1));
+                    w.PutValue("fullscreen", fs);
+                    w.PutSection("volume");
+                    w.PutValue("music",this->optionMenu->getTextStart().getString());
+                    w.PutValue("effects",this->optionMenu->getTextExit().getString());
+                    this->menuTitle->setOption(-1);
+                    this->options = false;
+                    this->menu = true;
+                    startMenu();
+                    break;
+                }
+                }
+            }
+        }
+        this->window->draw(*this->optionMenu->getIntroLogo()->getSprite());
+        this->window->draw(*this->optionMenu->getOptionIcon()->getSprite());
+        this->window->draw(this->optionMenu->getTextExit());
+        this->window->draw(this->optionMenu->getTextOptions());
+        this->window->draw(this->optionMenu->getTextStart());
+        this->window->display();
+        this->window->clear();
+    }
+}
+
 void Game::startLevel(Level* _level) {
-    if(_level->getMusic()->getStatus() == sf::Music::Stopped){
+    if(_level->getMusic()->getStatus() == sf::Music::Stopped) {
         _level->getMusic()->play();
     }
     while (this->window->isOpen() && this->level) {
@@ -119,9 +250,9 @@ void Game::startLevel(Level* _level) {
             _level->getJoystickImage()->changeTexture((char*)"res/images/IU/no_joystick.png");
         }
         //Take a screenshot
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::F1) ||sf::Joystick::isButtonPressed(0,1)) {
+        /*if (sf::Keyboard::isKeyPressed(sf::Keyboard::F1) ||sf::Joystick::isButtonPressed(0,1)) {
             this->takeScreenshot();
-        }
+        }*/
 
         //If the player is not moving, then the sprite will draw like standing
         if((!_level->getPlayer()->ismovingLeft() && !_level->getPlayer()->ismovingRight()) && _level->getPlayer()->isLife()) {
@@ -140,14 +271,14 @@ void Game::startLevel(Level* _level) {
         }
         frame_time = this->frameClock.restart();
         if(_level->isLevelPause()) {
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Joystick::getAxisPosition(0, sf::Joystick::Y) <= -100|| sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Joystick::getAxisPosition(0, sf::Joystick::Y) <= -100|| sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
                 if(_level->getPauseMenu()->getOption() > 0) {
                     _level->getPauseMenu()->playSelect();
                     _level->getPauseMenu()->setOption(_level->getPauseMenu()->getOption()-1);
                     _level->getPauseMenu()->getOptionIcon()->getSprite()->setPosition(_level->getPauseMenu()->getOptionIcon()->getSprite()->getPosition().x, _level->getPauseMenu()->getOptionIcon()->getSprite()->getPosition().y - 80.f);
                 }
             }
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Joystick::getAxisPosition(0, sf::Joystick::Y) >= 100|| sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Joystick::getAxisPosition(0, sf::Joystick::Y) >= 100|| sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
                 if(_level->getPauseMenu()->getOption() < 1) {
                     _level->getPauseMenu()->playSelect();
                     _level->getPauseMenu()->setOption(_level->getPauseMenu()->getOption()+1);
@@ -203,6 +334,7 @@ void Game::startLevel(Level* _level) {
 
             //Collisions
             _level->blockCollision(_level->getPlayer(),_level->blocks);
+            _level->blockCollision(_level->getPlayer(),_level->platforms);
 
             if(_level->getPlayer()->isJumping() && _level->getPlayer()->isLife()) {
                 _level->getPlayer()->setEndJumping(false);
@@ -224,9 +356,9 @@ void Game::startLevel(Level* _level) {
             if(_level->getPlayer()->getSprite()->getPosition().y >= window->getSize().y && _level->getPlayer()->isLife()) {
                 _level->getPlayer()->die();
             }
-            if(_level->getPlayer()->getSprite()->getPosition().x >= _level->blocks.at(_level->blocks.size()-5)->getSprite()->getPosition().x){
+            if(_level->getPlayer()->getSprite()->getPosition().x >= _level->blocks.at(_level->blocks.size()-5)->getSprite()->getPosition().x) {
                 this->gameLevel->getMusic()->stop();
-                this->levelBoss = new LevelBoss((char*)"res/images/backgrounds/level1/boss.png",(char*)"res/sounds/music/level1.ogg",this->window->getSize().x, this->window->getSize().y,18,32);
+                this->levelBoss = new LevelBoss((char*)"res/images/backgrounds/level1/boss.png",(char*)"res/sounds/music/boss.ogg",this->window->getSize().x, this->window->getSize().y,18,32);
                 this->levelBoss->getPlayer()->setCamera(this->window->getDefaultView());
                 startLevelBoss(this->levelBoss);
             }
@@ -406,7 +538,7 @@ void Game::startLevel(Level* _level) {
 }
 
 void Game::startLevelBoss(LevelBoss* _levelBoss) {
-    if(_levelBoss->getMusic()->getStatus() == sf::Music::Stopped){
+    if(_levelBoss->getMusic()->getStatus() == sf::Music::Stopped) {
         _levelBoss->getMusic()->play();
     }
     while (this->window->isOpen() && this->level) {
@@ -431,9 +563,9 @@ void Game::startLevelBoss(LevelBoss* _levelBoss) {
             _levelBoss->getJoystickImage()->changeTexture((char*)"res/images/IU/no_joystick.png");
         }
         //Take a screenshot
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::F1) ||sf::Joystick::isButtonPressed(0,1)) {
+        /*if (sf::Keyboard::isKeyPressed(sf::Keyboard::F1) ||sf::Joystick::isButtonPressed(0,1)) {
             this->takeScreenshot();
-        }
+        }*/
 
         //If the player is not moving, then the sprite will draw like standing
         if((!_levelBoss->getPlayer()->ismovingLeft() && !_levelBoss->getPlayer()->ismovingRight()) && _levelBoss->getPlayer()->isLife()) {
@@ -452,14 +584,14 @@ void Game::startLevelBoss(LevelBoss* _levelBoss) {
         }
         frame_time = this->frameClock.restart();
         if(_levelBoss->isLevelPause()) {
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Joystick::getAxisPosition(0, sf::Joystick::Y) == -100|| sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Joystick::getAxisPosition(0, sf::Joystick::Y) == -100|| sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
                 if(_levelBoss->getPauseMenu()->getOption() > 0) {
                     _levelBoss->getPauseMenu()->playSelect();
                     _levelBoss->getPauseMenu()->setOption(_levelBoss->getPauseMenu()->getOption()-1);
                     _levelBoss->getPauseMenu()->getOptionIcon()->getSprite()->setPosition(_levelBoss->getPauseMenu()->getOptionIcon()->getSprite()->getPosition().x, _levelBoss->getPauseMenu()->getOptionIcon()->getSprite()->getPosition().y - 80.f);
                 }
             }
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Joystick::getAxisPosition(0, sf::Joystick::Y) == 100|| sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Joystick::getAxisPosition(0, sf::Joystick::Y) == 100|| sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
                 if(_levelBoss->getPauseMenu()->getOption() < 1) {
                     _levelBoss->getPauseMenu()->playSelect();
                     _levelBoss->getPauseMenu()->setOption(_levelBoss->getPauseMenu()->getOption()+1);
@@ -647,6 +779,12 @@ void Game::startLevelBoss(LevelBoss* _levelBoss) {
                     }
                 }
             } else {
+
+                if(_levelBoss->getTimeTube()->getElapsedTime().asSeconds() > 10.f && !_levelBoss->getBoss()->isLife()) {
+                    this->level = false;
+                    this->credits = true;
+                    startCredits();
+                }
                 _levelBoss->getBoss()->setVelX(0);
                 _levelBoss->getBoss()->setFalling(true);
             }
@@ -678,6 +816,12 @@ void Game::startLevelBoss(LevelBoss* _levelBoss) {
 
                     if(_levelBoss->getBoss()->getLives() <= 0 && _levelBoss->getBoss()->getRecoverys() <= 0) {
                         _levelBoss->getBoss()->die();
+                        if(_levelBoss->getTimeTube()->isRunning()) {
+                            _levelBoss->getTimeTube()->reset();
+                            _levelBoss->getTimeTube()->start();
+                        } else {
+                            _levelBoss->getTimeTube()->start();
+                        }
                     }
                     if(_levelBoss->getBoss()->getLives() <= 0 && _levelBoss->getBoss()->getRecoverys() > 0) {
                         _levelBoss->setZombiePhase(true);
@@ -723,7 +867,7 @@ void Game::startLevelBoss(LevelBoss* _levelBoss) {
         //--------------------------------------------------------------------
         //-------------------------Draw Everything----------------------------
         //--------------------------------------------------------------------
-        if(((_levelBoss->getClockSeconds() < 5.f || _levelBoss->getClockSeconds() > 6.f) && !_levelBoss->isFirstBlackScreen()) || _levelBoss->getTimeTube()->getElapsedTime().asSeconds() > 1.f) {
+        if(((_levelBoss->getClockSeconds() < 5.f || _levelBoss->getClockSeconds() > 5.5f) && !_levelBoss->isFirstBlackScreen()) || _levelBoss->getTimeTube()->getElapsedTime().asSeconds() > 0.5f) {
             this->window->draw(*_levelBoss->getBackgroundBoss()->getSprite());
             //Draw the blocks
             for(unsigned int i = 0; i<_levelBoss->blocks.size(); i++) {
@@ -775,7 +919,7 @@ void Game::startLevelBoss(LevelBoss* _levelBoss) {
                 this->window->draw(_levelBoss->getTextGameOver());
             }
         } else {
-            if((_levelBoss->getClockSeconds() >= 5.7f && _levelBoss->getClockSeconds() < 6.f) && _levelBoss->getBoss()->isTube()) {
+            if((_levelBoss->getClockSeconds() >= 5.1f && _levelBoss->getClockSeconds() < 5.4f) && _levelBoss->getBoss()->isTube()) {
                 _levelBoss->changeTubeSprite();
             }
         }
@@ -786,6 +930,27 @@ void Game::startLevelBoss(LevelBoss* _levelBoss) {
         }
 
 
+        this->window->display();
+    }
+}
+
+void Game::startCredits() {
+    this->creditsPicture = new Object((char*)"res/images/menu/credits.png");
+    this->creditsPicture->getSprite()->setPosition((this->window->getSize().x - this->creditsPicture->getTexture()->getSize().x)/2, 0.f);
+    while (this->window->isOpen() && this->credits) {
+        while (this->window->pollEvent(this->event)) {
+            if (this->event.type == sf::Event::Closed) {
+                this->window->close();
+            }
+        }
+        this->window->clear(sf::Color::Black);
+        this->creditsPicture->getSprite()->move(0,-0.5f);
+        if(this->creditsPicture->getSprite()->getPosition().y <= 0.f-this->creditsPicture->getTexture()->getSize().y) {
+            this->credits = false;
+            this->menu = true;
+            this->startMenu();
+        }
+        this->window->draw(*creditsPicture->getSprite());
         this->window->display();
     }
 }

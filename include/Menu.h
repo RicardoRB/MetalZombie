@@ -1,9 +1,11 @@
+#ifndef MENU_H
+#define MENU_H
 #include "Object.h"
+#include "INIReader.h"
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <sstream>
-#ifndef MENU_H
-#define MENU_H
+
 
 /*!
  *  \brief     Class of the title menu
@@ -38,6 +40,8 @@ public:
      */
     sf::Text getTextExit();
     void setTextExit(sf::Text text,sf::Color color,sf::Vector2f position);
+    sf::Text getTextOptions();
+    void setTextOptions(sf::Text text,sf::Color color,sf::Vector2f position);
     /*!
      * \brief Return the object option to draw it
      * \return Object *optionIcon
@@ -87,6 +91,10 @@ private:
     * \details Text of the exit menu
     */
     sf::Text exitText;
+    /*!
+    * \details Text of the options menu
+    */
+    sf::Text optionsText;
     /*!
     * \details Icon picture to choose options
     */

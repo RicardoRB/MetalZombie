@@ -1,9 +1,10 @@
 # depslib dependency file v1.0
-1384541731 source:c:\users\ricardo\metalzombie\src\character.cpp
+1386179616 source:c:\users\ricardo\metalzombie\src\character.cpp
 	"../include/Character.h"
 
-1384712453 c:\users\ricardo\metalzombie\include\character.h
+1387286140 c:\users\ricardo\metalzombie\include\character.h
 	"Object.h"
+	"INIReader.h"
 	<SFML/Graphics.hpp>
 	<Thor/Animation.hpp>
 
@@ -341,13 +342,14 @@
 	<string>
 	<vector>
 
-1385638463 source:c:\users\ricardo\metalzombie\src\level.cpp
+1387284680 source:c:\users\ricardo\metalzombie\src\level.cpp
 	"../include/Level.h"
 
-1385638442 c:\users\ricardo\metalzombie\include\level.h
+1387284550 c:\users\ricardo\metalzombie\include\level.h
 	"Player.h"
 	"Zombie.h"
 	"Menu.h"
+	"INIReader.h"
 	<Thor/Time.hpp>
 	<sstream>
 	<vector>
@@ -363,19 +365,21 @@
 1371403978 c:\users\ricardo\metalzombie\include\main.h
 	"Game.h"
 
-1384711442 source:c:\users\ricardo\metalzombie\src\player.cpp
+1387285792 source:c:\users\ricardo\metalzombie\src\player.cpp
 	"../include/Player.h"
 
-1384711447 source:c:\users\ricardo\metalzombie\src\zombie.cpp
+1387285337 source:c:\users\ricardo\metalzombie\src\zombie.cpp
 	"../include/Zombie.h"
 
 1384557877 c:\users\ricardo\metalzombie\include\zombie.h
 	"NPC.h"
 	"Player.h"
 
-1385639275 c:\users\ricardo\metalzombie\include\game.h
+1387408786 c:\users\ricardo\metalzombie\include\game.h
 	"LevelBoss.h"
 	"Menu.h"
+	"INIReader.h"
+	"INIWriter.h"
 	<SFML/Audio.hpp>
 	<SFML/Graphics.hpp>
 	<stdlib.h>
@@ -383,8 +387,9 @@
 	<iostream>
 	<sstream>
 	<ctime>
+	<string>
 
-1385640110 source:c:\users\ricardo\metalzombie\src\game.cpp
+1387412414 source:c:\users\ricardo\metalzombie\src\game.cpp
 	"../include/Game.h"
 
 1331752015 c:\users\ricardo\downloads\sfml-2.0-rc-64\include\sfml\audio.hpp
@@ -1340,12 +1345,12 @@
 	"../include/Shot.h"
 	<iostream>
 
-1384431719 c:\users\ricardo\metalzombie\include\shot.h
+1387286076 c:\users\ricardo\metalzombie\include\shot.h
 	"Object.h"
 	"Character.h"
 	<SFML/Audio.hpp>
 
-1384541758 source:c:\users\ricardo\metalzombie\src\shot.cpp
+1387286068 source:c:\users\ricardo\metalzombie\src\shot.cpp
 	"../include/Shot.h"
 
 1369999365 source:c:\users\2ºdai\metalzombie\src\npc.cpp
@@ -1845,13 +1850,14 @@
 	<SFML/System/Thread.hpp>
 	<vector>
 
-1385637500 c:\users\ricardo\metalzombie\include\menu.h
+1387284703 c:\users\ricardo\metalzombie\include\menu.h
 	"Object.h"
+	"INIReader.h"
 	<SFML/Audio.hpp>
 	<SFML/Graphics.hpp>
 	<sstream>
 
-1385637528 source:c:\users\ricardo\metalzombie\src\menu.cpp
+1387382288 source:c:\users\ricardo\metalzombie\src\menu.cpp
 	"../include/Menu.h"
 
 1371580227 /home/richy/MetalZombie/include/Menu.h
@@ -2759,7 +2765,35 @@
 	"Level.h"
 	"ZombieBoss.h"
 
-1385564139 source:c:\users\ricardo\metalzombie\src\levelboss.cpp
+1386771100 source:c:\users\ricardo\metalzombie\src\levelboss.cpp
 	"../include/LevelBoss.h"
 	<iostream>
+
+1386880578 c:\users\ricardo\metalzombie\include\inireader.h
+	<map>
+	<string>
+
+1387284196 source:c:\users\ricardo\metalzombie\src\ini.c
+	<stdio.h>
+	<ctype.h>
+	<string.h>
+	"../include/ini.h"
+	<stdlib.h>
+
+1357716768 c:\users\ricardo\metalzombie\include\ini.h
+	<stdio.h>
+
+1386886863 source:c:\users\ricardo\metalzombie\src\inireader.cpp
+	<algorithm>
+	<cctype>
+	<cstdlib>
+	"../include/ini.h"
+	"../include/INIReader.h"
+
+1387404714 source:c:\users\ricardo\metalzombie\src\iniwriter.cpp
+	"../include/INIWriter.h"
+
+1386887061 c:\users\ricardo\metalzombie\include\iniwriter.h
+	<iostream>
+	<fstream>
 

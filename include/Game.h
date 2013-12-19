@@ -2,6 +2,8 @@
 #define GAME_H
 #include "LevelBoss.h"
 #include "Menu.h"
+#include "INIReader.h"
+#include "INIWriter.h"
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
@@ -9,6 +11,7 @@
 #include <iostream>
 #include <sstream>
 #include <ctime>
+#include <string>
 /*!
  *  \brief     Class of the game
  *  \details   This class will control and execute the game, like windows and events
@@ -37,7 +40,8 @@ public:
     */
     void startLevel(Level* _level);
     void startLevelBoss(LevelBoss* _levelBoss);
-
+    void startCredits();
+    void startOptions();
 protected:
 private:
     /*!
@@ -71,10 +75,14 @@ private:
     bool menu;
     bool playedSoundIntro;
     bool level;
+    bool credits;
+    bool options;
     sf::Clock frameClock;
     sf::Event event;
     Level *gameLevel;
     LevelBoss *levelBoss;
+    Object *creditsPicture;
+    Menu *optionMenu;
 };
 
 #endif // GAME_H

@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "Zombie.h"
 #include "Menu.h"
+#include "INIReader.h"
 #include <Thor/Time.hpp>
 #include <sstream>
 #include <vector>
@@ -208,11 +209,11 @@ protected:
     /*!
     * \details Buffer of the audio's effects
     */
-    sf::SoundBuffer *bufferEffect;
+    sf::SoundBuffer bufferEffect;
     /*!
     * \details Sound of the audio's
     */
-    sf::Sound *soundEffect;
+    sf::Sound soundEffect;
     /*!
     * \details When the game is finished
     */

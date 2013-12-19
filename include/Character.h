@@ -1,6 +1,7 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 #include "Object.h"
+#include "INIReader.h"
 #include <SFML/Graphics.hpp>
 #include <Thor/Animation.hpp>
 /*!

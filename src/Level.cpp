@@ -5,6 +5,7 @@ Level::Level() {
 }
 
 Level::Level(char file_music[],float windowWidth, float windowHeight,const unsigned int numZombies,const unsigned int numBlocks,const unsigned int numBuilders,const unsigned int numSkies,const unsigned int numSoldiers) {
+    INIReader file("config.ini");
     this->clockTime.start();
     this->endGame = false;
     this->pauseMenu = new Menu();
@@ -73,6 +74,23 @@ Level::Level(char file_music[],float windowWidth, float windowHeight,const unsig
         }
     }
 
+    for(unsigned int i = 0; i < 40; i++) {
+        if(i==0) {
+            this->platforms.push_back(new Object((char*)"res/images/backgrounds/level1/block1.png"));
+        } else {
+            this->platforms.push_back(new Object((this->blocks.at(0)->getTexture())));
+        }
+        if(i >= 0 && i <= 10) {
+            this->platforms.at(i)->getSprite()->setPosition((i+30) * this->blocks.at(i)->getSprite()->getTexture()->getSize().x,windowHeight - 180);
+        } else if (i >= 11 && i <= 13) {
+            this->platforms.at(i)->getSprite()->setPosition((i+35) * this->blocks.at(i)->getSprite()->getTexture()->getSize().x,windowHeight - 300);
+        } else if(i >= 13 && i <= 30) {
+            this->platforms.at(i)->getSprite()->setPosition((i+140) * this->blocks.at(i)->getSprite()->getTexture()->getSize().x,windowHeight - 180);
+        } else {
+            this->platforms.at(i)->getSprite()->setPosition((i+160) * this->blocks.at(i)->getSprite()->getTexture()->getSize().x,windowHeight - 180);
+        }
+    }
+
     for(unsigned int i = 0; i< numBuilders; i++) {
         if(i==0) {
             this->builders.push_back(new Object((char*)"res/images/backgrounds/level1/builders.png"));
@@ -127,13 +145,15 @@ Level::Level(char file_music[],float windowWidth, float windowHeight,const unsig
         }
         this->soldiers.at(i)->setObjectVector(rect_aux);
         this->soldiers.at(i)->getSprite()->setScale(-1.f,1.f);
-
     }
 
-    this->bufferEffect = new sf::SoundBuffer();
-    this->soundEffect = new sf::Sound();
-    if(this->bufferEffect->loadFromFile((char*)"res/sounds/effects/level/gameover.ogg")) {
-        this->soundEffect->setBuffer(*this->bufferEffect);
+    if(this->bufferEffect.loadFromFile((char*)"res/sounds/effects/level/gameover.ogg")) {
+        this->soundEffect.setBuffer(this->bufferEffect);
+        if (file.ParseError() < 0) {
+            this->soundEffect.setVolume(100.f);
+        }else{
+            this->soundEffect.setVolume(file.GetReal("volume", "effects", 100.f));
+        }
     }
 
 
@@ -147,12 +167,12 @@ Level::Level(char file_music[],float windowWidth, float windowHeight,const unsig
             this->zombies.push_back(new Zombie(this->zombies.at(0)->getTexture(),60.f,400.f,0));
         } else if(i == 10) {
             this->zombies.push_back(new Zombie((char*)"res/images/characters/npc/enemy/zombies/fastZombie.png",200.f,400.f,0));
-        } else if(i < 20) {
+        } else if(i < 30) {
             this->zombies.push_back(new Zombie(this->zombies.at(10)->getTexture(),200.f,400.f,0));
-        } else if(i == 20) {
+        } else if(i == 30) {
             this->zombies.push_back(new Zombie((char*)"res/images/characters/npc/enemy/zombies/bigZombie.png",40.f,400.f,2));
         } else {
-            this->zombies.push_back(new Zombie(this->zombies.at(20)->getTexture(),40.f,400.f,2));
+            this->zombies.push_back(new Zombie(this->zombies.at(30)->getTexture(),40.f,400.f,2));
         }
         this->zombies.at(i)->getSprite()->setPosition(((i+1.f)*200.f),100.f);
     }
@@ -163,6 +183,11 @@ Level::Level(char file_music[],float windowWidth, float windowHeight,const unsig
     } else {
         this->music->play();
         this->music->setLoop(true);
+        if (file.ParseError() < 0) {
+            this->music->setVolume(100.f);
+        }else{
+            this->music->setVolume(file.GetReal("volume", "music", 100.f));
+        }
     }
 }
 
@@ -190,8 +215,6 @@ Level::~Level() {
     delete livesFace;
     delete zombiesFace;
     delete joystickImage;
-    delete bufferEffect;
-    delete soundEffect;
     delete pauseMenu;
 }
 
@@ -235,7 +258,7 @@ sf::Text Level::getTextLives() {
 
 sf::Text Level::getTextGameOver() {
     if(!this->endGame) {
-        this->soundEffect->play();
+        this->soundEffect.play();
         this->endGame = true;
     }
     return this->gameOverText;
@@ -381,6 +404,6 @@ float Level::getClockSeconds() {
     return this->clockTime.getElapsedTime().asSeconds();
 }
 
-sf::Music* Level::getMusic(){
+sf::Music* Level::getMusic() {
     return this->music;
 }
