@@ -375,7 +375,7 @@
 	"NPC.h"
 	"Player.h"
 
-1387408786 c:\users\ricardo\metalzombie\include\game.h
+1389368484 c:\users\ricardo\metalzombie\include\game.h
 	"LevelBoss.h"
 	"Menu.h"
 	"INIReader.h"
@@ -389,7 +389,7 @@
 	<ctime>
 	<string>
 
-1387412414 source:c:\users\ricardo\metalzombie\src\game.cpp
+1389374580 source:c:\users\ricardo\metalzombie\src\game.cpp
 	"../include/Game.h"
 
 1331752015 c:\users\ricardo\downloads\sfml-2.0-rc-64\include\sfml\audio.hpp

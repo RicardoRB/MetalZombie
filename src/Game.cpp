@@ -9,6 +9,7 @@ Game::Game() {
     this->menu = true;
     this->level = false;
     this->credits = false;
+    this->score = false;
     this->playedSoundIntro = false;
     this->options = false;
     INIReader file("config.ini");
@@ -357,10 +358,10 @@ void Game::startLevel(Level* _level) {
                 _level->getPlayer()->die();
             }
             if(_level->getPlayer()->getSprite()->getPosition().x >= _level->blocks.at(_level->blocks.size()-5)->getSprite()->getPosition().x) {
-                this->gameLevel->getMusic()->stop();
-                this->levelBoss = new LevelBoss((char*)"res/images/backgrounds/level1/boss.png",(char*)"res/sounds/music/boss.ogg",this->window->getSize().x, this->window->getSize().y,18,32);
-                this->levelBoss->getPlayer()->setCamera(this->window->getDefaultView());
-                startLevelBoss(this->levelBoss);
+                this->level = false;
+                this->score = true;
+                this->window->setView(this->window->getDefaultView());
+                startScore(_level->getContZombies(),_level->getClockSeconds());
             }
 
             //--------------------------------------------------------------------
@@ -541,7 +542,7 @@ void Game::startLevelBoss(LevelBoss* _levelBoss) {
     if(_levelBoss->getMusic()->getStatus() == sf::Music::Stopped) {
         _levelBoss->getMusic()->play();
     }
-    while (this->window->isOpen() && this->level) {
+    while (this->window->isOpen() && this->levelBoss) {
         //Needed to do all animations
         sf::Time frame_time;
         //--------------------------------------------------------------------
@@ -951,6 +952,81 @@ void Game::startCredits() {
             this->startMenu();
         }
         this->window->draw(*creditsPicture->getSprite());
+        this->window->display();
+    }
+}
+
+void Game::startScore(int numZombies, float time) {
+    sf::Text scoreText;
+    sf::Text scoreTitle;
+    sf::Text newRecordText;
+    sf::Font font;
+    font.loadFromFile("res/fonts/BrushRunes.otf");
+    scoreText.setFont(font);
+    scoreTitle.setFont(font);
+    newRecordText.setFont(font);
+    bool newRecord = false;
+    int number = ((numZombies * 5000)/time);
+
+    std::stringstream ss;
+    INIReader file("config.ini");
+    std::string fs = file.Get("window", "fullscreen", "1");
+    std::string width = file.Get("window","width","1024");
+    std::string height = file.Get("window","height","768");
+    std::string music = file.Get("volume","music","100");
+    std::string effects = file.Get("volume","effects","100");
+    std::string score = file.Get("score","level1","0");
+    if(number > file.GetInteger("score","level1",0)){
+        newRecord = true;
+    }
+    INIWriter w;
+    w.Open("config.ini");
+    w.PutSection("window");
+    w.PutValue("width",width);
+    w.PutValue("height",height);
+    w.PutValue("fullscreen", fs);
+    w.PutSection("volume");
+    w.PutValue("music",music);
+    w.PutValue("effects",effects);
+    w.PutSection("Score");
+    ss << number;
+    w.PutValue("level1",ss.str());
+
+    scoreText.setString(ss.str());
+    scoreText.setCharacterSize(80U);
+    scoreText.setColor(sf::Color::Red);
+    scoreText.setPosition((this->window->getSize().x/2)-50.f,(this->window->getSize().y/2));
+
+    newRecordText.setString("NEW RECORD");
+    newRecordText.setCharacterSize(100U);
+    newRecordText.setColor(sf::Color::Red);
+    newRecordText.setPosition((this->window->getSize().x/2)-150.f,(this->window->getSize().y/2)-200.f);
+
+    scoreTitle.setString("SCORE");
+    scoreTitle.setCharacterSize(100U);
+    scoreTitle.setColor(sf::Color::Red);
+    scoreTitle.setPosition((this->window->getSize().x/2)-70.f,(this->window->getSize().y/2)-300.f);
+
+    while (this->window->isOpen() && this->score) {
+        while (this->window->pollEvent(this->event)) {
+            if (this->event.type == sf::Event::Closed) {
+                this->window->close();
+            }
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || sf::Joystick::isButtonPressed(0,0)) {
+                this->score = false;
+                this->level = true;
+                this->gameLevel->getMusic()->stop();
+                this->levelBoss = new LevelBoss((char*)"res/images/backgrounds/level1/boss.png",(char*)"res/sounds/music/boss.ogg",this->window->getSize().x, this->window->getSize().y,18,32);
+                this->levelBoss->getPlayer()->setCamera(this->window->getDefaultView());
+                startLevelBoss(this->levelBoss);
+            }
+        }
+        this->window->clear(sf::Color::Black);
+        this->window->draw(scoreTitle);
+        if(newRecord){
+            this->window->draw(newRecordText);
+        }
+        this->window->draw(scoreText);
         this->window->display();
     }
 }

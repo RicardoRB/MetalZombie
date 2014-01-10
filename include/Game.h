@@ -42,6 +42,7 @@ public:
     void startLevelBoss(LevelBoss* _levelBoss);
     void startCredits();
     void startOptions();
+    void startScore(int contZombies, float time);
 protected:
 private:
     /*!
@@ -76,6 +77,7 @@ private:
     bool playedSoundIntro;
     bool level;
     bool credits;
+    bool score;
     bool options;
     sf::Clock frameClock;
     sf::Event event;
