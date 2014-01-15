@@ -27,6 +27,7 @@ Game::Game() {
     this->menuTitle = new Menu(this->window->getSize().x, this->window->getSize().y);
     this->menuTitle->setOption(0);
     this->window->setVerticalSyncEnabled(true);
+    this->window->setFramerateLimit(60U);
     this->window->setMouseCursorVisible(false);
     this->frameClock.restart();
     this->gameLevel = NULL;
@@ -197,6 +198,8 @@ void Game::startOptions() {
                 default: {
                     std::string fs = file.Get("window", "fullscreen", "1");
                     std::string s = this->optionMenu->getTextOptions().getString();
+                    std::string score = file.Get("score","level1","0");
+
                     INIWriter w;
                     w.Open("config.ini");
                     w.PutSection("window");
@@ -206,6 +209,8 @@ void Game::startOptions() {
                     w.PutSection("volume");
                     w.PutValue("music",this->optionMenu->getTextStart().getString());
                     w.PutValue("effects",this->optionMenu->getTextExit().getString());
+                    w.PutSection("Score");
+                    w.PutValue("level1",score);
                     this->menuTitle->setOption(-1);
                     this->options = false;
                     this->menu = true;
@@ -226,6 +231,8 @@ void Game::startOptions() {
 }
 
 void Game::startLevel(Level* _level) {
+    INIReader file("config.ini");
+    _level->getMusic()->setVolume(file.GetReal("volume", "music", 100.f));
     if(_level->getMusic()->getStatus() == sf::Music::Stopped) {
         _level->getMusic()->play();
     }
@@ -539,6 +546,8 @@ void Game::startLevel(Level* _level) {
 }
 
 void Game::startLevelBoss(LevelBoss* _levelBoss) {
+    INIReader file("config.ini");
+    _levelBoss->getMusic()->setVolume(file.GetReal("volume", "music", 100.f));
     if(_levelBoss->getMusic()->getStatus() == sf::Music::Stopped) {
         _levelBoss->getMusic()->play();
     }
@@ -784,6 +793,7 @@ void Game::startLevelBoss(LevelBoss* _levelBoss) {
                 if(_levelBoss->getTimeTube()->getElapsedTime().asSeconds() > 10.f && !_levelBoss->getBoss()->isLife()) {
                     this->level = false;
                     this->credits = true;
+                    _levelBoss->getMusic()->stop();
                     startCredits();
                 }
                 _levelBoss->getBoss()->setVelX(0);
